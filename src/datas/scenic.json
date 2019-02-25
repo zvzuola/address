@@ -1,0 +1,936 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "Sheet1",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1775915107, 30.2820355837 ]
+			},
+			"properties" : {
+				"id" : 1,
+				"name" : "艮山古樟",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "朝晖路与绍兴路交叉口西南50米",
+				"location" : "120.182206,30.279657",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1716407613, 30.2837993472 ]
+			},
+			"properties" : {
+				"id" : 2,
+				"name" : "古打铁关",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "打铁关路52号",
+				"location" : "120.176273,30.281432",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1717902236, 30.2835916483 ]
+			},
+			"properties" : {
+				"id" : 3,
+				"name" : "打铁关历史文化碑廊",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "文晖路",
+				"location" : "120.176422,30.281224",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.178506343, 30.2801954466 ]
+			},
+			"properties" : {
+				"id" : 4,
+				"name" : "河山共韵",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "河罕上2附近",
+				"location" : "120.183118,30.277815",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1737094243, 30.27760883 ]
+			},
+			"properties" : {
+				"id" : 5,
+				"name" : "古艮山门",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "环城北路与建国北路交叉处旁",
+				"location" : "120.178335,30.275237",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1735851258, 30.2767656801 ]
+			},
+			"properties" : {
+				"id" : 6,
+				"name" : "坝子桥",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "仓河下与环城北路交叉口东100米",
+				"location" : "120.178211,30.274394",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1731969924, 30.2765449773 ]
+			},
+			"properties" : {
+				"id" : 7,
+				"name" : "凤凰亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "环城北路115号",
+				"location" : "120.177824,30.274174",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1697776864, 30.2780454269 ]
+			},
+			"properties" : {
+				"id" : 8,
+				"name" : "映月桥(施家花园社区卫生服务站东)",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "环城北路132号附近",
+				"location" : "120.174415,30.275681",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1638355875, 30.2821388542 ]
+			},
+			"properties" : {
+				"id" : 9,
+				"name" : "徐志摩纪念馆",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "上塘路97号大院",
+				"location" : "120.168491,30.279786",
+				"tel" : "0571-87399192"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1740789285, 30.2726949884 ]
+			},
+			"properties" : {
+				"id" : 10,
+				"name" : "宝善亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "仓河下30号",
+				"location" : "120.178703,30.270322",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1749395458, 30.2718526679 ]
+			},
+			"properties" : {
+				"id" : 11,
+				"name" : "东河亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "体育场路93-4号",
+				"location" : "120.179561,30.269478",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1682115258, 30.2718460757 ]
+			},
+			"properties" : {
+				"id" : 12,
+				"name" : "锦韵悠长",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "体育场路与西健康路交叉口东南50米",
+				"location" : "120.172853,30.269484",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1590646121, 30.2793502262 ]
+			},
+			"properties" : {
+				"id" : 13,
+				"name" : "西湖文化广场-浙越古戏台",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "西湖文化广场9号",
+				"location" : "120.163734,30.277006",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1574608246, 30.2798292134 ]
+			},
+			"properties" : {
+				"id" : 14,
+				"name" : "浙江革命历史纪念馆",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "西湖文化广场29号",
+				"location" : "120.162135,30.277488",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1684634506, 30.2697817403 ]
+			},
+			"properties" : {
+				"id" : 15,
+				"name" : "锦雲厅",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "健康路与西健康路交叉口东50米",
+				"location" : "120.173104,30.267419",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1711174828, 30.2684288473 ]
+			},
+			"properties" : {
+				"id" : 16,
+				"name" : "明宅",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "新华路227号",
+				"location" : "120.175750,30.266061",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1621996104, 30.2712958383 ]
+			},
+			"properties" : {
+				"id" : 17,
+				"name" : "天水堂",
+				"type" : "风景名胜;风景名胜;教堂",
+				"address" : "中山北路437-1号(耶稣堂弄口)",
+				"location" : "120.166859,30.268945",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1617131449, 30.2714799117 ]
+			},
+			"properties" : {
+				"id" : 18,
+				"name" : "司徒雷登故居",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "耶稣堂弄3号",
+				"location" : "120.166374,30.269130",
+				"tel" : "0571-85175986"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1626560424, 30.2704497708 ]
+			},
+			"properties" : {
+				"id" : 19,
+				"name" : "杭州中美友谊民间纪念馆",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "后营弄与耶稣堂弄交叉口南100米",
+				"location" : "120.167314,30.268098",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1586278072, 30.2734929822 ]
+			},
+			"properties" : {
+				"id" : 20,
+				"name" : "武林广场-八少女音乐喷泉",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "武林广场",
+				"location" : "120.163298,30.271149",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1628897767, 30.2700082492 ]
+			},
+			"properties" : {
+				"id" : 21,
+				"name" : "天主教杭州教区",
+				"type" : "风景名胜;风景名胜;教堂",
+				"address" : "中山北路415号(近银泰)",
+				"location" : "120.167547,30.267656",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1715068305, 30.3141796499 ]
+			},
+			"properties" : {
+				"id" : 22,
+				"name" : "潮王庙",
+				"type" : "风景名胜;风景名胜;寺庙道观",
+				"address" : "东新街道东新路积福里23号",
+				"location" : "120.176142,30.311816",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1626219835, 30.2699387541 ]
+			},
+			"properties" : {
+				"id" : 23,
+				"name" : "杭州天主教堂",
+				"type" : "风景名胜;风景名胜;教堂",
+				"address" : "中山北路415号(近银泰)",
+				"location" : "120.167280,30.267587",
+				"tel" : "0571-85101803"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1771406224, 30.264764384 ]
+			},
+			"properties" : {
+				"id" : 24,
+				"name" : "常乐亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "建国北路178-3号",
+				"location" : "120.181755,30.262385",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1736432533, 30.2652858526 ]
+			},
+			"properties" : {
+				"id" : 25,
+				"name" : "梁宅",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "双眼井巷2号",
+				"location" : "120.178268,30.262913",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1508246098, 30.2897421697 ]
+			},
+			"properties" : {
+				"id" : 26,
+				"name" : "半道春红",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "潮王路182号",
+				"location" : "120.155519,30.287414",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1727416797, 30.2640522785 ]
+			},
+			"properties" : {
+				"id" : 27,
+				"name" : "王马阁",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "横燕子弄8幢附近",
+				"location" : "120.177369,30.261681",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1764121379, 30.316966432 ]
+			},
+			"properties" : {
+				"id" : 28,
+				"name" : "聚星亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "沈家巷与沈家路交叉口南150米",
+				"location" : "120.181033,30.314594",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1568205771, 30.2721577731 ]
+			},
+			"properties" : {
+				"id" : 29,
+				"name" : "万寿亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "延安路591号",
+				"location" : "120.161496,30.269817",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1732933698, 30.2634283634 ]
+			},
+			"properties" : {
+				"id" : 30,
+				"name" : "白衣寺",
+				"type" : "风景名胜;风景名胜;寺庙道观",
+				"address" : "遥祥寺巷2号",
+				"location" : "120.177919,30.261056",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1633223475, 30.266657364 ]
+			},
+			"properties" : {
+				"id" : 31,
+				"name" : "凤起亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "凤起路365号附近",
+				"location" : "120.167978,30.264304",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1587004878, 30.2679296311 ]
+			},
+			"properties" : {
+				"id" : 32,
+				"name" : "钱王井",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "延安路489附近",
+				"location" : "120.163370,30.265585",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1586904615, 30.2678886163 ]
+			},
+			"properties" : {
+				"id" : 33,
+				"name" : "杭州市工农业生产建设展览馆旧址",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "延安路489号",
+				"location" : "120.163360,30.265544",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1831383835, 30.2605856344 ]
+			},
+			"properties" : {
+				"id" : 34,
+				"name" : "古庆春门",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "环城东路128附近",
+				"location" : "120.187735,30.258195",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1709595853, 30.2615461601 ]
+			},
+			"properties" : {
+				"id" : 35,
+				"name" : "吴宅",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "新华路岳官巷4号",
+				"location" : "120.175592,30.259178",
+				"tel" : "55"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1750407715, 30.2607088517 ]
+			},
+			"properties" : {
+				"id" : 36,
+				"name" : "五洋亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "庆春路313号附近",
+				"location" : "120.179661,30.258333",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1633666804, 30.2642546604 ]
+			},
+			"properties" : {
+				"id" : 37,
+				"name" : "陆游诗词碑廊",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "孩儿巷38号",
+				"location" : "120.168022,30.261901",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1585681945, 30.2667504924 ]
+			},
+			"properties" : {
+				"id" : 38,
+				"name" : "龙兴寺经幢",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "延安路北段灯芯巷口",
+				"location" : "120.163238,30.264406",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1622754344, 30.264136627 ]
+			},
+			"properties" : {
+				"id" : 39,
+				"name" : "陆游纪念馆",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "孩儿巷98号",
+				"location" : "120.166934,30.261785",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1639235095, 30.2622608787 ]
+			},
+			"properties" : {
+				"id" : 40,
+				"name" : "梅王阁",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "永丰巷15号",
+				"location" : "120.168577,30.259906",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1672335372, 30.260638238 ]
+			},
+			"properties" : {
+				"id" : 41,
+				"name" : "庆馀亭",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "长庆中河北路中河(广利大厦东50米)",
+				"location" : "120.171877,30.258277",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1527960787, 30.2687167672 ]
+			},
+			"properties" : {
+				"id" : 42,
+				"name" : "安吉路35号别墅建筑",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "安吉路35号",
+				"location" : "120.157483,30.266383",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.152846243, 30.2684968775 ]
+			},
+			"properties" : {
+				"id" : 43,
+				"name" : "安吉路37号别墅建筑",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "安吉路37号",
+				"location" : "120.157533,30.266163",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1620850898, 30.2614675031 ]
+			},
+			"properties" : {
+				"id" : 44,
+				"name" : "竹竿巷小区",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "竹竿巷33号",
+				"location" : "120.166744,30.259116",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1583518359, 30.2633773906 ]
+			},
+			"properties" : {
+				"id" : 45,
+				"name" : "逸庐",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "横长寿路6号",
+				"location" : "120.163022,30.261033",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1612887501, 30.261073049 ]
+			},
+			"properties" : {
+				"id" : 46,
+				"name" : "马寅初纪念馆",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "庆春路210号(近延安路)",
+				"location" : "120.16595,30.258723",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1601864363, 30.2614859589 ]
+			},
+			"properties" : {
+				"id" : 47,
+				"name" : "仁德里12号",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "庆春路与延安路交叉口",
+				"location" : "120.164851,30.259138",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1530440919, 30.2652325268 ]
+			},
+			"properties" : {
+				"id" : 48,
+				"name" : "彩虹舞",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "凤起路与环城西路交叉口东南50米",
+				"location" : "120.157730,30.262898",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1589277306, 30.2611196524 ]
+			},
+			"properties" : {
+				"id" : 49,
+				"name" : "浙江省高等法院及杭县地方法院旧址",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "庆春路258号",
+				"location" : "120.163596,30.258774",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1538334941, 30.2640160599 ]
+			},
+			"properties" : {
+				"id" : 50,
+				"name" : "沙孟海旧居",
+				"type" : "风景名胜;风景名胜;纪念馆",
+				"address" : "龙游路82号(近环城西路)",
+				"location" : "120.158517,30.26168",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1556148483, 30.2623644448 ]
+			},
+			"properties" : {
+				"id" : 51,
+				"name" : "梅鹤堂",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "教场路2-11号",
+				"location" : "120.160293,30.260025",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1556800462, 30.2622885706 ]
+			},
+			"properties" : {
+				"id" : 52,
+				"name" : "梅鹤堂林界",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "教场路与武林路交叉口西南50米",
+				"location" : "120.160358,30.259949",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1519752274, 30.2623898564 ]
+			},
+			"properties" : {
+				"id" : 53,
+				"name" : "杭州西湖风景名胜区-惜别白公雕塑",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "龙井路1号杭州西湖风景名胜区内",
+				"location" : "120.156664,30.260057",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1526392161, 30.2616381123 ]
+			},
+			"properties" : {
+				"id" : 54,
+				"name" : "杭州西湖风景名胜区-圣塘景区",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "杭州西湖东北角临湖绿地公园",
+				"location" : "120.157326,30.259304",
+				"tel" : "春季-spring"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1530965777, 30.2612559684 ]
+			},
+			"properties" : {
+				"id" : 55,
+				"name" : "杭州西湖风景名胜区天书楼",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "龙井路1号杭州西湖风景名胜区内",
+				"location" : "120.157782,30.258921",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1529942818, 30.2612357858 ]
+			},
+			"properties" : {
+				"id" : 56,
+				"name" : "杭州西湖风景名胜区-朶云轩",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "龙井路1号西湖风景名胜区内",
+				"location" : "120.157680,30.258901",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1528267937, 30.2612484831 ]
+			},
+			"properties" : {
+				"id" : 57,
+				"name" : "杭州西湖风景名胜区-马可·波罗塑像",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "龙井路1号杭州西湖风景名胜区内",
+				"location" : "120.157513,30.258914",
+				"tel" : "夏季-summer"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1762611459, 30.3355396422 ]
+			},
+			"properties" : {
+				"id" : 58,
+				"name" : "千佛殿",
+				"type" : "风景名胜;风景名胜;寺庙道观",
+				"address" : "甘长路41号楼附近",
+				"location" : "120.180884,30.333170",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1761708779, 30.335562472 ]
+			},
+			"properties" : {
+				"id" : 59,
+				"name" : "定慧寺",
+				"type" : "风景名胜;风景名胜;寺庙道观",
+				"address" : "石桥街道益达印务甘长路41号楼",
+				"location" : "120.180794,30.333193",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1793611546, 30.3365231958 ]
+			},
+			"properties" : {
+				"id" : 60,
+				"name" : "永清桥",
+				"type" : "风景名胜;风景名胜;风景名胜",
+				"address" : "永清路50号附近",
+				"location" : "120.183975,30.334148",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1973297862, 30.3498237863 ]
+			},
+			"properties" : {
+				"id" : 61,
+				"name" : "众华禅寺",
+				"type" : "风景名胜;风景名胜;寺庙道观",
+				"address" : "永华街61号",
+				"location" : "120.201895,30.347420",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.19775785, 30.3502693754 ]
+			},
+			"properties" : {
+				"id" : 62,
+				"name" : "鲁村庙",
+				"type" : "风景名胜;风景名胜;寺庙道观",
+				"address" : "华中路附近",
+				"location" : "120.202322,30.347865",
+				"tel" : ""
+			}
+		}
+	]
+}
