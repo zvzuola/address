@@ -283,7 +283,7 @@ export default {
 
     addAccommodationTagMarker() {
       const convertGgss = convertCoordinateFromGeoJSON(accommodation, this.gs);
-      const options = this.getTagOptions(convertGgss.features, 'scenic');
+      const options = this.getTagOptions(convertGgss.features, 'accommodation');
       this.accommodationTag = new TagMarker(options);
       this.accommodationTag.traverse((marker, i) => {
         marker.on('click', () => {
@@ -301,7 +301,7 @@ export default {
 
     addFoodTagMarker() {
       const convertGgss = convertCoordinateFromGeoJSON(food, this.gs);
-      const options = this.getTagOptions(convertGgss.features, 'scenic');
+      const options = this.getTagOptions(convertGgss.features, 'food');
       this.foodTag = new TagMarker(options);
       this.foodTag.traverse((marker, i) => {
         marker.on('click', () => {
@@ -357,7 +357,9 @@ export default {
         gjzd: './img/gjzd.png', // 公交站点
         zdry: './img/person.png', // 重点人员
         yjsp: './img/shop.png', // 沿街商铺
-        scenic: './img/tagDemo.png' // 风景名胜
+        scenic: './img/scenic.png', // 风景名胜
+        accommodation: './img/accommodation.png', // 住宿
+        food: './img/food.png' // 餐饮
       };
 
       return features.map(project => {
