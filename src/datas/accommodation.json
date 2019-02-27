@@ -1,0 +1,1112 @@
+{
+	"type" : "FeatureCollection",
+	"name" : "住宿",
+	"features" : [
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1649849192, 30.2833688875 ]
+			},
+			"properties" : {
+				"id" : "B023B085W4",
+				"name" : "汉庭酒店(杭州朝晖一店)",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "上塘路86号(市儿童医院旁和地铁西湖文化广场站A出口)",
+				"tel" : "0571-85772828"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1633634533, 30.2788362973 ]
+			},
+			"properties" : {
+				"id" : "B023B0907O",
+				"name" : "汉庭酒店(杭州西湖文化广场店)",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "朝晖路198号",
+				"tel" : "0571-85301500"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1597534937, 30.2812983116 ]
+			},
+			"properties" : {
+				"id" : "B023B08TLT",
+				"name" : "如家精选酒店(杭州西湖文化广场地铁站店)",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "中山北路603号",
+				"tel" : "0571-28116868"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1585355377, 30.2854006357 ]
+			},
+			"properties" : {
+				"id" : "B023B09YT6",
+				"name" : "布丁酒店(西湖文化广场地铁站店)",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "河东路85号(近文晖路口朝晖三区、紧靠农业银行)",
+				"tel" : "0571-85237220"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1626944874, 30.2784680801 ]
+			},
+			"properties" : {
+				"id" : "B023B0BDEN",
+				"name" : "星程菲斯泰尔酒店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "朝晖路211号2层",
+				"tel" : "0571-85302000;0571-85397396"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.159488534, 30.2833666108 ]
+			},
+			"properties" : {
+				"id" : "B023B0BCPT",
+				"name" : "蓝桥快捷酒店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "文晖路318号(文晖路和河东路交汇处门口市交警大队公交站)",
+				"tel" : "0571-86632240;18758892882"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1601073201, 30.2839876978 ]
+			},
+			"properties" : {
+				"id" : "B023B02XHA",
+				"name" : "苍山精品酒店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "河东路9号苍山大厦",
+				"tel" : "0571-85304588;0571-85303585"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.163860928, 30.2789682173 ]
+			},
+			"properties" : {
+				"id" : "B0FFGXO5P2",
+				"name" : "米兰风尚酒店",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "朝晖路188号,近武林广场、西湖文化广场、地铁1号线",
+				"tel" : "0571-85305555"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1666778328, 30.2731510695 ]
+			},
+			"properties" : {
+				"id" : "B0FFHECASO",
+				"name" : "怡莱酒店(武林广场店)",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "体育场路216号田家桥2号,体育场路和中河高架交叉口",
+				"tel" : "0571-28331888"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1613972222, 30.2832251798 ]
+			},
+			"properties" : {
+				"id" : "B023B14CEG",
+				"name" : "美亚城市酒店(西湖文化广场店)",
+				"type" : "住宿服务;宾馆酒店;三星级宾馆",
+				"address" : "文晖路271号越都商务大厦4层",
+				"tel" : "0571-88236333"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1603991251, 30.2847361644 ]
+			},
+			"properties" : {
+				"id" : "B0FFHCZ6I6",
+				"name" : "恒益精品酒店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "河东路46号",
+				"tel" : "0571-86790316"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1657393927, 30.2807555682 ]
+			},
+			"properties" : {
+				"id" : "B0FFHJT0PO",
+				"name" : "智颐尚品酒店公寓(西湖文化广场店)",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "朝晖路168号钛合国际B座一楼大厅",
+				"tel" : "0571-88271485"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1665793342, 30.2875844495 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQ119X",
+				"name" : "杭州益仁民宿(文晖路店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖四小区11幢二单元201",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1592586595, 30.2856649486 ]
+			},
+			"properties" : {
+				"id" : "B0FFG75OYZ",
+				"name" : "豪翔假日酒店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "河东路110号(距离西湖文化地铁站A出口300米)",
+				"tel" : "0571-85230180"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1616232406, 30.2790970146 ]
+			},
+			"properties" : {
+				"id" : "B0FFIS6EUN",
+				"name" : "亚朵酒店(西湖文化广场店)",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "中山北路588号",
+				"tel" : "0571-28866888"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1658667601, 30.2809157916 ]
+			},
+			"properties" : {
+				"id" : "B0FFISSTQK",
+				"name" : "智颐尚品酒店(杭州西湖文化广场店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖路168号钛合国际B座一楼大厅",
+				"tel" : "0571-85835339;0571-88271485"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.163686001, 30.2718355724 ]
+			},
+			"properties" : {
+				"id" : "B0FFHX5BBX",
+				"name" : "杭州小明同学民宿(体育场路店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "体育场路261号(近中河路)",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1584943979, 30.2856145375 ]
+			},
+			"properties" : {
+				"id" : "B0FFJUSZQJ",
+				"name" : "布丁严选酒店(杭州武林西湖文化广场地铁站店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "河东路85号(近西湖文化广场地铁A出口)",
+				"tel" : "0571-85237220"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.16239962, 30.2783215425 ]
+			},
+			"properties" : {
+				"id" : "B0FFJL1I7R",
+				"name" : "杭州花田赞酒店(西湖文化广场店)",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "朝辉路213号中山花园秋月苑4-2-4",
+				"tel" : "0571-87352930"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1615031406, 30.2879758872 ]
+			},
+			"properties" : {
+				"id" : "B0FFIBA3U6",
+				"name" : "蔓莱酒店(上塘路店)",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "上塘路179-1号",
+				"tel" : "0571-86698081;18069761156"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1655915042, 30.2741219354 ]
+			},
+			"properties" : {
+				"id" : "B023B1DH9Z",
+				"name" : "天水商务酒店(天水巷)",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "天水巷1-4号7层",
+				"tel" : "0571-88033281"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1657955546, 30.2808276665 ]
+			},
+			"properties" : {
+				"id" : "B0FFITINRF",
+				"name" : "杭州麦兜民宿",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖路168号钛合国际大厦2号楼B座1409室,近西湖文化广场",
+				"tel" : "13600538677"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1663410525, 30.2824225321 ]
+			},
+			"properties" : {
+				"id" : "B0FFIVVXOZ",
+				"name" : "杭州绿皮高铁酒店",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "长天弄22号绿洲花园20幢广厦绿洲商务楼10层",
+				"tel" : "0571-85777812;0571-85778251"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1611114545, 30.2822277473 ]
+			},
+			"properties" : {
+				"id" : "B023B1H5XS",
+				"name" : "星晖假日酒店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "中山北路614号(西湖文化广场地铁A-D出口中间)",
+				"tel" : "0571-85160648"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1642479676, 30.2803648055 ]
+			},
+			"properties" : {
+				"id" : "B0FFIV58QC",
+				"name" : "杭州野风一哥的独立屋公寓(文晖路分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "国都发展大厦",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.166033288, 30.2805561405 ]
+			},
+			"properties" : {
+				"id" : "B0FFJ516XB",
+				"name" : "杭州萧寒公寓(徐志摩纪念馆分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "钛合国际",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1701869105, 30.2780091988 ]
+			},
+			"properties" : {
+				"id" : "B0FFHU8DS2",
+				"name" : "杭州宝贝酒店式公寓",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "文晖街道京都苑(武林广场附近市中心)",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1630674974, 30.2797026572 ]
+			},
+			"properties" : {
+				"id" : "B0FFIY53BH",
+				"name" : "杭州西湖文化广场旁阳光房公寓(上塘路分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "中山北园-25幢",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1716155665, 30.2732293364 ]
+			},
+			"properties" : {
+				"id" : "B0FFICVW7V",
+				"name" : "杭州金融家之家普通公寓",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "体育场路144号1单元301室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1665793342, 30.2875844495 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQGAD2",
+				"name" : "杭州家之旅酒店式公寓(朝晖四小区店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖四小区11幢2单元401室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1664103088, 30.2818317218 ]
+			},
+			"properties" : {
+				"id" : "B0FFIBXXQB",
+				"name" : "杭州我果果家普通公寓(分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖路152号绿洲花园18幢",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1590411033, 30.2845986548 ]
+			},
+			"properties" : {
+				"id" : "B0FFFAF3RS",
+				"name" : "琪韶酒店式公寓连锁(杭州河东社区店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "河东路25号黎明园22栋3单元",
+				"tel" : "13395713443"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1641804685, 30.2719494895 ]
+			},
+			"properties" : {
+				"id" : "B023B1D2CT",
+				"name" : "莫泰168旅店(杭州武林广场地铁站杭州日报店)",
+				"type" : "住宿服务;宾馆酒店;经济型连锁酒店",
+				"address" : "体育场路257号天合写字楼6层",
+				"tel" : "0571-85163288"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1636699537, 30.271828543 ]
+			},
+			"properties" : {
+				"id" : "B0FFJUCG6W",
+				"name" : "杭州apple远行公寓",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "体育场路西子大厦",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1629041078, 30.2785284667 ]
+			},
+			"properties" : {
+				"id" : "B0FFISK3MQ",
+				"name" : "杭州爱家爷叔特色民宿(中河北路辅路分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖路209号中山花园风荷苑(和平会展中心区域)",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1657793794, 30.2823474837 ]
+			},
+			"properties" : {
+				"id" : "B0FFISK3LB",
+				"name" : "杭州李贤淑普通公寓",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "上塘路18号绿洲之馨公寓(武林广场附近市中心)",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1640815884, 30.2789526328 ]
+			},
+			"properties" : {
+				"id" : "B0FFK979B2",
+				"name" : "杭州路客AA5580精品民宿",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖路184号",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1623715278, 30.2784214801 ]
+			},
+			"properties" : {
+				"id" : "B0FFJJ0QQA",
+				"name" : "杭州西湖幸福居公寓(秋水弄分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "中山花园秋月苑-北门",
+				"tel" : "0571-10107888"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1660413109, 30.2805691543 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQB782",
+				"name" : "杭州思睿民宿(分店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "元丰·钛合国际A座B座1404室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1650620689, 30.2843379336 ]
+			},
+			"properties" : {
+				"id" : "B023B08722",
+				"name" : "俊晟旅馆",
+				"type" : "住宿服务;旅馆招待所;旅馆招待所",
+				"address" : "文晖路196号",
+				"tel" : "0571-88981828"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1571363204, 30.2863519544 ]
+			},
+			"properties" : {
+				"id" : "B0FFFF425B",
+				"name" : "杭州happy短租公寓西湖文化广场二号店",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖七区6栋3三单元101",
+				"tel" : "13606548073"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1612860187, 30.2816971264 ]
+			},
+			"properties" : {
+				"id" : "B0FFFQ5PBG",
+				"name" : "客人旅馆",
+				"type" : "住宿服务;旅馆招待所;旅馆招待所",
+				"address" : "中山北路600号中山北园56幢",
+				"tel" : "0571-85241819"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1637941742, 30.2736316067 ]
+			},
+			"properties" : {
+				"id" : "B0FFIGDCRR",
+				"name" : "杭州途掌柜焕焕公寓胭脂新村店",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "胭脂新村11幢",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1637010409, 30.2718955951 ]
+			},
+			"properties" : {
+				"id" : "B0FFIBOJ7X",
+				"name" : "杭州青木羽悦服务式酒店公寓(华润西子店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "华润西子1605",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1637490417, 30.2736035247 ]
+			},
+			"properties" : {
+				"id" : "B0FFHX7AJ4",
+				"name" : "杭州我在西湖边等你普通公寓",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "天水街道胭脂新村11幢4单元602",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1589889461, 30.284628555 ]
+			},
+			"properties" : {
+				"id" : "B0FFFVMTJC",
+				"name" : "杭州7-安居公寓河东社区店",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "河东路25号黎明园22栋3单元",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1658697814, 30.2807698118 ]
+			},
+			"properties" : {
+				"id" : "B0FFIAQKZ7",
+				"name" : "杭州小峰的家酒店式公寓(元丰钛合国际店)",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "元丰·钛合国际b座",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1599516246, 30.2867711213 ]
+			},
+			"properties" : {
+				"id" : "B0FFINN9L1",
+				"name" : "杭州文化广场杭城公寓",
+				"type" : "住宿服务;住宿服务相关;住宿服务相关",
+				"address" : "朝晖三区",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1629211651, 30.2784525061 ]
+			},
+			"properties" : {
+				"id" : "B0FFIRVWBP",
+				"name" : "杭州我的家就是你的家普通公寓(朝晖路分店)",
+				"type" : "住宿服务;宾馆酒店;宾馆酒店",
+				"address" : "朝晖路209中山花园-风荷苑",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1656346281, 30.2741810109 ]
+			},
+			"properties" : {
+				"id" : "B0FFK3GY5Z",
+				"name" : "杭州天水青年旅社",
+				"type" : "住宿服务;旅馆招待所;青年旅舍",
+				"address" : "中河北路胭脂新村天水巷1幢4楼",
+				"tel" : "18257180199"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1659078794, 30.2809598645 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQB7GZ",
+				"name" : "B023B0BH1N",
+				"type" : "杭州徐武贤酒店式公寓(钛合国际店)",
+				"address" : "钛合国际B座1523",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1659209201, 30.2809388911 ]
+			},
+			"properties" : {
+				"id" : "B0FFIG3W0P",
+				"name" : "B023B0BH1N",
+				"type" : "杭州忆宿民宿",
+				"address" : "朝晖路168号钛合国际B座1619室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1603882406, 30.2829673244 ]
+			},
+			"properties" : {
+				"id" : "B0FFGJ0BP5",
+				"name" : "",
+				"type" : "德信商用酒店管理",
+				"address" : "晶晖商务大厦18楼",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1607861972, 30.2856857879 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQB7FW",
+				"name" : "B023B19IDW",
+				"type" : "杭州途掌柜·庄子普通公寓(分店)",
+				"address" : "朝晖一小区43幢2单元103室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1665793342, 30.2875844495 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQB7F3",
+				"name" : "B023B19EHG",
+				"type" : "杭州屠阿姨普通公寓",
+				"address" : "朝晖四小区11幢3单元102室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1587481472, 30.2856450042 ]
+			},
+			"properties" : {
+				"id" : "B0FFIRYB2F",
+				"name" : "",
+				"type" : "杭州漫果连锁公寓4店",
+				"address" : "河东路85号",
+				"tel" : "0571-88888889"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1622802694, 30.2782573254 ]
+			},
+			"properties" : {
+				"id" : "B0FFGS59I0",
+				"name" : "",
+				"type" : "杭州在水一方乐享驿站",
+				"address" : "朝晖路211号中山花园裙楼",
+				"tel" : "0571-87871111"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1632554388, 30.2751484523 ]
+			},
+			"properties" : {
+				"id" : "B0FFIG3XV9",
+				"name" : "",
+				"type" : "杭州西子湖畔尚总之家普通公寓(长运路店)",
+				"address" : "中山北路小北门2单元102",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1636629317, 30.2718405287 ]
+			},
+			"properties" : {
+				"id" : "B0FFHSDLQR",
+				"name" : "",
+				"type" : "杭州西遇酒店式公寓",
+				"address" : "天水街道玄坛弄体育场路交汇处右侧华润西子中心",
+				"tel" : "0571-86790929"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1582766151, 30.2872619635 ]
+			},
+			"properties" : {
+				"id" : "B0FFIJQBXK",
+				"name" : "B0FFF87HJ4",
+				"type" : "杭州西子民苑普通公寓(河东路店)",
+				"address" : "河东路120号朝晖三区39幢一单元301",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1660111925, 30.2809090638 ]
+			},
+			"properties" : {
+				"id" : "B0FFIG3NL1",
+				"name" : "B023B0BH1N",
+				"type" : "杭州共享小窝酒店式公寓",
+				"address" : "朝晖路168号钛合国际B座1723室",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1657252509, 30.2819484222 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQGAEH",
+				"name" : "B023B1C28A",
+				"type" : "杭州DW小屋(文晖路分店)",
+				"address" : "绿洲花园.21幢23楼2305",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1669481417, 30.2791360012 ]
+			},
+			"properties" : {
+				"id" : "B0FFIISRQ8",
+				"name" : "B023B19FD6",
+				"type" : "杭州四合寓品牌公寓(朝晖路店)",
+				"address" : "上塘高架与上塘高架出口交叉口东150米",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1644868387, 30.2784804399 ]
+			},
+			"properties" : {
+				"id" : "B0FFIGDDSX",
+				"name" : "",
+				"type" : "杭州西湖文化广场高品质住宅酒店式公寓",
+				"address" : "深蓝广场西三1006",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1637791083, 30.2738815548 ]
+			},
+			"properties" : {
+				"id" : "B0FFIGEPEU",
+				"name" : "",
+				"type" : "杭州苏杭第一家普通公寓分店",
+				"address" : "天水巷65号天水巷小区12栋2单元502",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1633838965, 30.2862335887 ]
+			},
+			"properties" : {
+				"id" : "B0FFIC77MR",
+				"name" : "B023B187II",
+				"type" : "杭州西湖文化广场普通公寓",
+				"address" : "朝晖二小区51幢3单元502",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1663952552, 30.281935683 ]
+			},
+			"properties" : {
+				"id" : "B0FFIQ116Z",
+				"name" : "B023B19JFG",
+				"type" : "杭州Linda之家普通公寓",
+				"address" : "绿洲花园18幢3003(武林广场附近市中心)",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.162921165, 30.278453506 ]
+			},
+			"properties" : {
+				"id" : "B0FFIH6ZND",
+				"name" : "",
+				"type" : "杭州偶遇公寓",
+				"address" : "春建乡朝晖路209中山花园风荷苑",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1709861756, 30.279427559 ]
+			},
+			"properties" : {
+				"id" : "B0FFJ5G1D5",
+				"name" : "B023B19IC8",
+				"type" : "杭州李贤淑公寓(坝子桥分店)",
+				"address" : "京都苑-30幢",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1604786278, 30.2815526354 ]
+			},
+			"properties" : {
+				"id" : "B0FFJXUXRA",
+				"name" : "",
+				"type" : "杭州客人旅馆",
+				"address" : "中山北路607号二楼",
+				"tel" : "17767193971"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.169129959, 30.2755704498 ]
+			},
+			"properties" : {
+				"id" : "B0FFKA6KDP",
+				"name" : "",
+				"type" : "杭州妖妖小精公寓",
+				"address" : "新湖武林国际(汇金国际向前200米)",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1667534727, 30.280179532 ]
+			},
+			"properties" : {
+				"id" : "B0FFFD5ZNM",
+				"name" : "B023B08ROE",
+				"type" : "杭州西湖旅行社",
+				"address" : "朝晖路175号联锦大厦A座12楼1203旅游部",
+				"tel" : "0571-56550788;0571-56328026;13957192491"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1600037217, 30.2874611462 ]
+			},
+			"properties" : {
+				"id" : "B0FFIRYA92",
+				"name" : "",
+				"type" : "杭州豪酒店",
+				"address" : "朝晖三区文昌巷18号",
+				"tel" : "0571-85331388"
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1624824714, 30.2830572257 ]
+			},
+			"properties" : {
+				"id" : "B0FFJP5KJ6",
+				"name" : "",
+				"type" : "杭州路客AA7460精品民宿",
+				"address" : "文晖路269号",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1626573819, 30.2784050168 ]
+			},
+			"properties" : {
+				"id" : "B0FFJRHI4P",
+				"name" : "",
+				"type" : "星程酒店",
+				"address" : "朝晖路196号附近",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1673792559, 30.2812296041 ]
+			},
+			"properties" : {
+				"id" : "B0FFF675HP",
+				"name" : "",
+				"type" : "职游邦公寓(杭州西湖文化广场店)",
+				"address" : "朝晖路152号",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1668688139, 30.2802227446 ]
+			},
+			"properties" : {
+				"id" : "B0FFF4NHVA",
+				"name" : "",
+				"type" : "职通车短租公寓",
+				"address" : "朝晖路173号",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.168794035, 30.2746189094 ]
+			},
+			"properties" : {
+				"id" : "B0FFI5NSI3",
+				"name" : "",
+				"type" : "杭州龙猫的森林普通公寓(长运路分店)",
+				"address" : "水星阁花园",
+				"tel" : ""
+			}
+		},
+		{
+			"type" : "Feature",
+			"geometry" : {
+				"type" : "Point",
+				"coordinates" : [ 120.1617506938, 30.278218339 ]
+			},
+			"properties" : {
+				"id" : "B0FFG84OUZ",
+				"name" : "",
+				"type" : "party house派对屋",
+				"address" : "朝晖路221号中山花园旁",
+				"tel" : ""
+			}
+		}
+	]
+}

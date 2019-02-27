@@ -1,8 +1,5 @@
-$color1: #005670;
-$color2: #ffaa60;
-$color3: #fff1f1;
-$color4: #5bd5ee;
-$color-shadow: #000;
+@import './variables.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -12,6 +9,33 @@ body {
   height: 100%;
   width: 100%;
 }
+
+html,body{
+	-ms-text-size-adjust:none;
+	-webkit-text-size-adjust:none;
+	text-size-adjust:none;
+}
+body {
+  font-size: 14px;
+	font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+	line-height: 1.4;
+  color: #666;
+	-webkit-overflow-scrolling:touch;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+ol, ul {
+	list-style: none;
+}
+:focus {
+  outline: none;
+}
+a:active,
+a:hover {
+    outline: none;
+}
+
+
+
 /****************默认窗体样式***************/ 
 .el-dialog{
   top: 20px;
@@ -164,6 +188,10 @@ body {
   min-width: 12px;
   width: 18px;
   height: 18px;
+  margin: 0;
+  &:focus{
+    outline: none;
+  }
 }
 .dg .c input[type=checkbox]:checked {
   background: $color1;
@@ -171,7 +199,7 @@ body {
 .dg .c input[type=checkbox]:checked::after{
   content: '';
   top: 13px;
-  left: 4px;
+  left: 3px;
   position: absolute;
   background: transparent;
   border: #fff solid 2px;

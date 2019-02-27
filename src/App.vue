@@ -86,6 +86,7 @@ $color-shadow: #000;
   ul {
     display: flex;
     margin: 0px;
+    padding-left: 300px;
     li {
       color: rgba(255, 255, 255, 0.8);
       list-style: none;

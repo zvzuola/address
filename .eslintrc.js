@@ -15,9 +15,20 @@ module.exports = {
     'arrow-parens': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/singleline-html-element-content-newline': 'off',
-    'vue/no-use-v-if-with-v-for': 'off'
+    'vue/no-use-v-if-with-v-for': 'off',
+    'import/extensions': ['error', 'always', {
+      'js': 'never',
+      'vue': 'never'
+    }]
   },
   parserOptions: {
     parser: 'babel-eslint',
   },
+  // settings: {
+  //   "import/resolver": {
+  //     "webpack": {
+  //       "config": "node_modules/@vue/cli-service/webpack.config.js"
+  //     }
+  //   }
+  // }
 };

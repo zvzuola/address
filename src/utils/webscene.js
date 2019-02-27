@@ -23,20 +23,20 @@ export default function init() {
       key: 'qwKCxUxTywiAlenHoNfhVzRuGA76O7EEYPyC4Av',
       altitoken:
         'CMr4tRB3i9f0hBF7Oz9gR5KoNYBtAKjogCh55mPhdXJgnPZNFz1rG1HBtWLdKgDwHLqaD1KCWOJpPxQlCULR5salA4qsPEmQGTo7mtGeZ5o5QCo7y6CjYomE3SKa'
+    },
+    camera: {
+      poseTo: {
+        alt: 50000000,
+        lat: basePosition.lat,
+        lng: basePosition.lng
+      }
+    },
+    renderItems: {
+      earth: true,
+      earthUseTexture: true,
+      featureInView: false,
+      orbitRing: true
     }
-    // camera: {
-    //   poseTo: {
-    //     alt: 50000000,
-    //     lat: basePosition.lat,
-    //     lng: basePosition.lng
-    //   }
-    // },
-    // renderItems: {
-    //   earth: true,
-    //   earthUseTexture: true,
-    //   featureInView: false,
-    //   orbitRing: true
-    // }
   };
 
   const sandbox = new altizure.Sandbox('page-content', options);

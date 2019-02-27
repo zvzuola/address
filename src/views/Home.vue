@@ -1,23 +1,7 @@
 <template>
   <div :class="$style['home']">
-    <div id="page-content" :class="$style['container-map']" style="width:100%;height:100%"/>
-    <!-- <ul :class="$style['control']">
-      <li>
-        <el-checkbox @change="polygonMarkerChange">添加PolygonMarker</el-checkbox>
-      </li>
-      <li>
-        <el-checkbox @change="polygonsFromGeoJsonChange">添加PolygonsFromGeoJson</el-checkbox>
-      </li>
-      <li>
-        <el-checkbox @change="textTagMarkerChange">添加文本标记</el-checkbox>
-      </li>
-      <li>
-        <el-checkbox @change="polyCylinderLineMarkerChange">添加主干线</el-checkbox>
-      </li>
-      <li>
-        <el-checkbox @change="tagMarkerChange">添加图标</el-checkbox>
-      </li>
-    </ul>-->
+    <div id="page-content" :class="$style['container-map']"/>
+    <!-- <checkbox :data="data" @change="checkboxChange"></checkbox> -->
     <el-dialog
       :visible.sync="dialogTableVisible"
       class="attribute-dlg"
@@ -27,8 +11,8 @@
     >
       <div
         v-for="(value, key, index) in dlgData"
-        v-if="scenicLabels[key]"
         class="attribute-row"
+        v-if="key !== 'id' && key !== 'location'"
         :key="index"
       >
         <!-- <span class="attribute-key" v-if="key == 'floor'">所在楼层:</span>
@@ -39,7 +23,16 @@
         <span class="attribute-list" v-else>
           <span v-for="(item,index) in value" :key="index">{{index+1}}. {{item}}</span>
         </span>-->
-        <span class="attribute-key">{{scenicLabels[key]}}: {{value || '无'}}</span>
+        <!-- 风景名胜 -->
+        <span
+          class="attribute-key"
+          v-if="type === 'scenic' && scenicLabels[key]"
+        >{{scenicLabels[key]}}: {{value || '无'}}</span>
+        <span class="attribute-key" v-if="type === 'ggss'">{{key}}: {{value || '无'}}</span>
+        <span
+          class="attribute-key"
+          v-if="type === 'accommodation' || type === 'food'"
+        >{{commonLabels[key]}}: {{value || '无'}}</span>
       </div>
     </el-dialog>
   </div>
@@ -56,18 +49,21 @@ import addPolyLineMarker from '@/libs/polyLineMarker';
 import websense from '@/utils/webscene';
 import { convertCoordinateFromGeoJSON } from '@/utils/altizureUtil';
 
+// import checkbox from '@/components/checkbox/Checkbox';
+
 import boundary from '@/datas/boundary';
 import community from '@/datas/community';
 import jdzj from '@/datas/jdzj';
 import avenue from '@/datas/avenue';
-// import ggss from '@/datas/ggss';
+import ggss from '@/datas/ggss';
 import scenic from '@/datas/scenic.json';
+import accommodation from '@/datas/accommodation.json';
+import food from '@/datas/food.json';
 
 export default {
   name: 'Home',
   data() {
     return {
-      tagChecked: false,
       dialogTableVisible: false,
       dlgData: [],
       scenicLabels: {
@@ -75,9 +71,23 @@ export default {
         type: '景点类型',
         address: '地址',
         tel: '联系电话'
-      }
+      },
+      commonLabels: {
+        name: '名称',
+        type: '类型',
+        address: '地址',
+        tel: '联系电话'
+      },
+      type: 'scenic',
+      data: [
+        { label: '风景名胜', value: 'scenic' },
+        { label: '公共设施', value: 'ggss' }
+      ]
     };
   },
+  // components: {
+  //   checkbox
+  // },
   mounted() {
     websense().then(res => {
       this.sandbox = res.sandbox;
@@ -87,20 +97,80 @@ export default {
       gui.domElement.style = 'position:absolute;top:80px';
       const xcmyFolder = gui.addFolder('下城漫游');
       xcmyFolder.open();
-      const addTagMarkerController = xcmyFolder
+
+      const scenicController = xcmyFolder
         .add({ hide: true }, 'hide')
-        .setValue(false)
-        .name('公共设施');
-      addTagMarkerController.onChange(v => {
+        // .setValue(false)
+        .name('风景名胜');
+      scenicController.onChange(v => {
+        this.dialogTableVisible = false;
         if (v) {
+          this.type = 'scenic';
+          ggssController.setValue(false);
+          accommodationController.setValue(false);
+          foodController.setValue(false);
           this.destructAll();
-          this.addTagMarker();
+          this.addScenicTagMarker();
         } else {
-          this.destructTagMarker();
+          this.destructScenicTagMarker();
         }
       });
 
-      // this.addTagMarker();
+      const ggssController = xcmyFolder
+        .add({ hide: true }, 'hide')
+        .setValue(false)
+        .name('公共设施');
+      ggssController.onChange(v => {
+        this.dialogTableVisible = false;
+        if (v) {
+          this.type = 'ggss';
+          scenicController.setValue(false);
+          accommodationController.setValue(false);
+          foodController.setValue(false);
+          this.destructAll();
+          this.addGgssTagMarker();
+        } else {
+          this.destructGgssTagMarker();
+        }
+      });
+
+      const accommodationController = xcmyFolder
+        .add({ hide: true }, 'hide')
+        .setValue(false)
+        .name('住宿');
+      accommodationController.onChange(v => {
+        this.dialogTableVisible = false;
+        if (v) {
+          this.type = 'accommodation';
+          ggssController.setValue(false);
+          scenicController.setValue(false);
+          foodController.setValue(false);
+          this.destructAll();
+          this.addAccommodationTagMarker();
+        } else {
+          this.destructAccommodationTagMarker();
+        }
+      });
+
+      const foodController = xcmyFolder
+        .add({ hide: true }, 'hide')
+        .setValue(false)
+        .name('餐饮');
+      foodController.onChange(v => {
+        this.dialogTableVisible = false;
+        if (v) {
+          this.type = 'food';
+          ggssController.setValue(false);
+          scenicController.setValue(false);
+          accommodationController.setValue(false);
+          this.destructAll();
+          this.addFoodTagMarker();
+        } else {
+          this.destructFoodTagMarker();
+        }
+      });
+
+      this.addScenicTagMarker();
     });
   },
   methods: {
@@ -123,23 +193,15 @@ export default {
         this.polygonMarker = undefined;
       }
     },
-    polygonMarkerChange(val) {
-      if (val) {
-        this.addPolygonMarker();
-      } else {
-        this.destructPolygonMarker();
-      }
-    },
     addPolygonsFromGeoJson() {
       this.community = new PolygonsFromGeoJson({
         sandbox: this.sandbox,
         geoJson: community,
         options: { top: 40 }
       });
-      this.community.traverse((marker, i) => {
+      this.community.traverse(marker => {
         marker.on('click', () => {
           addPolyLineMarker(this.sandbox, marker);
-          console.log(marker, community.features[i].properties);
         });
       });
     },
@@ -147,13 +209,6 @@ export default {
       if (this.community) {
         this.community.destruct();
         this.community = undefined;
-      }
-    },
-    polygonsFromGeoJsonChange(val) {
-      if (val) {
-        this.addPolygonsFromGeoJson();
-      } else {
-        this.destructPolygonsFromGeoJson();
       }
     },
     addTextTagMarker() {
@@ -182,13 +237,6 @@ export default {
         this.textTagMarker = undefined;
       }
     },
-    textTagMarkerChange(val) {
-      if (val) {
-        this.addTextTagMarker();
-      } else {
-        this.destructTextTagMarker();
-      }
-    },
     addPolyCylinderLineMarker() {
       const convertAvenue = convertCoordinateFromGeoJSON(avenue, this.gs);
       const options = convertAvenue.features.map(road => {
@@ -214,17 +262,91 @@ export default {
         this.avenue = undefined;
       }
     },
-    polyCylinderLineMarkerChange(val) {
-      if (val) {
-        this.addPolyCylinderLineMarker();
-      } else {
-        this.destructPolyCylinderLineMarker();
+
+    addScenicTagMarker() {
+      const convertGgss = convertCoordinateFromGeoJSON(scenic, this.gs);
+      const options = this.getTagOptions(convertGgss.features, 'scenic');
+      this.tag = new TagMarker(options);
+      this.tag.traverse((marker, i) => {
+        marker.on('click', () => {
+          this.dialogTableVisible = true;
+          this.dlgData = convertGgss.features[i].properties;
+        });
+      });
+    },
+    destructScenicTagMarker() {
+      if (this.tag) {
+        this.tag.destruct();
+        this.tag = undefined;
       }
     },
-    addTagMarker() {
-      // const convertGgss = convertCoordinateFromGeoJSON(ggss.ggss, this.gs);
-      const convertGgss = convertCoordinateFromGeoJSON(scenic, this.gs);
 
+    addAccommodationTagMarker() {
+      const convertGgss = convertCoordinateFromGeoJSON(accommodation, this.gs);
+      const options = this.getTagOptions(convertGgss.features, 'scenic');
+      this.accommodationTag = new TagMarker(options);
+      this.accommodationTag.traverse((marker, i) => {
+        marker.on('click', () => {
+          this.dialogTableVisible = true;
+          this.dlgData = convertGgss.features[i].properties;
+        });
+      });
+    },
+    destructAccommodationTagMarker() {
+      if (this.accommodationTag) {
+        this.accommodationTag.destruct();
+        this.accommodationTag = undefined;
+      }
+    },
+
+    addFoodTagMarker() {
+      const convertGgss = convertCoordinateFromGeoJSON(food, this.gs);
+      const options = this.getTagOptions(convertGgss.features, 'scenic');
+      this.foodTag = new TagMarker(options);
+      this.foodTag.traverse((marker, i) => {
+        marker.on('click', () => {
+          this.dialogTableVisible = true;
+          this.dlgData = convertGgss.features[i].properties;
+        });
+      });
+    },
+    destructFoodTagMarker() {
+      if (this.foodTag) {
+        this.foodTag.destruct();
+        this.foodTag = undefined;
+      }
+    },
+
+    addGgssTagMarker() {
+      const convertGgss = convertCoordinateFromGeoJSON(ggss.ggss, this.gs);
+      const options = this.getTagOptions(convertGgss.features);
+      this.ggssTag = new TagMarker(options);
+      this.ggssTag.traverse((marker, i) => {
+        marker.on('click', () => {
+          this.dialogTableVisible = true;
+          this.dlgData = convertGgss.features[i].properties;
+        });
+      });
+    },
+    destructGgssTagMarker() {
+      if (this.ggssTag) {
+        this.ggssTag.destruct();
+        this.ggssTag = undefined;
+      }
+    },
+
+    destructAll() {
+      this.destructPolyCylinderLineMarker();
+      this.destructPolygonMarker();
+      this.destructPolygonsFromGeoJson();
+      this.destructTextTagMarker();
+      this.destructScenicTagMarker();
+      this.destructGgssTagMarker();
+      this.destructAccommodationTagMarker();
+      this.destructFoodTagMarker();
+    },
+
+    getTagOptions(features, type) {
       const iconMap = {
         zhzf: './img/zhzf.png', // 综合执法
         scjg: './img/scjg.png', // 市场监管
@@ -238,55 +360,37 @@ export default {
         scenic: './img/tagDemo.png' // 风景名胜
       };
 
-      const options = convertGgss.features.map(project => {
+      return features.map(project => {
         const [lng, lat] = project.geometry.coordinates;
         return {
-          // 图标地址 img url
-          // imgUrl: iconMap[project.name],
-          imgUrl: iconMap.scenic,
-          // 图标位置 icon position
+          imgUrl: type ? iconMap[type] : iconMap[project.name],
           position: {
             lng,
             lat,
             alt: 0 // 虽然高程都赋值为0，但是不知为何 有的高有的低。
           },
           sandbox: this.sandbox,
-          // 指针[tagmarker指向地面点的指针]
           pinLength: 30,
-          // 图标尺寸 如果设置了图标尺寸，则大小固定，再设置mouse的enter和leave的放大缩小设置fixedSize属性。 liuxiaoyan
-          fixedSize: 30,
-          // 图标比例：设置之后图标的大小相对模型调整。鼠标相应事件设置scale属性。
-          scale: 1
+          fixedSize: 30
         };
       });
-      this.tag = new TagMarker(options);
-      this.tag.traverse((marker, i) => {
-        marker.on('click', () => {
-          console.log(marker, convertGgss.features[i].properties);
-          this.dialogTableVisible = true;
-          this.dlgData = convertGgss.features[i].properties;
-        });
-      });
     },
-    destructTagMarker() {
-      if (this.tag) {
-        this.tag.destruct();
-        this.tag = undefined;
+
+    checkboxChange(e, v) {
+      console.log(e, v);
+      if (e.target.checked) {
+        const value = v[0];
+        this.destructAll();
+        switch (value) {
+          case 'scenic':
+            return this.addScenicTagMarker();
+          case 'ggss':
+            return this.addGgssTagMarker();
+          default:
+            break;
+        }
       }
-    },
-    tagMarkerChange(val) {
-      if (val) {
-        this.addTagMarker();
-      } else {
-        this.destructTagMarker();
-      }
-    },
-    destructAll() {
-      this.destructPolyCylinderLineMarker();
-      this.destructTagMarker();
-      this.destructPolygonMarker();
-      this.destructPolygonsFromGeoJson();
-      this.destructTextTagMarker();
+      return this.destructAll();
     }
   }
 };
