@@ -40,5 +40,5 @@ const ljtxx = {
       }
     }
   ]
-}
-export default ljtxx
+};
+export default ljtxx;

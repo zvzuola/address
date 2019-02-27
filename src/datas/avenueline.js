@@ -1,4 +1,4 @@
-var avenueline = {
+const avenueline = {
   type: 'FeatureCollection',
   name: '主干道C',
   features: [
@@ -1675,5 +1675,5 @@ var avenueline = {
       }
     }
   ]
-}
-export default avenueline
+};
+export default avenueline;

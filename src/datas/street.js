@@ -1,5 +1,5 @@
 // 街道
-var street = {
+const street = {
   type: 'FeatureCollection',
   name: '街道',
   features: [
@@ -1045,6 +1045,6 @@ var street = {
       }
     }
   ]
-}
+};
 
-export default street
+export default street;

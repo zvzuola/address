@@ -1,7 +1,13 @@
 <template>
   <div :class="$style['home']">
     <div id="page-content" :class="$style['container-map']"/>
-    <!-- <checkbox :data="data" @change="checkboxChange"></checkbox> -->
+    <checkbox
+      v-show="showCheckbox"
+      :data="data"
+      :title="title"
+      :defaultValue="['scenic']"
+      @change="checkboxChange"
+    ></checkbox>
     <el-dialog
       :visible.sync="dialogTableVisible"
       class="attribute-dlg"
@@ -24,15 +30,18 @@
           <span v-for="(item,index) in value" :key="index">{{index+1}}. {{item}}</span>
         </span>-->
         <!-- 风景名胜 -->
-        <span
-          class="attribute-key"
-          v-if="type === 'scenic' && scenicLabels[key]"
-        >{{scenicLabels[key]}}: {{value || '无'}}</span>
-        <span class="attribute-key" v-if="type === 'ggss'">{{key}}: {{value || '无'}}</span>
-        <span
-          class="attribute-key"
-          v-if="type === 'accommodation' || type === 'food'"
-        >{{commonLabels[key]}}: {{value || '无'}}</span>
+        <span class="attribute-key" v-if="type === 'scenic' && scenicLabels[key]">
+          {{scenicLabels[key]}}:
+          <span class="attribute-value">{{value || '无'}}</span>
+        </span>
+        <span class="attribute-key" v-if="type === 'ggss'">
+          {{key}}:
+          <span class="attribute-value">{{value || '无'}}</span>
+        </span>
+        <span class="attribute-key" v-if="type === 'accommodation' || type === 'food'">
+          {{commonLabels[key]}}:
+          <span class="attribute-value">{{value || '无'}}</span>
+        </span>
       </div>
     </el-dialog>
   </div>
@@ -49,7 +58,7 @@ import addPolyLineMarker from '@/libs/polyLineMarker';
 import websense from '@/utils/webscene';
 import { convertCoordinateFromGeoJSON } from '@/utils/altizureUtil';
 
-// import checkbox from '@/components/checkbox/Checkbox';
+import checkbox from '@/components/checkbox/Checkbox';
 
 import boundary from '@/datas/boundary';
 import community from '@/datas/community';
@@ -81,95 +90,22 @@ export default {
       type: 'scenic',
       data: [
         { label: '风景名胜', value: 'scenic' },
-        { label: '公共设施', value: 'ggss' }
-      ]
+        { label: '公共设施', value: 'ggss' },
+        { label: '住宿', value: 'accommodation' },
+        { label: '餐饮', value: 'food' }
+      ],
+      title: '下城漫游',
+      showCheckbox: false
     };
   },
-  // components: {
-  //   checkbox
-  // },
+  components: {
+    checkbox
+  },
   mounted() {
     websense().then(res => {
       this.sandbox = res.sandbox;
       this.gs = res.gs;
-
-      const gui = new window.dat.GUI();
-      gui.domElement.style = 'position:absolute;top:80px';
-      const xcmyFolder = gui.addFolder('下城漫游');
-      xcmyFolder.open();
-
-      const scenicController = xcmyFolder
-        .add({ hide: true }, 'hide')
-        // .setValue(false)
-        .name('风景名胜');
-      scenicController.onChange(v => {
-        this.dialogTableVisible = false;
-        if (v) {
-          this.type = 'scenic';
-          ggssController.setValue(false);
-          accommodationController.setValue(false);
-          foodController.setValue(false);
-          this.destructAll();
-          this.addScenicTagMarker();
-        } else {
-          this.destructScenicTagMarker();
-        }
-      });
-
-      const ggssController = xcmyFolder
-        .add({ hide: true }, 'hide')
-        .setValue(false)
-        .name('公共设施');
-      ggssController.onChange(v => {
-        this.dialogTableVisible = false;
-        if (v) {
-          this.type = 'ggss';
-          scenicController.setValue(false);
-          accommodationController.setValue(false);
-          foodController.setValue(false);
-          this.destructAll();
-          this.addGgssTagMarker();
-        } else {
-          this.destructGgssTagMarker();
-        }
-      });
-
-      const accommodationController = xcmyFolder
-        .add({ hide: true }, 'hide')
-        .setValue(false)
-        .name('住宿');
-      accommodationController.onChange(v => {
-        this.dialogTableVisible = false;
-        if (v) {
-          this.type = 'accommodation';
-          ggssController.setValue(false);
-          scenicController.setValue(false);
-          foodController.setValue(false);
-          this.destructAll();
-          this.addAccommodationTagMarker();
-        } else {
-          this.destructAccommodationTagMarker();
-        }
-      });
-
-      const foodController = xcmyFolder
-        .add({ hide: true }, 'hide')
-        .setValue(false)
-        .name('餐饮');
-      foodController.onChange(v => {
-        this.dialogTableVisible = false;
-        if (v) {
-          this.type = 'food';
-          ggssController.setValue(false);
-          scenicController.setValue(false);
-          accommodationController.setValue(false);
-          this.destructAll();
-          this.addFoodTagMarker();
-        } else {
-          this.destructFoodTagMarker();
-        }
-      });
-
+      this.showCheckbox = true;
       this.addScenicTagMarker();
     });
   },
@@ -379,15 +315,20 @@ export default {
     },
 
     checkboxChange(e, v) {
-      console.log(e, v);
       if (e.target.checked) {
         const value = v[0];
         this.destructAll();
+        this.dialogTableVisible = false;
+        this.type = value;
         switch (value) {
           case 'scenic':
             return this.addScenicTagMarker();
           case 'ggss':
             return this.addGgssTagMarker();
+          case 'accommodation':
+            return this.addAccommodationTagMarker();
+          case 'food':
+            return this.addFoodTagMarker();
           default:
             break;
         }

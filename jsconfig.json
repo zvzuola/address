@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -9,5 +10,5 @@
   },
   "include": [
     "./src/**/*"
-  ],
+  ]
 }

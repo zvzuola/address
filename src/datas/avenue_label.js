@@ -1,5 +1,5 @@
 // 道路注记
-var avenue_label = {
+const avenueLabel = {
   type: 'FeatureCollection',
   name: '下城道路zj',
   features: [
@@ -644,5 +644,5 @@ var avenue_label = {
       }
     }
   ]
-}
-export default avenue_label
+};
+export default avenueLabel;

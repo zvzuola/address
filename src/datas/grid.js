@@ -1,5 +1,5 @@
 // 基础网格，含网格员
-var grid_1 = {
+const grid_1 = {
   type: 'FeatureCollection',
   name: '所用网格',
   features: [
@@ -960,9 +960,9 @@ var grid_1 = {
       }
     }
   ]
-}
+};
 
-var grid = {
+const grid = {
   type: 'FeatureCollection',
   name: '所用网格',
   features: [
@@ -12413,9 +12413,9 @@ var grid = {
       }
     }
   ]
-}
+};
 
 export default {
   grid_1,
   grid
-}
+};

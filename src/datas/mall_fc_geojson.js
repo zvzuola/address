@@ -1,5 +1,5 @@
 // 商业体分层数据
-var mall_fc_geojson = {
+const mall_fc_geojson = {
   type: 'FeatureCollection',
   name: '商业体分层数据',
   features: [
@@ -1599,5 +1599,5 @@ var mall_fc_geojson = {
       }
     }
   ]
-}
-export default mall_fc_geojson
+};
+export default mall_fc_geojson;

@@ -1,5 +1,5 @@
 // 分层分户
-var wlmp1m = {
+const wlmp1m = {
   type: 'FeatureCollection',
   name: 'wlmp1m',
   features: [
@@ -22379,6 +22379,6 @@ var wlmp1m = {
       }
     }
   ]
-}
+};
 
-export default wlmp1m
+export default wlmp1m;

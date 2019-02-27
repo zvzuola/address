@@ -1,4 +1,4 @@
-var building_text = {
+const buildingText = {
   type: 'FeatureCollection',
   name: 'zhuji',
   features: [
@@ -36,5 +36,5 @@ var building_text = {
       }
     }
   ]
-}
-export default building_text
+};
+export default buildingText;

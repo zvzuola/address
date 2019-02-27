@@ -1,5 +1,5 @@
 // 网格事件级别
-var grid_event_level = {
+const grid_event_level = {
   type: 'FeatureCollection',
   name: '事件级别',
   features: [
@@ -313,6 +313,6 @@ var grid_event_level = {
       }
     }
   ]
-}
+};
 
-export default grid_event_level
+export default grid_event_level;

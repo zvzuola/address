@@ -1,5 +1,5 @@
-//社区
-var community = {
+// 社区
+const community = {
   type: 'FeatureCollection',
   name: '社区',
   features: [
@@ -4515,6 +4515,6 @@ var community = {
       }
     }
   ]
-}
+};
 
-export default community
+export default community;

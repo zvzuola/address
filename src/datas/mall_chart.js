@@ -1,5 +1,5 @@
 // 商业体图表数据
-var mall_chart = [
+const mall_chart = [
   {
     商业体名称: '百大集团股份有限公司杭州百货大楼',
     图表名称: '营业收入',
@@ -85,5 +85,5 @@ var mall_chart = [
       }
     ]
   }
-]
-export default mall_chart
+];
+export default mall_chart;

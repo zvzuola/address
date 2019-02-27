@@ -1,4 +1,4 @@
-//窨井盖
+// 窨井盖
 const yjgxx = {
   type: 'FeatureCollection',
   name: 'yjgxx',
@@ -43,5 +43,5 @@ const yjgxx = {
       }
     }
   ]
-}
-export default yjgxx
+};
+export default yjgxx;

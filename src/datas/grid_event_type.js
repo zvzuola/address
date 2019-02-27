@@ -1,5 +1,5 @@
 // 网格事件类型
-var grid_event_type = {
+const grid_event_type = {
   type: 'FeatureCollection',
   name: '事件类别',
   features: [
@@ -334,6 +334,6 @@ var grid_event_type = {
       }
     }
   ]
-}
+};
 
-export default grid_event_type
+export default grid_event_type;

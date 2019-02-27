@@ -1,4 +1,4 @@
-var avenuetext = {
+const avenuetext = {
   type: 'FeatureCollection',
   name: '道路',
   features: [
@@ -1453,5 +1453,5 @@ var avenuetext = {
       }
     }
   ]
-}
-export default avenuetext
+};
+export default avenuetext;

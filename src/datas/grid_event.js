@@ -1,7 +1,7 @@
-import { labelHeight } from './common'
+import { labelHeight } from './common';
 
 // 网格事件
-var grid_event = {
+const grid_event = {
   type: 'FeatureCollection',
   name: 'scjg',
   features: [
@@ -4868,6 +4868,6 @@ var grid_event = {
       }
     }
   ]
-}
+};
 
-export default grid_event
+export default grid_event;

@@ -1,5 +1,5 @@
 // 网格事件状态
-var grid_event_state = {
+const grid_event_state = {
   type: 'FeatureCollection',
   name: '事件状态',
   features: [
@@ -324,6 +324,6 @@ var grid_event_state = {
       }
     }
   ]
-}
+};
 
-export default grid_event_state
+export default grid_event_state;

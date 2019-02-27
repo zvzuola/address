@@ -1,5 +1,5 @@
-//招商
-var zhaoshang = {
+// 招商
+const zhaoshang = {
   type: 'FeatureCollection',
   name: '招商',
   features: [
@@ -4385,6 +4385,6 @@ var zhaoshang = {
       }
     }
   ]
-}
+};
 
-export default zhaoshang
+export default zhaoshang;

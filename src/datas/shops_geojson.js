@@ -1,5 +1,5 @@
 // 沿街商铺
-var shops_geojson = {
+const shops_geojson = {
   type: 'FeatureCollection',
   name: '沿街商铺数据',
   features: [
@@ -2628,5 +2628,5 @@ var shops_geojson = {
       }
     }
   ]
-}
-export default shops_geojson
+};
+export default shops_geojson;

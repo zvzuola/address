@@ -1,5 +1,5 @@
 // 河流注记
-var river_label = {
+const river_label = {
   type: 'FeatureCollection',
   name: '河流zj',
   features: [
@@ -214,6 +214,6 @@ var river_label = {
       }
     }
   ]
-}
+};
 
-export default river_label
+export default river_label;

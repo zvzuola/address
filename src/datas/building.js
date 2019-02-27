@@ -1,5 +1,5 @@
-//楼宇经济
-var building = {
+// 楼宇经济
+const building = {
   type: 'FeatureCollection',
   name: '楼宇经济',
   features: [
@@ -170,6 +170,6 @@ var building = {
       }
     }
   ]
-}
+};
 
-export default building
+export default building;

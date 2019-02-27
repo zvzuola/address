@@ -1,5 +1,5 @@
 // 企业服务
-var qiye = {
+const qiye = {
   type: 'FeatureCollection',
   name: '企业服务',
   features: [
@@ -4886,6 +4886,6 @@ var qiye = {
       }
     }
   ]
-}
+};
 
-export default qiye
+export default qiye;

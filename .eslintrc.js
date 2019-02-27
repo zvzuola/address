@@ -7,6 +7,7 @@ module.exports = {
     'plugin:vue/essential',
     '@vue/airbnb',
   ],
+  plugins: ['vue'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -16,6 +17,7 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'vue/no-use-v-if-with-v-for': 'off',
+    'max-len': 'off',
     'import/extensions': ['error', 'always', {
       'js': 'never',
       'vue': 'never'
@@ -24,11 +26,11 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint',
   },
-  // settings: {
-  //   "import/resolver": {
-  //     "webpack": {
-  //       "config": "node_modules/@vue/cli-service/webpack.config.js"
-  //     }
-  //   }
-  // }
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'node_modules/@vue/cli-service/webpack.config.js'
+      }
+    }
+  }
 };

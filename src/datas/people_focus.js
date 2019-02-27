@@ -1,7 +1,7 @@
-import { labelHeight } from './common'
+import { labelHeight } from './common';
 
 // 重点人员
-var people_focus = {
+const people_focus = {
   type: 'FeatureCollection',
   name: 'zdry',
   features: [
@@ -293,6 +293,6 @@ var people_focus = {
       }
     }
   ]
-}
+};
 
-export default people_focus
+export default people_focus;

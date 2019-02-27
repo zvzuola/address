@@ -1,5 +1,5 @@
 // 河道
-var river = {
+const river = {
   type: 'FeatureCollection',
   name: '河流C',
   features: [
@@ -329,6 +329,6 @@ var river = {
       }
     }
   ]
-}
+};
 
-export default river
+export default river;

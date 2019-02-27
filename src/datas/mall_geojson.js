@@ -1,5 +1,5 @@
 // 商业体楼宇数据
-var mall_geojson = {
+const mall_geojson = {
   type: 'FeatureCollection',
   name: '商业体楼宇数据',
   features: [
@@ -259,5 +259,5 @@ var mall_geojson = {
       }
     }
   ]
-}
-export default mall_geojson
+};
+export default mall_geojson;

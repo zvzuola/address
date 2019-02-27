@@ -1,5 +1,5 @@
 // 商业体楼宇标注
-var mall_geojson_text = {
+const mall_geojson_text = {
   type: 'FeatureCollection',
   name: '商业体楼宇标注',
   features: [
@@ -81,5 +81,5 @@ var mall_geojson_text = {
       }
     }
   ]
-}
-export default mall_geojson_text
+};
+export default mall_geojson_text;

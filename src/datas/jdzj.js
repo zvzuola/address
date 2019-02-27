@@ -100,5 +100,5 @@ const jdzj = {
       }
     }
   ]
-}
-export default jdzj
+};
+export default jdzj;
