@@ -21,7 +21,8 @@ module.exports = {
     'import/extensions': ['error', 'always', {
       'js': 'never',
       'vue': 'never'
-    }]
+    }],
+    'operator-linebreak': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint',

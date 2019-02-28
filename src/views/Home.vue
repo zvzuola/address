@@ -15,12 +15,7 @@
       :modal="false"
       :close-on-click-modal="false"
     >
-      <div
-        v-for="(value, key, index) in dlgData"
-        class="attribute-row"
-        v-if="key !== 'id' && key !== 'location'"
-        :key="index"
-      >
+      <div v-for="(value, key, index) in dlgData" class="attribute-row" :key="index">
         <!-- <span class="attribute-key" v-if="key == 'floor'">所在楼层:</span>
         <span class="attribute-key" v-else-if="key == 'height'">楼层高:</span>
         <span class="attribute-key" v-else-if="key == 'elevation'">楼层起始高:</span>
@@ -29,17 +24,8 @@
         <span class="attribute-list" v-else>
           <span v-for="(item,index) in value" :key="index">{{index+1}}. {{item}}</span>
         </span>-->
-        <!-- 风景名胜 -->
-        <span class="attribute-key" v-if="type === 'scenic' && scenicLabels[key]">
-          {{scenicLabels[key]}}:
-          <span class="attribute-value">{{value || '无'}}</span>
-        </span>
-        <span class="attribute-key" v-if="type === 'ggss'">
+        <span class="attribute-key">
           {{key}}:
-          <span class="attribute-value">{{value || '无'}}</span>
-        </span>
-        <span class="attribute-key" v-if="type === 'accommodation' || type === 'food'">
-          {{commonLabels[key]}}:
           <span class="attribute-value">{{value || '无'}}</span>
         </span>
       </div>
@@ -75,19 +61,6 @@ export default {
     return {
       dialogTableVisible: false,
       dlgData: [],
-      scenicLabels: {
-        name: '景点名称',
-        type: '景点类型',
-        address: '地址',
-        tel: '联系电话'
-      },
-      commonLabels: {
-        name: '名称',
-        type: '类型',
-        address: '地址',
-        tel: '联系电话'
-      },
-      type: 'scenic',
       data: [
         { label: '风景名胜', value: 'scenic' },
         { label: '公共设施', value: 'ggss' },
@@ -102,11 +75,11 @@ export default {
     checkbox
   },
   mounted() {
-    websense().then(res => {
-      this.sandbox = res.sandbox;
-      this.gs = res.gs;
+    websense().then(({ sandbox, gs }) => {
+      this.sandbox = sandbox;
+      this.gs = gs;
       this.showCheckbox = true;
-      this.addScenicTagMarker();
+      this.addTagMarker(scenic, 'scenicTag');
     });
   },
   methods: {
@@ -123,12 +96,6 @@ export default {
         name: 'polygon'
       });
     },
-    destructPolygonMarker() {
-      if (this.polygonMarker) {
-        this.polygonMarker.destruct();
-        this.polygonMarker = undefined;
-      }
-    },
     addPolygonsFromGeoJson() {
       this.community = new PolygonsFromGeoJson({
         sandbox: this.sandbox,
@@ -140,12 +107,6 @@ export default {
           addPolyLineMarker(this.sandbox, marker);
         });
       });
-    },
-    destructPolygonsFromGeoJson() {
-      if (this.community) {
-        this.community.destruct();
-        this.community = undefined;
-      }
     },
     addTextTagMarker() {
       const streetLabel = convertCoordinateFromGeoJSON(jdzj, this.gs);
@@ -167,12 +128,6 @@ export default {
       }));
       this.textTagMarker = new TextTagMarker(labels);
     },
-    destructTextTagMarker() {
-      if (this.textTagMarker) {
-        this.textTagMarker.destruct();
-        this.textTagMarker = undefined;
-      }
-    },
     addPolyCylinderLineMarker() {
       const convertAvenue = convertCoordinateFromGeoJSON(avenue, this.gs);
       const options = convertAvenue.features.map(road => {
@@ -192,94 +147,35 @@ export default {
       });
       this.avenue = new PolyCylinderLineMarker(options);
     },
-    destructPolyCylinderLineMarker() {
-      if (this.avenue) {
-        this.avenue.destruct();
-        this.avenue = undefined;
-      }
-    },
 
-    addScenicTagMarker() {
-      const convertGgss = convertCoordinateFromGeoJSON(scenic, this.gs);
-      const options = this.getTagOptions(convertGgss.features, 'scenic');
-      this.tag = new TagMarker(options);
-      this.tag.traverse((marker, i) => {
+    addTagMarker(data, prop) {
+      const convertData = convertCoordinateFromGeoJSON(data, this.gs);
+      let type;
+      if (
+        prop === 'scenicTag' ||
+        prop === 'foodTag' ||
+        prop === 'accommodationTag'
+      ) {
+        type = prop.replace('Tag', '');
+      }
+      const options = this.getTagOptions(convertData.features, type);
+      this[prop] = new TagMarker(options);
+      this[prop].traverse((marker, i) => {
         marker.on('click', () => {
           this.dialogTableVisible = true;
-          this.dlgData = convertGgss.features[i].properties;
+          this.dlgData = convertData.features[i].properties;
         });
       });
     },
-    destructScenicTagMarker() {
-      if (this.tag) {
-        this.tag.destruct();
-        this.tag = undefined;
-      }
-    },
 
-    addAccommodationTagMarker() {
-      const convertGgss = convertCoordinateFromGeoJSON(accommodation, this.gs);
-      const options = this.getTagOptions(convertGgss.features, 'accommodation');
-      this.accommodationTag = new TagMarker(options);
-      this.accommodationTag.traverse((marker, i) => {
-        marker.on('click', () => {
-          this.dialogTableVisible = true;
-          this.dlgData = convertGgss.features[i].properties;
-        });
-      });
-    },
-    destructAccommodationTagMarker() {
-      if (this.accommodationTag) {
-        this.accommodationTag.destruct();
-        this.accommodationTag = undefined;
-      }
-    },
-
-    addFoodTagMarker() {
-      const convertGgss = convertCoordinateFromGeoJSON(food, this.gs);
-      const options = this.getTagOptions(convertGgss.features, 'food');
-      this.foodTag = new TagMarker(options);
-      this.foodTag.traverse((marker, i) => {
-        marker.on('click', () => {
-          this.dialogTableVisible = true;
-          this.dlgData = convertGgss.features[i].properties;
-        });
-      });
-    },
-    destructFoodTagMarker() {
-      if (this.foodTag) {
-        this.foodTag.destruct();
-        this.foodTag = undefined;
-      }
-    },
-
-    addGgssTagMarker() {
-      const convertGgss = convertCoordinateFromGeoJSON(ggss.ggss, this.gs);
-      const options = this.getTagOptions(convertGgss.features);
-      this.ggssTag = new TagMarker(options);
-      this.ggssTag.traverse((marker, i) => {
-        marker.on('click', () => {
-          this.dialogTableVisible = true;
-          this.dlgData = convertGgss.features[i].properties;
-        });
-      });
-    },
-    destructGgssTagMarker() {
-      if (this.ggssTag) {
-        this.ggssTag.destruct();
-        this.ggssTag = undefined;
-      }
-    },
-
-    destructAll() {
-      this.destructPolyCylinderLineMarker();
-      this.destructPolygonMarker();
-      this.destructPolygonsFromGeoJson();
-      this.destructTextTagMarker();
-      this.destructScenicTagMarker();
-      this.destructGgssTagMarker();
-      this.destructAccommodationTagMarker();
-      this.destructFoodTagMarker();
+    destructMarker(props) {
+      const destruct = p => {
+        if (this[p]) {
+          this[p].destruct();
+          this[p] = undefined;
+        }
+      };
+      return !Array.isArray(props) ? destruct(props) : props.map(destruct);
     },
 
     getTagOptions(features, type) {
@@ -315,25 +211,25 @@ export default {
     },
 
     checkboxChange(e, v) {
+      const allProps = ['ggssTag', 'foodTag', 'accommodationTag', 'scenicTag'];
       if (e.target.checked) {
         const value = v[0];
-        this.destructAll();
+        this.destructMarker(allProps);
         this.dialogTableVisible = false;
-        this.type = value;
         switch (value) {
           case 'scenic':
-            return this.addScenicTagMarker();
+            return this.addTagMarker(scenic, 'scenicTag');
           case 'ggss':
-            return this.addGgssTagMarker();
+            return this.addTagMarker(ggss.ggss, 'ggssTag');
           case 'accommodation':
-            return this.addAccommodationTagMarker();
+            return this.addTagMarker(accommodation, 'accommodationTag');
           case 'food':
-            return this.addFoodTagMarker();
+            return this.addTagMarker(food, 'foodTag');
           default:
             break;
         }
       }
-      return this.destructAll();
+      return this.destructMarker(allProps);
     }
   }
 };
