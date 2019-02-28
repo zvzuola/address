@@ -235,12 +235,6 @@ export default {
 };
 </script>
 <style lang="scss" module>
-.control {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  list-style: none;
-}
 .home {
   height: 100vh;
   width: 100vw;
