@@ -5,7 +5,7 @@
       v-show="showCheckbox"
       :data="data"
       :title="title"
-      :defaultValue="['scenic']"
+      :defaultValue="['polygonMarker']"
       @change="checkboxChange"
     ></checkbox>
     <el-dialog
@@ -40,7 +40,7 @@ import PolygonMarker from '@/libs/polygonMarker';
 import TextTagMarker from '@/libs/textTagMarker';
 import TagMarker from '@/libs/tagMarker';
 import PolyCylinderLineMarker from '@/libs/polyCylinderLineMarker';
-import addPolyLineMarker from '@/libs/polyLineMarker';
+import addPolyLineMarker, { clearPolyLineMarker } from '@/libs/polyLineMarker';
 import websense from '@/utils/webscene';
 import { convertCoordinateFromGeoJSON } from '@/utils/altizureUtil';
 
@@ -50,10 +50,7 @@ import boundary from '@/datas/boundary';
 import community from '@/datas/community';
 import jdzj from '@/datas/jdzj';
 import avenue from '@/datas/avenue';
-import ggss from '@/datas/ggss';
 import scenic from '@/datas/scenic.json';
-import accommodation from '@/datas/accommodation.json';
-import food from '@/datas/food.json';
 
 export default {
   name: 'Home',
@@ -62,12 +59,13 @@ export default {
       dialogTableVisible: false,
       dlgData: [],
       data: [
-        { label: '风景名胜', value: 'scenic' },
-        { label: '公共设施', value: 'ggss' },
-        { label: '住宿', value: 'accommodation' },
-        { label: '餐饮', value: 'food' }
+        { label: 'polygonMarker', value: 'polygonMarker' },
+        { label: 'polygonsFromGeoJson', value: 'polygonsFromGeoJson' },
+        { label: 'tagMarker', value: 'tagMarker' },
+        { label: 'textTagMarker', value: 'textTagMarker' },
+        { label: 'polyCylinderLineMarker', value: 'polyCylinderLineMarker' }
       ],
-      title: '下城漫游',
+      title: 'altizure基础功能',
       showCheckbox: false
     };
   },
@@ -79,16 +77,16 @@ export default {
       this.sandbox = sandbox;
       this.gs = gs;
       this.showCheckbox = true;
-      this.addTagMarker(scenic, 'scenicTag');
+      this.addPolygonMarker(boundary, 'polygonMarker');
     });
   },
   methods: {
-    addPolygonMarker() {
-      this.polygonMarker = new PolygonMarker({
+    addPolygonMarker(points, prop) {
+      this[prop] = new PolygonMarker({
         volume: {
           color: 0xf18100,
           opacity: 0.3,
-          points: boundary,
+          points,
           top: 30,
           bottom: 0
         },
@@ -96,22 +94,22 @@ export default {
         name: 'polygon'
       });
     },
-    addPolygonsFromGeoJson() {
-      this.community = new PolygonsFromGeoJson({
+    addPolygonsFromGeoJson(geoJson, prop) {
+      this[prop] = new PolygonsFromGeoJson({
         sandbox: this.sandbox,
-        geoJson: community,
+        geoJson,
         options: { top: 40 }
       });
-      this.community.traverse(marker => {
+      this[prop].traverse(marker => {
         marker.on('click', () => {
           addPolyLineMarker(this.sandbox, marker);
         });
       });
     },
-    addTextTagMarker() {
-      const streetLabel = convertCoordinateFromGeoJSON(jdzj, this.gs);
-      const labels = streetLabel.features.map(b => ({
-        text: b.properties.Street,
+    addTextTagMarker(data, prop) {
+      const convertData = convertCoordinateFromGeoJSON(data, this.gs);
+      const labels = convertData.features.map(feature => ({
+        text: feature.properties.Street,
         textStyle: {
           fillStyle: '#f5f2f1',
           font: '500 30px Arial',
@@ -119,19 +117,19 @@ export default {
           outlineStyle: '#e37373'
         },
         position: {
-          lng: b.geometry.coordinates[0],
-          lat: b.geometry.coordinates[1],
+          lng: feature.geometry.coordinates[0],
+          lat: feature.geometry.coordinates[1],
           alt: 60
         },
         sandbox: this.sandbox,
         scale: 30 // icon size
       }));
-      this.textTagMarker = new TextTagMarker(labels);
+      this[prop] = new TextTagMarker(labels);
     },
-    addPolyCylinderLineMarker() {
-      const convertAvenue = convertCoordinateFromGeoJSON(avenue, this.gs);
-      const options = convertAvenue.features.map(road => {
-        const pointlist = road.geometry.coordinates.map(points => ({
+    addPolyCylinderLineMarker(data, prop) {
+      const convertData = convertCoordinateFromGeoJSON(data, this.gs);
+      const options = convertData.features.map(feature => {
+        const pointList = feature.geometry.coordinates.map(points => ({
           lng: points[0],
           lat: points[1],
           alt: 30
@@ -139,23 +137,19 @@ export default {
         return {
           name: 'pl',
           sandbox: this.sandbox,
-          points: pointlist,
+          points: pointList,
           color: 'rgb(168, 171, 180)', // line color
           lineWidth: 8,
           opacity: 0.65
         };
       });
-      this.avenue = new PolyCylinderLineMarker(options);
+      this[prop] = new PolyCylinderLineMarker(options);
     },
 
     addTagMarker(data, prop) {
       const convertData = convertCoordinateFromGeoJSON(data, this.gs);
       let type;
-      if (
-        prop === 'scenicTag' ||
-        prop === 'foodTag' ||
-        prop === 'accommodationTag'
-      ) {
+      if (prop === 'scenicTag') {
         type = prop.replace('Tag', '');
       }
       const options = this.getTagOptions(convertData.features, type);
@@ -169,6 +163,7 @@ export default {
     },
 
     destructMarker(props) {
+      clearPolyLineMarker();
       const destruct = p => {
         if (this[p]) {
           this[p].destruct();
@@ -180,18 +175,7 @@ export default {
 
     getTagOptions(features, type) {
       const iconMap = {
-        zhzf: './img/zhzf.png', // 综合执法
-        scjg: './img/scjg.png', // 市场监管
-        bmfw: './img/bmfw.png', // 便民服务
-        zzgz: './img/zzgz.png', // 综治工作
-        ggcs: './img/ggcs.png', // 公共厕所
-        ggzxczld: './img/ggzxczld.png', // 公共自行车租赁点  ggzxczld
-        gjzd: './img/gjzd.png', // 公交站点
-        zdry: './img/person.png', // 重点人员
-        yjsp: './img/shop.png', // 沿街商铺
-        scenic: './img/scenic.png', // 风景名胜
-        accommodation: './img/accommodation.png', // 住宿
-        food: './img/food.png' // 餐饮
+        scenic: './img/scenic.png' // 风景名胜
       };
 
       return features.map(project => {
@@ -201,7 +185,7 @@ export default {
           position: {
             lng,
             lat,
-            alt: 0 // 虽然高程都赋值为0，但是不知为何 有的高有的低。
+            alt: 0
           },
           sandbox: this.sandbox,
           pinLength: 30,
@@ -211,20 +195,34 @@ export default {
     },
 
     checkboxChange(e, v) {
-      const allProps = ['ggssTag', 'foodTag', 'accommodationTag', 'scenicTag'];
+      const allProps = [
+        'polygonMarker',
+        'polygonsFromGeoJson',
+        'scenicTag',
+        'textTagMarker',
+        'polyCylinderLineMarker'
+      ];
       if (e.target.checked) {
         const value = v[0];
         this.destructMarker(allProps);
         this.dialogTableVisible = false;
         switch (value) {
-          case 'scenic':
+          case 'polygonMarker':
+            return this.addPolygonMarker(boundary, 'polygonMarker');
+          case 'polygonsFromGeoJson':
+            return this.addPolygonsFromGeoJson(
+              community,
+              'polygonsFromGeoJson'
+            );
+          case 'tagMarker':
             return this.addTagMarker(scenic, 'scenicTag');
-          case 'ggss':
-            return this.addTagMarker(ggss.ggss, 'ggssTag');
-          case 'accommodation':
-            return this.addTagMarker(accommodation, 'accommodationTag');
-          case 'food':
-            return this.addTagMarker(food, 'foodTag');
+          case 'textTagMarker':
+            return this.addTextTagMarker(jdzj, 'textTagMarker');
+          case 'polyCylinderLineMarker':
+            return this.addPolyCylinderLineMarker(
+              avenue,
+              'polyCylinderLineMarker'
+            );
           default:
             break;
         }
