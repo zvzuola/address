@@ -51,6 +51,7 @@ import community from '@/datas/community';
 import jdzj from '@/datas/jdzj';
 import avenue from '@/datas/avenue';
 import scenic from '@/datas/scenic.json';
+import zhaoshang from '@/datas/zhaoshang';
 
 export default {
   name: 'Home',
@@ -63,7 +64,11 @@ export default {
         { label: 'polygonsFromGeoJson', value: 'polygonsFromGeoJson' },
         { label: 'tagMarker', value: 'tagMarker' },
         { label: 'textTagMarker', value: 'textTagMarker' },
-        { label: 'polyCylinderLineMarker', value: 'polyCylinderLineMarker' }
+        { label: 'polyCylinderLineMarker', value: 'polyCylinderLineMarker' },
+        {
+          label: 'verticalPolygonsFromGeoJson',
+          value: 'verticalPolygonsFromGeoJson'
+        }
       ],
       title: 'altizure基础功能',
       showCheckbox: false
@@ -162,6 +167,19 @@ export default {
       });
     },
 
+    addVerticalPolygonsFromGeoJson(geoJson, prop) {
+      this[prop] = new PolygonsFromGeoJson({
+        sandbox: this.sandbox,
+        geoJson,
+        options: { top: 40 }
+      });
+      this[prop].traverse((marker, i) => {
+        const { elevation, height } = geoJson.features[i].properties;
+        marker.bottom = elevation;
+        marker.top = elevation + height;
+      });
+    },
+
     destructMarker(props) {
       clearPolyLineMarker();
       const destruct = p => {
@@ -200,7 +218,8 @@ export default {
         'polygonsFromGeoJson',
         'scenicTag',
         'textTagMarker',
-        'polyCylinderLineMarker'
+        'polyCylinderLineMarker',
+        'verticalPolygonsFromGeoJson'
       ];
       if (e.target.checked) {
         const value = v[0];
@@ -223,6 +242,12 @@ export default {
               avenue,
               'polyCylinderLineMarker'
             );
+          case 'verticalPolygonsFromGeoJson':
+            return this.addVerticalPolygonsFromGeoJson(
+              zhaoshang,
+              'verticalPolygonsFromGeoJson'
+            );
+
           default:
             break;
         }

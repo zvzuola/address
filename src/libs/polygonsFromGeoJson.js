@@ -3,7 +3,6 @@
  * 需要依赖插件 altizure-plugin-geojson
  */
 // import { polygonsFromGeoJson } from 'altizure-plugin-geojson';
-import addPolyLineMarker from './polyLineMarker';
 import BaseMarker from './baseMarker';
 
 const { altizure } = window;
@@ -24,10 +23,6 @@ export default class PolygonsFromGeoJson extends BaseMarker {
       marker.interactable = true;
       marker.initColor = 0xff0000 * Math.random();
       marker.color = marker.initColor;
-      marker.on('click', () => {
-        addPolyLineMarker(this.sandbox, marker);
-        // request({ properties: poly.properties, type: '社区类' }) // 发送一个事件，传递给 2D UI 响应
-      });
       marker.on('mouseenter', () => {
         marker.color = 0xff0000;
       });
