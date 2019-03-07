@@ -4,21 +4,12 @@
 
 // import * as altizure from './altizure';
 import boundary from '@/datas/boundary';
-import { addProjects } from '@/utils/altizureUtil';
 import projects from '@/utils/projects';
 
-const { altizure } = window;
+const { hky } = window;
+const basePosition = { lng: 120.172, lat: 30.309, z: 0 };
 
-export default function init() {
-  let gs;
-
-  // 下城中点 lng: 120.172, lat: 30.309
-  // lng: 120.1836688, lat: 30.33083
-  // let centerPosition = { lng: 120.1836688, lat: 30.33083, z: 0 }
-  // let centerPosition = { lng: 120.1836588, lat: 30.3305158, z: 0 } //原有备份
-  // let centerPosition = { lng: 120.1836588, lat: 30.3305247, z: 0 } // ok  section1-2017的中心点位
-  const centerPosition = { lng: 120.1766745, lat: 30.3132158, z: 0 }; // altizure ok section2的中心点位
-  const basePosition = { lng: 120.172, lat: 30.309, z: 0 };
+export function createMap() {
   const options = {
     altizureApi: {
       key: 'qwKCxUxTywiAlenHoNfhVzRuGA76O7EEYPyC4Av',
@@ -39,48 +30,35 @@ export default function init() {
       orbitRing: true
     }
   };
+  const map = new hky.Map('page-content', options);
+  map.basePosition = { lng: 120.1766745, lat: 30.3132158, z: 0 };
+  return map;
+}
 
-  const sandbox = new altizure.Sandbox('page-content', options);
+export function createIntegratedMeshLayer() {
+  return new hky.IntegratedMeshLayer(projects);
+}
 
-  return Promise.all(addProjects(sandbox, projects))
+export default function init() {
+  const map = createMap();
+  const integratedMeshLayer = createIntegratedMeshLayer();
+  return integratedMeshLayer.addTo(map)
+    .then(() => map.sandbox.camera.flyTo({
+      lng: basePosition.lng,
+      lat: basePosition.lat,
+      alt: 300000,
+      north: 0,
+      tilt: 40
+    }))
     .then(() => {
-      // use the first project as the base
-      const baseMarker = projects[0].marker;
-      const baseCenter = projects[0].center;
-      baseMarker.position = centerPosition;
-      sandbox.lights.ambient.intensity = 0.01; // ambient light intensity
-
-      gs = new altizure.GeoSystem({
-        sandbox,
-        base: baseMarker,
-        baseCenter,
-        EPSG: '4549'
-      });
-
-      // align other projects to the base project
-      for (let pi = 1; pi < projects.length; pi += 1) {
-        gs.align({ marker: projects[pi].marker, markerCenter: projects[pi].center });
-      }
-      // return sandbox.camera.lookAt(baseMarker, 0, 40, 15000)
-      return sandbox.camera.flyTo({
-        lng: basePosition.lng,
-        lat: basePosition.lat,
-        alt: 300000,
-        north: 0,
-        tilt: 40
-      });
-    })
-    .then(() => {
-      projects.forEach((proj) => {
-        proj.marker.crop(boundary, false);
-      });
-      sandbox.camera.flyTo({
+      integratedMeshLayer.altizurePMarkers.forEach(item => item.marker.crop(boundary, false));
+      return map.sandbox.camera.flyTo({
         lng: basePosition.lng,
         lat: basePosition.lat,
         alt: 15000,
         north: 0,
         tilt: 40
       });
-      return { sandbox, gs };
-    });
+    })
+    .then(() => ({ map, gs: integratedMeshLayer.gs, markers: integratedMeshLayer.altizurePMarkers }));
 }

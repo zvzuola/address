@@ -40,3 +40,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 3. altizure三维引擎 https://developers.altizure.cn/
 4. altizure实例展示 https://github.com/altizure/sdk.examples
 5. openlayer二维引擎 https://openlayers.org/ 
+
+###
+<!-- 熟悉W3C规范,精通Javascript、AJAX、HTML、CSS等技术
+熟练运用主流的 JavaScript 库和开发框架,如React/Vue/Angular等
+熟练使用git/npm/webpack/gulp等工具链
+热爱技术、主动钻研、沟通和协作能力优秀
+
+有 ThreeJs、Canvas、WebGL 等开发经验加分； -->

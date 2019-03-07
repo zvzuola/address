@@ -123,3 +123,22 @@ export function convertCoordinateFromGeoJSON(data, gs) {
   });
   return newObjs;
 }
+
+
+export function debounce(fn, time) {
+  let timeout = null;
+  return function func(...args) {
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fn.apply(this, args);
+    }, time);
+  };
+}
+
+export function getView(sandbox, startPt, endPt) {
+  const topLeft = sandbox.window.toLngLatAlt(startPt);
+  const bottomLeft = sandbox.window.toLngLatAlt({ x: startPt.x, y: endPt.y });
+  const topRight = sandbox.window.toLngLatAlt({ x: endPt.x, y: startPt.y });
+  const bottomRight = sandbox.window.toLngLatAlt(endPt);
+  return [topLeft, topRight, bottomRight, bottomLeft];
+}

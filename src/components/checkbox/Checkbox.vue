@@ -54,9 +54,6 @@ export default {
 </script>
 <style lang="scss" module>
 .checkbox {
-  position: fixed;
-  top: 100px;
-  right: 20px;
   min-width: 200px;
   &.close {
     .title {
