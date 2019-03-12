@@ -41,7 +41,10 @@ export default function init() {
   };
 
   const sandbox = new altizure.Sandbox('page-content', options);
-
+  return Promise.resolve({
+    sandbox,
+    gs: null
+  });
   return Promise.all(addProjects(sandbox, projects))
     .then(() => {
       // use the first project as the base
