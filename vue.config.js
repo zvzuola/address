@@ -14,6 +14,14 @@ module.exports = {
         symbolId: 'icon-[name]'
       });
   },
-  publicPath: '/xcly/',
+  css: {
+    loaderOptions: {
+      // 给 sass-loader 传递选项
+      sass: {
+        data: '@import "@/assets/variables.scss";'
+      }
+    }
+  },
+  publicPath: '/',
   productionSourceMap: false
 };

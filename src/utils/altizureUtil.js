@@ -1,4 +1,5 @@
-// import * as altizure from './altizure';
+import axios from 'axios';
+import * as turf from '@turf/turf';
 
 export function addProjects(sandbox, pList) {
   const tList = pList.map((project) => sandbox
@@ -124,21 +125,39 @@ export function convertCoordinateFromGeoJSON(data, gs) {
   return newObjs;
 }
 
-
-export function debounce(fn, time) {
-  let timeout = null;
-  return function func(...args) {
-    if (timeout) clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      fn.apply(this, args);
-    }, time);
-  };
-}
-
 export function getView(sandbox, startPt, endPt) {
+  if (!startPt) startPt = { x: 0, y: 0 };
+  if (!endPt) {
+    const mapDom = sandbox.domElement;
+    endPt = {
+      x: mapDom.clientWidth,
+      y: mapDom.clientHeight
+    };
+  }
+
   const topLeft = sandbox.window.toLngLatAlt(startPt);
   const bottomLeft = sandbox.window.toLngLatAlt({ x: startPt.x, y: endPt.y });
   const topRight = sandbox.window.toLngLatAlt({ x: endPt.x, y: startPt.y });
   const bottomRight = sandbox.window.toLngLatAlt(endPt);
   return [topLeft, topRight, bottomRight, bottomLeft];
+}
+
+export function asyncGetGeojsonByView(view) {
+  const polygon = turf.polygon([
+    [
+      [view[0].lng, view[0].lat],
+      [view[1].lng, view[1].lat],
+      [view[2].lng, view[2].lat],
+      [view[3].lng, view[3].lat],
+      [view[0].lng, view[0].lat]
+    ]
+  ]);
+
+  return axios
+    .get('http://192.168.253.1:3000/kjcx', {
+      params: {
+        extent: `${JSON.stringify(polygon.geometry)}`
+      }
+    })
+    .then(res => res.data);
 }

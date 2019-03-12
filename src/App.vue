@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav :class="$style['m-nav']">
-      <h3 :class="$style['nav-title']">下城数字旅游专线</h3>
+      <h3 :class="$style['nav-title']"></h3>
       <ul>
         <li
           v-for="(item,index) in navList"
@@ -14,61 +14,78 @@
         </li>
       </ul>
     </nav>
-    <router-view/>
+    <div id="page-content" :class="$style['container-map']"/>
+    <div :class="$style['m-container']">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import websense from '@/utils/webscene';
+
 export default {
   data() {
+    const navList = [
+      {
+        label: '地址查询',
+        icon: 'show',
+        link: '/'
+      },
+      {
+        label: '空间查询',
+        icon: 'form',
+        link: '/spatial-search'
+      },
+      {
+        label: '匹配引擎',
+        icon: 'grid',
+        link: '/address-match'
+      },
+      {
+        label: '信息展示',
+        icon: 'building',
+        link: '/dashboard'
+      },
+      {
+        label: '空间画像',
+        icon: 'people',
+        link: '/'
+      }
+    ];
     return {
-      navList: [
-        {
-          label: '下城漫游',
-          icon: 'show'
-        }
-        // {
-        //   label: '城市大脑下城1Call专班',
-        //   icon: ''
-        // },
-        // {
-        //   label: '网格管理',
-        //   icon: 'grid'
-        // },
-        // {
-        //   label: '楼宇展示',
-        //   icon: 'building'
-        // },
-        // {
-        //   label: '老年人专题',
-        //   icon: 'people'
-        // }
-      ],
-      active: 0
+      navList,
+      active: navList.findIndex(
+        v => v.link === window.location.pathname
+      )
     };
+  },
+  mounted() {
+    websense().then(({ sandbox, gs }) => {
+      this.updateSandbox(sandbox);
+      this.updateGs(gs);
+    });
   },
   methods: {
     handleActive(index) {
       this.active = index;
-    }
+      this.$router.push(this.navList[index].link);
+    },
+    ...mapActions(['updateSandbox', 'updateGs'])
   }
 };
 </script>
 
 
 <style lang="scss" module>
-$color1: #005670;
-$color2: #ffaa60;
-$color3: #fff1f1;
-$color4: #5bd5ee;
-$color-shadow: #000;
-
 .m-nav {
   display: flex;
   position: absolute;
   width: 100%;
   height: 80px;
-  background: linear-gradient($color1, transparent);
+  // background: linear-gradient($color1, transparent);
+  background: $color1;
   color: white;
   padding-left: 20px;
   z-index: 999;
@@ -102,6 +119,7 @@ $color-shadow: #000;
       justify-content: center;
       flex-direction: column;
       border-bottom: 4px solid transparent;
+      cursor: pointer;
       &:hover {
         background-color: rgba($color: #000, $alpha: 0.35);
         border-bottom: 4px solid $color2;
@@ -116,5 +134,18 @@ $color-shadow: #000;
       }
     }
   }
+}
+.container-map {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.m-container {
+  position: relative;
+  // height: 100vh;
+  // width: 100vw;
+  padding-top: 100px;
 }
 </style>

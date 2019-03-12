@@ -14,20 +14,18 @@ export default class PolygonsFromGeoJson extends BaseMarker {
     this.markers = polygonsFromGeoJson(geoJson, sandbox, Object.assign({}, {
       top: 20,
       bottom: 0,
-      color: 0xffffff,
+      color: 0xff0000,
       opacity: 0.2
     }, options));
     this.sandbox = sandbox;
 
     this.traverse((marker) => {
       marker.interactable = true;
-      marker.initColor = 0xff0000 * Math.random();
-      marker.color = marker.initColor;
       marker.on('mouseenter', () => {
-        marker.color = 0xff0000;
+        marker.opacity = 1;
       });
       marker.on('mouseleave', () => {
-        marker.color = marker.initColor;
+        marker.opacity = 0.3;
       });
     });
   }

@@ -16,10 +16,22 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+    },
+    {
+      path: '/spatial-search',
+      name: 'spatialSearch',
+      component: () => import(/* webpackChunkName: "spetialSesrch" */ './views/SpatialSearch.vue'),
+    },
+    {
+      path: '/address-match',
+      name: 'addressMatch',
+      component: () => import(/* webpackChunkName: "spetialSesrch" */ './views/AddressMatch.vue'),
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import(/* webpackChunkName: "spetialSesrch" */ './views/Dashboard.vue'),
     },
   ],
 });
