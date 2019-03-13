@@ -51,7 +51,7 @@ export default {
       {
         label: '空间画像',
         icon: 'people',
-        link: '/'
+        link: '/space-portrait'
       }
     ];
     return {
@@ -88,6 +88,7 @@ export default {
   background: $color1;
   color: white;
   padding-left: 20px;
+  padding-right: 20px;
   z-index: 999;
   .nav-title {
     margin: 0;
@@ -102,8 +103,8 @@ export default {
   }
   ul {
     display: flex;
-    margin: 0px;
-    padding-left: 300px;
+    margin: 0 auto;
+    padding: 0px;
     li {
       color: rgba(255, 255, 255, 0.8);
       list-style: none;

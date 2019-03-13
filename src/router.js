@@ -14,11 +14,6 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
-    },
-    {
       path: '/spatial-search',
       name: 'spatialSearch',
       component: () => import(/* webpackChunkName: "spetialSesrch" */ './views/SpatialSearch.vue'),
@@ -26,12 +21,17 @@ export default new Router({
     {
       path: '/address-match',
       name: 'addressMatch',
-      component: () => import(/* webpackChunkName: "spetialSesrch" */ './views/AddressMatch.vue'),
+      component: () => import(/* webpackChunkName: "addressMatch" */ './views/AddressMatch.vue'),
     },
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import(/* webpackChunkName: "spetialSesrch" */ './views/Dashboard.vue'),
+      component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue'),
+    },
+    {
+      path: '/space-portrait',
+      name: 'spacePortrait',
+      component: () => import(/* webpackChunkName: "spacePortrait" */ './views/SpacePortrait.vue'),
     },
   ],
 });

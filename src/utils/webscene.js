@@ -36,7 +36,10 @@ export default function init() {
       earth: true,
       earthUseTexture: true,
       featureInView: false,
-      orbitRing: true
+      orbitRing: true,
+      background: {
+        color: 'rgba(9, 21, 61, .8)'
+      }
     }
   };
 

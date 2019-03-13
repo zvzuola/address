@@ -1,5 +1,5 @@
 <template>
-  <section :style="styles" :class="[$style['sidebar'], {[$style['close']]: !currentIsOpen}]">
+  <section :style="styles" :class="sidebarClass">
     <slot></slot>
   </section>
 </template>
@@ -12,6 +12,21 @@ export default {
     },
     styles: {
       type: String
+    },
+    className: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    sidebarClass() {
+      return [
+        this.$style.sidebar,
+        {
+          [this.$style.close]: !this.currentIsOpen,
+          [this.className]: !!this.className
+        }
+      ];
     }
   },
   data() {
@@ -31,8 +46,6 @@ export default {
   padding: 10px;
   left: 0;
   transition: all 0.3s ease;
-  background: $color1;
-  color: #fff;
   &.close {
     transform: translateX(-100%);
   }

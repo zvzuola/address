@@ -14,7 +14,7 @@ export default class PolygonsFromGeoJson extends BaseMarker {
     this.markers = polygonsFromGeoJson(geoJson, sandbox, Object.assign({}, {
       top: 20,
       bottom: 0,
-      color: 0xff0000,
+      color: '#67c23a',
       opacity: 0.2
     }, options));
     this.sandbox = sandbox;
