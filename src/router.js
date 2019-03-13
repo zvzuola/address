@@ -10,7 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'dashboard',
+      component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue'),
+    },
+    {
+      path: '/address-search',
+      name: 'addressSearch',
       component: Home,
     },
     {
@@ -22,11 +27,6 @@ export default new Router({
       path: '/address-match',
       name: 'addressMatch',
       component: () => import(/* webpackChunkName: "addressMatch" */ './views/AddressMatch.vue'),
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue'),
     },
     {
       path: '/space-portrait',

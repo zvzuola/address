@@ -29,9 +29,14 @@ export default {
   data() {
     const navList = [
       {
+        label: '信息展示',
+        icon: 'building',
+        link: '/'
+      },
+      {
         label: '地址查询',
         icon: 'show',
-        link: '/'
+        link: '/address-search'
       },
       {
         label: '空间查询',
@@ -42,11 +47,6 @@ export default {
         label: '匹配引擎',
         icon: 'grid',
         link: '/address-match'
-      },
-      {
-        label: '信息展示',
-        icon: 'building',
-        link: '/dashboard'
       },
       {
         label: '空间画像',
