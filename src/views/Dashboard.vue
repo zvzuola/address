@@ -1,5 +1,8 @@
 <template>
-  <sidebar>dashboard</sidebar>
+  <sidebar>
+    <div>dashboard</div>
+    <div>dashboard</div>
+  </sidebar>
 </template>
 <script>
 import Sidebar from '@/components/sidebar/Sidebar';

@@ -1,6 +1,6 @@
 <template>
   <sidebar>
-    <el-button @click="draw">空间查询</el-button>
+    <el-button :disabled="!sandbox" @click="draw">空间查询</el-button>
   </sidebar>
 </template>
 <script>
