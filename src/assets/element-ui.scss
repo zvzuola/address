@@ -1,0 +1,7 @@
+//reset element-ui css
+.el-input__inner{
+  background-color: $color1;
+  &:focus{
+    border-color: $color4;
+  }
+}
