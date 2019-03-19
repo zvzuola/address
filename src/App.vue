@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav :class="$style['m-nav']">
-      <h3 :class="$style['nav-title']"></h3>
+      <h3 :class="$style['nav-title']">地名地址平台</h3>
       <ul>
         <li
           v-for="(item,index) in navList"
@@ -83,7 +83,7 @@ export default {
   display: flex;
   position: absolute;
   width: 100%;
-  height: 80px;
+  height: 45px;
   // background: linear-gradient($color1, transparent);
   background: $color1;
   color: white;
@@ -92,33 +92,33 @@ export default {
   z-index: 999;
   .nav-title {
     margin: 0;
-    font-size: 28px;
-    line-height: 80px;
+    font-size: 24px;
+    line-height: 45px;
     color: rgba(255, 241, 241, 0.8);
   }
   .nav-icon {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 10px;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
   }
   ul {
     display: flex;
     margin: 0 auto;
     padding: 0px;
     li {
-      color: rgba(255, 255, 255, 0.8);
+      color: $color6;
       list-style: none;
       padding-left: 15px;
       padding-right: 15px;
       position: relative;
       text-align: center;
-      font-size: 13px;
-      width: 110px;
+      font-size: 16px;
+      width: 120px;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+      flex-direction: row;
       border-bottom: 4px solid transparent;
       cursor: pointer;
       &:hover {
@@ -147,6 +147,6 @@ export default {
   position: relative;
   // height: 100vh;
   // width: 100vw;
-  padding-top: 100px;
+  padding-top: 70px;
 }
 </style>
