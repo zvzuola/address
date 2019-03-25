@@ -14,9 +14,9 @@
         </li>
       </ul>
     </nav>
-    <div id="page-content" :class="$style['container-map']"/>
+    <div id="page-content" :class="$style['container-map']" @click="handleMapClick"/>
     <div :class="$style['m-container']">
-      <router-view/>
+      <router-view ref="subpage"/>
     </div>
   </div>
 </template>
@@ -62,17 +62,23 @@ export default {
     };
   },
   mounted() {
-    websense().then(({ sandbox, gs }) => {
-      this.updateSandbox(sandbox);
-      this.updateGs(gs);
-    });
+    // websense().then(({ sandbox, gs }) => {
+    //   this.updateSandbox(sandbox);
+    //   this.updateGs(gs);
+    // });
   },
   methods: {
     handleActive(index) {
       this.active = index;
       this.$router.push(this.navList[index].link);
     },
-    ...mapActions(['updateSandbox', 'updateGs'])
+    ...mapActions(['updateSandbox', 'updateGs']),
+
+    handleMapClick(){
+      //点击地图时显示“展开搜索结果”面板
+      if(!this.$refs.subpage.showCardLevel0) return;
+      this.$refs.subpage.showCardLevel0();
+    }
   }
 };
 </script>
@@ -142,11 +148,13 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
+  background-color: #ccc;
 }
 .m-container {
   position: relative;
   // height: 100vh;
   // width: 100vw;
   padding-top: 70px;
+  
 }
 </style>
