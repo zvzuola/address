@@ -38,29 +38,33 @@
             </li>
           </ul>
           <div :class="$style['search-panel-city']">
-            <ul class="area-list">
+            <ul :class="$style['area-list']">
               <li :class="[$style['area-item'],{[$style.active]: index === areaListActive}]" 
               v-for="(item,index) in cityFilterList" :key="index" 
               @mouseover="handleAreaItemHover(index)">
                 <span class="town">{{item.label}}</span>
               </li>
             </ul>
-            <ul class="area-sub-list">
-              <li v-for="(item,index) in cityFilterList[areaListActive].items" :key="index">
-                <a href="javascript:;">{{item}}</a>
-              </li>
-            </ul>
+            <div :class="$style['area-sub-list']">
+              <ul>
+                <li v-for="(item,index) in cityFilterList[areaListActive].items" :key="index">
+                  <a href="javascript:;" @click="handleCityFilterClick(item)">{{item}}</a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div :class="$style['search-panel-building']">
             <ul>
-              <li class="area-list" v-for="(item,index) in buildingFilterList" :key="index">
+              <li v-for="(item,index) in buildingFilterList" :key="index"
+              @click="handleBuildingFilterClick(item)">
                 {{item}}
               </li>
             </ul>
           </div>
           <div :class="$style['search-panel-match']">
             <ul>
-              <li class="area-list" v-for="(item,index) in matchFilterList" :key="index">
+              <li v-for="(item,index) in matchFilterList" :key="index"
+              @click="handleMatchFilterClick(item)">
                 {{item}}
               </li>
             </ul>
@@ -148,7 +152,7 @@ export default {
 
       cityFilterList: cityData.data,
       buildingFilterList: [
-        '幢','分层','单元','分户'
+        '全部尺度','幢','分层','单元','分户'
       ],
       matchFilterList:[
         '模糊匹配',
@@ -255,6 +259,21 @@ export default {
     },
     handleCardsLevel0Hover(){
       this.cardsVisible = [0,1,0];
+    },
+    handleCityFilterClick(item){
+      //行政区过滤
+      this.searchSortBtnList[0].title = item;
+      this.handleSearchSortBtnClick(0);
+    },
+    handleBuildingFilterClick(item){
+      //尺度过滤
+      this.searchSortBtnList[1].title = item;
+      this.handleSearchSortBtnClick(1);
+    },
+    handleMatchFilterClick(item){
+      //模糊精确匹配
+      this.searchSortBtnList[2].title = item;
+      this.handleSearchSortBtnClick(2);
     }
   }
 };
@@ -262,6 +281,7 @@ export default {
 <style lang="scss" module>
 $bg-color: #fff;
 $hover-color: #eee;
+$border-color: #ccc;
 
 .icon-arrow {
   display: inline-block;
@@ -293,19 +313,17 @@ $hover-color: #eee;
 .search-panel-building,
 .search-panel-match {
   display: none;
-  width: 362px;
-  height: 200px;
   background-color: $bg-color;
-  position: absolute;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  border: 1px solid $border-color;
   border-top: 0;
 }
 
 .city-panel .search-panel-city,
 .building-panel .search-panel-building,
 .match-panel .search-panel-match {
-  display: block;
+  display: flex;
+  position: absolute;
   width: 100%;
 }
 
@@ -348,27 +366,109 @@ $hover-color: #eee;
       display: flex;
       padding-left: 0;
       margin: 0;
-      border-top: 1px solid #ccc;
-      border-left: 1px solid #ccc;;
-      border-right: 1px solid #ccc;
+      border-top: 1px solid $border-color;
+      border-left: 1px solid $border-color;;
+      border-right: 1px solid $border-color;
       .sort-btn {
+        // display: inline-block;
         flex: 1;
         position: relative;
-        // width: 120px;
-        background-color: #eee;
+        // width: 124px;
+        background-color: $color7;
         text-align: center;
         padding: 3px 0px;
         font-size: 13px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid $border-color;
         &.active {
           border-bottom: 1px solid transparent;
           background-color: $bg-color !important;
         }
         + .sort-btn {
-          border-left: 1px solid #ccc;
+          &::before{
+            content: " ";
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            top:0;
+            left: 0;
+            background: $border-color;
+          }
         }
         &:hover {
           cursor: pointer;
+        }
+      }
+    }
+    .search-panel-city{
+      background-color: $color7;
+      .area-list{
+        flex:1;
+        border-right: 1px solid $border-color;
+        background-color: $bg-color;
+        margin: 0;
+        height: 100%;
+        padding-left: 0;
+        &:hover{
+          cursor: pointer;
+        }
+        .active{
+          background-color: $color7;
+          border-top: 1px solid $border-color;
+          & + li{
+            border-top: 1px solid $border-color;
+          }
+          & > span{
+            border-right: 1px solid $color7;
+            right: -1px;
+            position: relative;
+            padding-left: 0px;
+          }
+        }
+        & > li{
+          text-align: center;
+          border-top: 1px solid transparent;
+          &:hover{
+            cursor: pointer;
+          }
+          & > span{
+            padding: 4px 0;
+            display: block;
+            padding-left: 1px;
+          }
+        }
+      }
+      .area-sub-list{
+        flex:2;
+        ul{
+          margin: 0;
+          padding: 5px;
+          li{
+            display: inline-block;
+            margin: 0 5px;
+            a{
+              text-decoration: none;
+              color: $color5;
+              &:hover{
+                color: $color4;
+              }
+            }
+          }
+        }
+      }
+    }
+    .search-panel-building,
+    .search-panel-match{
+      text-align: center;
+      ul{
+        width: 100%;
+        padding-left:0;
+        margin: 0;
+        li{
+          padding: 2px 0;
+          &:hover{
+            background-color: $color7;
+            cursor: pointer;
+          }
         }
       }
     }
