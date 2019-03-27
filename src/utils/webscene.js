@@ -18,7 +18,7 @@ export default function init() {
   // let centerPosition = { lng: 120.1836588, lat: 30.3305158, z: 0 } //原有备份
   // let centerPosition = { lng: 120.1836588, lat: 30.3305247, z: 0 } // ok  section1-2017的中心点位
   const centerPosition = { lng: 120.1766745, lat: 30.3132158, z: 0 }; // altizure ok section2的中心点位
-  const basePosition = { lng: 120.172, lat: 30.309, z: 0 };
+  const basePosition = { lng: 120.172, lat: 30.279, z: 0 };
   const options = {
     altizureApi: {
       key: 'qwKCxUxTywiAlenHoNfhVzRuGA76O7EEYPyC4Av',
@@ -43,11 +43,15 @@ export default function init() {
     }
   };
 
+
+
   const sandbox = new altizure.Sandbox('page-content', options);
   return Promise.resolve({
     sandbox,
     gs: null
   });
+
+  
   return Promise.all(addProjects(sandbox, projects))
     .then(() => {
       // use the first project as the base
