@@ -105,14 +105,6 @@
         />
         <span>{{item.title}}</span>
       </div>
-<<<<<<< Updated upstream
-    </div>
-    <div
-      id="tool_panel_extent"
-      v-show="toolPanelVisible[1]"
-      :class="$style['tool-panel']"
-    >空间查询</div>
-=======
     </div >
     <div id="tool_panel_extent" v-show="toolPanelVisible[1]" 
     :class="$style['tool-panel']" >
@@ -120,23 +112,18 @@
      <!-- <el-radio v-model="radio"  label="1" @click.native.prevent="drawpolygon" >多边形</el-radio> -->
      <el-checkbox v-model="checked" @change="drawpolygon">多边形</el-checkbox>
     </div>
->>>>>>> Stashed changes
   </section>
 </template>
 
 <script>
 import Sidebar from '@/components/sidebar/Sidebar';
-<<<<<<< Updated upstream
-import { getAddressList } from '@/api/index';
 import cityData from '@/../public/data/city.json'
-=======
 import { getAddressList,getPositionList } from '@/api/index';
 import { mapState } from 'vuex';
 import * as util from '@/utils/altizureUtil';
 import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
 import PolygonMarker from '@/libs/polygonMarker';
 import TagMarker from '@/libs/tagMarker'
->>>>>>> Stashed changes
 
 export default {
   name: 'Home',
@@ -150,7 +137,6 @@ export default {
   },
   data() {
     return {
-<<<<<<< Updated upstream
       baseUrl: process.env.BASE_URL,
       cardsVisible: [0,0,0],
       input: '',
@@ -185,20 +171,14 @@ export default {
         address:'',
       },
 
-      toolBtnActive: -1,
-      toolPanelVisible: [0, 0, 0, 0],
-      toolBoxList: [
-=======
-      
-      toolBtnActive: -1,
       isVisible: false,
-      toolPanelVisible: [0,0,0,0],
-      input:'',
       radio: '',
       checked: false,
       Pointdata:[],
-      toolBoxList:[
->>>>>>> Stashed changes
+
+      toolBtnActive: -1,
+      toolPanelVisible: [0, 0, 0, 0],
+      toolBoxList: [
         {
           title: '下城区',
           icon: 'building'
@@ -226,20 +206,8 @@ export default {
     this.removeEventListener();
   },
   methods: {
-<<<<<<< Updated upstream
     handleSearch() {
       if (!this.input) {
-=======
-    getAddress(){
-      getAddressList().then(res=>{
-        if(res.success){
-          this.addressList = res.data;
-        }
-      })
-    },
-    handleSearch(){
-      if(!this.input) {
->>>>>>> Stashed changes
         return;
       }
       this.cardsVisible = [0,1,0];
@@ -274,9 +242,6 @@ export default {
           console.log('下城区');
           break;
         case 1:
-<<<<<<< Updated upstream
-          console.log('空间查询');
-=======
           //地图定位
           this.sandbox.camera.flyTo({
             lng: 120.165,
@@ -286,7 +251,6 @@ export default {
             tilt: 20
             })
           console.log('空间查询')
->>>>>>> Stashed changes
           break;
         case 2:
           console.log('匹配引擎');
@@ -298,7 +262,6 @@ export default {
           break;
       }
     },
-<<<<<<< Updated upstream
 
     handleAreaItemHover(index){
       this.areaListActive = index;
@@ -318,8 +281,7 @@ export default {
     },
     handleCardsLevel0Hover(){
       this.cardsVisible = [0,1,0];
-    }
-=======
+    },
     
     //空间查询画多边形
     drawpolygon() {
@@ -442,21 +404,7 @@ export default {
             scale: 1
           })
         })
-      },
-    // addVerticalPolygonsFromGeoJson(data) {
-    //   const convertData = util.convertCoordinateFromGeoJSON(data, this.gs);
-    //   this.drawPolygonsFromGeoJson = new PolygonsFromGeoJson({
-    //     sandbox: this.sandbox,
-    //     geoJson: convertData,
-    //     options: { top: 40 }
-    //   });
-    //   this.drawPolygonsFromGeoJson.traverse((marker, i) => {
-    //     const { elevation, height } = convertData.features[i].properties;
-    //     marker.bottom = elevation + 12;
-    //     marker.top = elevation + height + 12;
-    //   });
-    // },
->>>>>>> Stashed changes
+      }
   }
 };
 </script>
