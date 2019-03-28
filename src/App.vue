@@ -62,10 +62,10 @@ export default {
     };
   },
   mounted() {
-    // websense().then(({ sandbox, gs }) => {
-    //   this.updateSandbox(sandbox);
-    //   this.updateGs(gs);
-    // });
+    websense().then(({ sandbox, gs }) => {
+      this.updateSandbox(sandbox);
+      this.updateGs(gs);
+    });
   },
   methods: {
     handleActive(index) {
