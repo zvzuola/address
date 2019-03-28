@@ -154,10 +154,13 @@ export function asyncGetGeojsonByView(view) {
   ]);
 
   return axios
-    .get('http://192.168.253.1:3000/kjcx', {
+    .get('http://172.16.8.111:8080/addressService/getAddressByPolygon', {
       params: {
         extent: `${JSON.stringify(polygon.geometry)}`
       }
     })
-    .then(res => res.data);
+    .then(res => {
+      console.log(res, 'res')
+      return res.data
+    });
 }

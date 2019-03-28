@@ -23,5 +23,18 @@ module.exports = {
     }
   },
   publicPath: '/',
-  productionSourceMap: false
+  productionSourceMap: false,
+  devServer: {
+    host:'localhost',
+    port:'8083',
+    open:true
+    // ,
+    // proxy: {
+    //   '/addressService/query1': {
+    //     target: 'http://172.16.8.124:8080', //对应自己的接口
+    //     changeOrigin: true,
+    //     ws: true
+    //   }
+    // }
+  }
 };

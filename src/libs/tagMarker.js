@@ -39,6 +39,9 @@ export default class TagMarker extends BaseMarker {
       marker.on('mouseleave', () => {
         marker.fixedSize = 30;
       });
+      // marker.on('click', () => {
+      //   console.log('TestTestTestTestTest')
+      // });
     });
   }
 }

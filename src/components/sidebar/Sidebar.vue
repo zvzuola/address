@@ -46,6 +46,8 @@ export default {
   padding: 10px;
   left: 0;
   transition: all 0.3s ease;
+  background: $color1;
+  color: #fff;
   &.close {
     transform: translateX(-100%);
   }
