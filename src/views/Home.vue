@@ -8,20 +8,14 @@
         @clear="handleInputClear"
         class="input-with-select"
       >
-        <el-button
-          slot="append"
-          icon="el-icon-search"
-          @click="handleSearch"
-        ></el-button>
+        <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
       </el-input>
-      <div :class="$style['cards-level0']" v-show="cardsVisible[0]"
-      @mouseover="handleCardsLevel0Hover">
-        共找到{{addressList.length}}个搜索结果
-      </div>
       <div
-        :class="$style['cards-level1']"
-        v-show="cardsVisible[1]"
-      >
+        :class="$style['cards-level0']"
+        v-show="cardsVisible[0]"
+        @mouseover="handleCardsLevel0Hover"
+      >共找到{{addressList.length}}个搜索结果</div>
+      <div :class="$style['cards-level1']" v-show="cardsVisible[1]">
         <div
           id="search_filter_block"
           :class="[$style['search-filter-block'],$style[searchSortVisiblePanel]]"
@@ -39,9 +33,12 @@
           </ul>
           <div :class="$style['search-panel-city']">
             <ul :class="$style['area-list']">
-              <li :class="[$style['area-item'],{[$style.active]: index === areaListActive}]" 
-              v-for="(item,index) in cityFilterList" :key="index" 
-              @mouseover="handleAreaItemHover(index)">
+              <li
+                :class="[$style['area-item'],{[$style.active]: index === areaListActive}]"
+                v-for="(item,index) in cityFilterList"
+                :key="index"
+                @mouseover="handleAreaItemHover(index)"
+              >
                 <span class="town">{{item.label}}</span>
               </li>
             </ul>
@@ -55,18 +52,20 @@
           </div>
           <div :class="$style['search-panel-building']">
             <ul>
-              <li v-for="(item,index) in buildingFilterList" :key="index"
-              @click="handleBuildingFilterClick(item)">
-                {{item}}
-              </li>
+              <li
+                v-for="(item,index) in buildingFilterList"
+                :key="index"
+                @click="handleBuildingFilterClick(item)"
+              >{{item}}</li>
             </ul>
           </div>
           <div :class="$style['search-panel-match']">
             <ul>
-              <li v-for="(item,index) in matchFilterList" :key="index"
-              @click="handleMatchFilterClick(item)">
-                {{item}}
-              </li>
+              <li
+                v-for="(item,index) in matchFilterList"
+                :key="index"
+                @click="handleMatchFilterClick(item)"
+              >{{item}}</li>
             </ul>
           </div>
         </div>
@@ -88,61 +87,50 @@
         </div>
       </div>
       <div :class="$style['cards-level2']" v-show="cardsVisible[2]">
-        <div id="returnfixed" @click="handleReturnClick"><i class="el-icon-arrow-left"></i>返回</div>
+        <div id="returnfixed" @click="handleReturnClick">
+          <i class="el-icon-arrow-left"></i>返回
+        </div>
         <div>地址：{{addressItemData.address}}</div>
       </div>
     </div>
     <!-- 右侧工具条 -->
-    <div
-      id="search_righttop_panel"
-      :class="$style['tool-box']"
-    >
+    <div id="search_righttop_panel" :class="$style['tool-box']">
       <div
         v-for="(item,index) in toolBoxList"
         :key="index"
         :class="[$style['tool-button'],{[$style['tool-btn-active']]: index == toolBtnActive}]"
         @click="handleToolBtnClick(index)"
       >
-        <svg-icon
-          :icon="item.icon"
-          :class="$style['tool-icon']"
-        />
+        <svg-icon :icon="item.icon" :class="$style['tool-icon']"/>
         <span>{{item.title}}</span>
       </div>
-    </div >
-    <div id="tool_panel_extent" v-show="toolPanelVisible[1]" 
-    :class="$style['tool-panel']" >
-    
-     <!-- <el-radio v-model="radio"  label="1" @click.native.prevent="drawpolygon" >多边形</el-radio> -->
-     <el-checkbox v-model="checked" @change="drawpolygon">多边形</el-checkbox>
+    </div>
+    <div id="tool_panel_extent" v-show="toolPanelVisible[1]" :class="$style['tool-panel']">
+      <!-- <el-radio v-model="radio"  label="1" @click.native.prevent="drawpolygon" >多边形</el-radio> -->
+      <el-checkbox v-model="checked" @change="drawpolygon">多边形</el-checkbox>
     </div>
   </section>
 </template>
 
 <script>
 import Sidebar from '@/components/sidebar/Sidebar';
-import cityData from '@/../public/data/city.json'
-import { getAddressList,getPositionList } from '@/api/index';
+import cityData from '@/../public/data/city.json';
+import { getAddressList, getPositionList } from '@/api/index';
 import { mapState } from 'vuex';
 import * as util from '@/utils/altizureUtil';
 import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
 import PolygonMarker from '@/libs/polygonMarker';
-import TagMarker from '@/libs/tagMarker'
+import TagMarker from '@/libs/tagMarker';
 
 export default {
   name: 'Home',
   components: {
     sidebar: Sidebar
   },
-  computed: {...mapState({
-    sandbox: state => state.sandbox,
-    gs: state => state.gs
-  })
-  },
   data() {
     return {
       baseUrl: process.env.BASE_URL,
-      cardsVisible: [0,0,0],
+      cardsVisible: [0, 0, 0],
       input: '',
       addressList: [],
       searchSortBtnList: [
@@ -162,23 +150,18 @@ export default {
       searchSortVisiblePanel: '',
 
       cityFilterList: cityData.data,
-      buildingFilterList: [
-        '全部尺度','幢','分层','单元','分户'
-      ],
-      matchFilterList:[
-        '模糊匹配',
-        '精确匹配'
-      ],
+      buildingFilterList: ['全部尺度', '幢', '分层', '单元', '分户'],
+      matchFilterList: ['模糊匹配', '精确匹配'],
 
       areaListActive: 0,
       addressItemData: {
-        address:'',
+        address: ''
       },
 
       isVisible: false,
       radio: '',
       checked: false,
-      Pointdata:[],
+      Pointdata: [],
 
       toolBtnActive: -1,
       toolPanelVisible: [0, 0, 0, 0],
@@ -204,7 +187,12 @@ export default {
     };
   },
   mounted() {
+    this.sandbox = window.sandbox;
+    this.gs = window.gs;
     this.getAddress();
+    document
+      .getElementById('page-content')
+      .addEventListener('click', this.showCardLevel0);
   },
   beforeDestroy() {
     this.removeEventListener();
@@ -214,10 +202,10 @@ export default {
       if (!this.input) {
         return;
       }
-      this.cardsVisible = [0,1,0];
+      this.cardsVisible = [0, 1, 0];
     },
     handleInputClear() {
-      this.cardsVisible = [0,0,0];
+      this.cardsVisible = [0, 0, 0];
     },
     getAddress() {
       getAddressList().then(res => {
@@ -253,8 +241,8 @@ export default {
             alt: 2000,
             north: 0,
             tilt: 20
-            })
-          console.log('空间查询')
+          });
+          console.log('空间查询');
           break;
         case 2:
           console.log('匹配引擎');
@@ -267,49 +255,49 @@ export default {
       }
     },
 
-    handleAreaItemHover(index){
+    handleAreaItemHover(index) {
       this.areaListActive = index;
     },
 
-    handleAddressItemClick(item){
-      this.cardsVisible = [0,0,1];
+    handleAddressItemClick(item) {
+      this.cardsVisible = [0, 0, 1];
       this.addressItemData = item;
     },
-    handleReturnClick(){
-      this.cardsVisible = [0,1,0];
+    handleReturnClick() {
+      this.cardsVisible = [0, 1, 0];
     },
-    showCardLevel0(){
-      if(this.cardsVisible[1]){
-        this.cardsVisible = [1,0,0];
+    showCardLevel0() {
+      if (this.cardsVisible[1]) {
+        this.cardsVisible = [1, 0, 0];
       }
     },
-    handleCardsLevel0Hover(){
-      this.cardsVisible = [0,1,0];
+    handleCardsLevel0Hover() {
+      this.cardsVisible = [0, 1, 0];
     },
-    handleCityFilterClick(item){
+    handleCityFilterClick(item) {
       //行政区过滤
       this.searchSortBtnList[0].title = item;
       this.handleSearchSortBtnClick(0);
     },
-    handleBuildingFilterClick(item){
+    handleBuildingFilterClick(item) {
       //尺度过滤
       this.searchSortBtnList[1].title = item;
       this.handleSearchSortBtnClick(1);
     },
-    handleMatchFilterClick(item){
+    handleMatchFilterClick(item) {
       //模糊精确匹配
       this.searchSortBtnList[2].title = item;
       this.handleSearchSortBtnClick(2);
     },
-    
+
     //空间查询画多边形
     drawpolygon() {
-      if(this.checked){
-      this.sandbox.renderer.domElement.addEventListener(
-        'mousedown',
-        this.handleMouseDown
+      if (this.checked) {
+        this.sandbox.renderer.domElement.addEventListener(
+          'mousedown',
+          this.handleMouseDown
         );
-        }
+      }
     },
     removeEventListener() {
       if (this.sandbox) {
@@ -321,6 +309,10 @@ export default {
 
       document.removeEventListener('mousemove', this.handleMouseMove);
       document.removeEventListener('mouseup', this.handleMouseUp);
+
+      document
+        .getElementById('page-content')
+        .addEventListener('click', this.showCardLevel0);
     },
     destructMarker(props) {
       const destruct = p => {
@@ -389,41 +381,41 @@ export default {
       util.asyncGetGeojsonByView(view).then(arr => {
         this.destructMarker('drawPolygonsFromGeoJson');
         // if (geoJson.features) {
-          this.Pointdata = arr;
-          this.addTag();
+        this.Pointdata = arr;
+        this.addTag();
         // }
       });
-      
+
       // this.Pointdata = geoJson.data.data;
       // this.addTag(Pointdata);
       this.sandbox.control.enabledOrbit = true;
       this.removeEventListener();
     },
     //addTag
-    addTag(){
-      console.log(this.Pointdata)
-      this.Pointdata.forEach(Pointdata =>{
+    addTag() {
+      console.log(this.Pointdata);
+      this.Pointdata.forEach(Pointdata => {
         // console.log(Pointdata);
         // return
-         const tag = new TagMarker({
-            // 图标地址 img url
-            imgUrl: './img/tagDemo.png',
-            // 图标位置 icon position
-            position: {
-              lng: Pointdata.lon,
-              lat: Pointdata.lat,
-              alt: 0 // 虽然高程都赋值为0，但是不知为何 有的高有的低。
-            },
-            sandbox:this.sandbox,
-            // 指针[tagmarker指向地面点的指针]
-            pinLength: 30,
-            // 图标尺寸 如果设置了图标尺寸，则大小固定，再设置mouse的enter和leave的放大缩小设置fixedSize属性。 liuxiaoyan
-            fixedSize: 30,
-            // 图标比例：设置之后图标的大小相对模型调整。鼠标相应事件设置scale属性。
-            scale: 1
-          })
-        })
-      }
+        const tag = new TagMarker({
+          // 图标地址 img url
+          imgUrl: './img/tagDemo.png',
+          // 图标位置 icon position
+          position: {
+            lng: Pointdata.lon,
+            lat: Pointdata.lat,
+            alt: 0 // 虽然高程都赋值为0，但是不知为何 有的高有的低。
+          },
+          sandbox: this.sandbox,
+          // 指针[tagmarker指向地面点的指针]
+          pinLength: 30,
+          // 图标尺寸 如果设置了图标尺寸，则大小固定，再设置mouse的enter和leave的放大缩小设置fixedSize属性。 liuxiaoyan
+          fixedSize: 30,
+          // 图标比例：设置之后图标的大小相对模型调整。鼠标相应事件设置scale属性。
+          scale: 1
+        });
+      });
+    }
   }
 };
 </script>
@@ -476,12 +468,12 @@ $border-color: #ccc;
   width: 100%;
 }
 
-.cards-level0{
+.cards-level0 {
   background-color: $bg-color;
   margin-top: 5px;
   height: 40px;
   padding: 10px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
@@ -516,7 +508,7 @@ $border-color: #ccc;
       padding-left: 0;
       margin: 0;
       border-top: 1px solid $border-color;
-      border-left: 1px solid $border-color;;
+      border-left: 1px solid $border-color;
       border-right: 1px solid $border-color;
       .sort-btn {
         // display: inline-block;
@@ -533,12 +525,12 @@ $border-color: #ccc;
           background-color: $bg-color !important;
         }
         + .sort-btn {
-          &::before{
-            content: " ";
+          &::before {
+            content: ' ';
             position: absolute;
             width: 1px;
             height: 100%;
-            top:0;
+            top: 0;
             left: 0;
             background: $border-color;
           }
@@ -548,56 +540,56 @@ $border-color: #ccc;
         }
       }
     }
-    .search-panel-city{
+    .search-panel-city {
       background-color: $color7;
-      .area-list{
-        flex:1;
+      .area-list {
+        flex: 1;
         border-right: 1px solid $border-color;
         background-color: $bg-color;
         margin: 0;
         height: 100%;
         padding-left: 0;
-        &:hover{
+        &:hover {
           cursor: pointer;
         }
-        .active{
+        .active {
           background-color: $color7;
           border-top: 1px solid $border-color;
-          & + li{
+          & + li {
             border-top: 1px solid $border-color;
           }
-          & > span{
+          & > span {
             border-right: 1px solid $color7;
             right: -1px;
             position: relative;
             padding-left: 0px;
           }
         }
-        & > li{
+        & > li {
           text-align: center;
           border-top: 1px solid transparent;
-          &:hover{
+          &:hover {
             cursor: pointer;
           }
-          & > span{
+          & > span {
             padding: 4px 0;
             display: block;
             padding-left: 1px;
           }
         }
       }
-      .area-sub-list{
-        flex:2;
-        ul{
+      .area-sub-list {
+        flex: 2;
+        ul {
           margin: 0;
           padding: 5px;
-          li{
+          li {
             display: inline-block;
             margin: 0 5px;
-            a{
+            a {
               text-decoration: none;
               color: $color5;
-              &:hover{
+              &:hover {
                 color: $color4;
               }
             }
@@ -606,15 +598,15 @@ $border-color: #ccc;
       }
     }
     .search-panel-building,
-    .search-panel-match{
+    .search-panel-match {
       text-align: center;
-      ul{
+      ul {
         width: 100%;
-        padding-left:0;
+        padding-left: 0;
         margin: 0;
-        li{
+        li {
           padding: 2px 0;
-          &:hover{
+          &:hover {
             background-color: $color7;
             cursor: pointer;
           }
@@ -636,7 +628,7 @@ $border-color: #ccc;
   }
 }
 
-.cards-level2{
+.cards-level2 {
   background-color: $bg-color;
   margin-top: 5px;
   overflow-y: auto;
@@ -713,7 +705,7 @@ $border-color: #ccc;
   }
 }
 
-#returnfixed{
+#returnfixed {
   cursor: pointer;
 }
 </style>

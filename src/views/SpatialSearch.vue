@@ -20,7 +20,6 @@
     </sidebar>
   </template>
   <script>
-  import { mapState } from 'vuex';
   import * as util from '@/utils/altizureUtil';
   import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
   import PolygonMarker from '@/libs/polygonMarker';
@@ -36,11 +35,10 @@
     components: {
       sidebar: Sidebar
     },
-    computed: mapState({
-      sandbox: state => state.sandbox,
-      gs: state => state.gs
-    }),
-    mounted() {},
+    mounted() {
+      this.sandbox = window.sandbox
+      this.gs = window.gs
+    },
     beforeDestroy() {
       this.removeEventListener();
     },
