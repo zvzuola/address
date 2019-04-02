@@ -31,7 +31,7 @@ module.exports = {
     // ,
     // proxy: {
     //   '/addressService/query1': {
-    //     target: 'http://172.16.8.124:8080', //对应自己的接口
+    //     target: 'http://192.168.53.95:8080', //对应自己的接口
     //     changeOrigin: true,
     //     ws: true
     //   }

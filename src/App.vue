@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav :class="$style['m-nav']">
+    <!-- <nav :class="$style['m-nav']">
       <h3 :class="$style['nav-title']">地名地址平台</h3>
       <ul>
         <li
@@ -13,7 +13,7 @@
           <span>{{item.label}}</span>
         </li>
       </ul>
-    </nav>
+    </nav> -->
     <div :class="$style['m-container']">
       <router-view ref="subpage"/>
     </div>
@@ -28,23 +28,23 @@ export default {
       {
         label: '信息展示',
         icon: 'building',
-        link: '/'
+        link: '/dashboard'
       },
       {
         label: '地址查询',
         icon: 'show',
-        link: '/address-search'
+        link: '/'
       },
-      {
-        label: '空间查询',
-        icon: 'form',
-        link: '/spatial-search'
-      },
-      {
-        label: '匹配引擎',
-        icon: 'grid',
-        link: '/address-match'
-      },
+      // {
+      //   label: '空间查询',
+      //   icon: 'form',
+      //   link: '/spatial-search'
+      // },
+      // {
+      //   label: '匹配引擎',
+      //   icon: 'grid',
+      //   link: '/address-match'
+      // },
       {
         label: '空间画像',
         icon: 'people',
@@ -72,9 +72,9 @@ export default {
   display: flex;
   position: absolute;
   width: 100%;
-  height: 45px;
+  height: 20px;
   // background: linear-gradient($color1, transparent);
-  background: $color1;
+  // background: $color1;
   color: white;
   padding-left: 20px;
   padding-right: 20px;
@@ -137,6 +137,6 @@ export default {
   position: relative;
   // height: 100vh;
   // width: 100vw;
-  padding-top: 70px;
+  padding-top: 30px;
 }
 </style>

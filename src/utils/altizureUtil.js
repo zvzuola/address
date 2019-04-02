@@ -1,6 +1,8 @@
 import axios from 'axios';
 import * as turf from '@turf/turf';
 
+axios.defaults.withCredentials = true;
+
 export function addProjects(sandbox, pList) {
   const tList = pList.map((project) => sandbox
     .add('AltizureProjectMarker', { pid: project.pid })
@@ -154,7 +156,7 @@ export function asyncGetGeojsonByView(view) {
   ]);
 
   return axios
-    .get('http://172.16.8.111:8080/addressService/getAddressByPolygon', {
+    .get('http://192.168.43.95:8080/addressService/getAddressByPolygon', {
       params: {
         extent: `${JSON.stringify(polygon.geometry)}`
       }
