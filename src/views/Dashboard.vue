@@ -1,5 +1,6 @@
 <template>
   <sidebar>
+    <router-link to="search">地址查询</router-link>
     <div>dashboard</div>
     <div>dashboard</div>
   </sidebar>
