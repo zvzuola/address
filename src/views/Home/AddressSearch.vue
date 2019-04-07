@@ -91,6 +91,7 @@ export default {
     ...mapActions({
       setAddrListVisible: 'cardAddrList/setVisible',
       setAddrDetailsVisible: 'cardAddrDetails/setVisible',
+      setCardResultVisible: 'cardResult/setVisible',
       setExtentVisible: 'cardExtent/setVisible',
       switchToSearch: 'switchToSearch',
       switchToExtent: 'switchToExtent',
@@ -112,6 +113,7 @@ export default {
       //关闭其他所有面板
       this.setAddrListVisible(false);
       this.setAddrDetailsVisible(false);
+      this.setCardResultVisible(false);
     },
     isExtentBtnCloseIcon(){
       return this.extentBtnIcon == 'el-icon-close';
@@ -132,6 +134,7 @@ export default {
       return this.matchBtnIcon == 'el-icon-close';
     },
     handleSearch() {
+      this.setCardResultVisible(false);
       //判断当前是什么查询
       switch(this.searchStatus){
         case SEARCH_STATUS.SEARCH:
@@ -169,6 +172,7 @@ export default {
     handleInputClear() {
       this.setAddrListVisible(false);
       this.setAddrDetailsVisible(false);
+      this.setCardResultVisible(false);
     },
     getAddress(val) {
       if (!val) {
