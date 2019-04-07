@@ -5,7 +5,7 @@
         <el-radio :label="1">框选查询</el-radio>
         <el-radio :label="2">缓冲区查询</el-radio>
       </el-radio-group>
-      <el-checkbox v-model="checked">多边形</el-checkbox>
+      <!-- <el-checkbox v-model="checked">多边形</el-checkbox> -->
       <el-form :inline="true" :model="formInline">
         <el-form-item label="经度" v-show="formInline.epsg==='4326'">
           <el-input v-model="formInline.x" size="small"></el-input>
@@ -13,7 +13,7 @@
         <el-form-item label="纬度" v-show="formInline.epsg==='4326'">
           <el-input v-model="formInline.y" size="small"></el-input>
         </el-form-item>
-        <el-form-item label="缓冲区">
+        <el-form-item label="缓冲区(m)">
           <el-input v-model="formInline.distance" size="small"></el-input>
         </el-form-item>
         <!-- <el-form-item>

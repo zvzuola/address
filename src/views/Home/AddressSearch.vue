@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div :class="$style['search-container']">
+    <div :class="$style['search-container']" id="search_container">
       <el-input
         clearable
         placeholder="请输入地址"
@@ -200,9 +200,9 @@ export default {
 <style lang="scss" module>
 .search-container{
   display: flex;
+  background-color: $color1;
   .search-btn{
-    position: absolute;
-    right: 0px;
+    height: 40px;
   }
   .icon-search{
     padding:9px 10px 0px 5px;
@@ -246,6 +246,20 @@ export default {
 }
 </style>
 
+<style lang="scss">
+#search_container{
+  .el-input__inner,
+  .el-textarea__inner {
+    background-color: transparent;
+    border-radius: 0px;
+    border: 0;
+  }
+  .el-textarea__inner{
+    min-height: 40px!important;
+    padding-top: 10px;
+  }
+}
+</style>
 
 
 

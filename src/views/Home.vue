@@ -173,11 +173,6 @@ export default {
   position: absolute;
   width: 400px;
   left: 20px;
-  .el-input__inner,
-  .el-textarea__inner {
-    border-radius: 0px;
-    border: 0;
-  }
 }
 
 #returnfixed {
