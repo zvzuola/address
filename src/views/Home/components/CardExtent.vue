@@ -1,9 +1,11 @@
 <template>
   <section>
-    <div :class="$style['extent-panel']">
-      <i class="el-icon-close" :class="$style['close-btn']" @click="handleCloseClick"></i>
-      <el-checkbox v-model="checked" @change="drawpolygon">多边形</el-checkbox>
-      缓冲区查询
+    <div :class="$style['card-extent']" v-show="visible">
+      <el-radio-group v-model="radioValue" @change="drawpolygon" :class="$style['radio-block']">
+        <el-radio :label="1">框选查询</el-radio>
+        <el-radio :label="2">缓冲区查询</el-radio>
+      </el-radio-group>
+      <el-checkbox v-model="checked">多边形</el-checkbox>
       <el-form :inline="true" :model="formInline">
         <el-form-item label="经度" v-show="formInline.epsg==='4326'">
           <el-input v-model="formInline.x" size="small"></el-input>
@@ -14,51 +16,31 @@
         <el-form-item label="缓冲区">
           <el-input v-model="formInline.distance" size="small"></el-input>
         </el-form-item>
-        <el-form-item>
+        <!-- <el-form-item>
           <el-button type="primary" @click="handleAddressSearch"  size="small">查询</el-button>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
     </div>
-    <div :class="$style['extent-list']" v-show="listVisible">
-      主题类别筛选
-        查詢結果
-        <!-- <ul>
-          <li
-            v-for="(item,index) in Pointdata"
-            :key="index"
-          >
-            <div>{{index+1}}</div>
-            <div>地名：{{item.searchname}}</div>
-            <div>匹配结果{{item.name}}</div>
-            <div>坐标：{{item.pos}}</div>
-            <div>匹配度：{{item.percent}}</div>
-            <div>类型: {{item.type}}</div>
-          </li>
-        </ul> -->
-      </div>
   </section>
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex';
 import { getNearestAddressByLocation } from '@/api/index'
-
-import { mapState } from 'vuex';
 import * as util from '@/utils/altizureUtil';
 import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
 import PolygonMarker from '@/libs/polygonMarker';
 import TagMarker from '@/libs/tagMarker'
 
-import { getAddressList } from '@/api/index'
-
 const { altizure } = window;
 
 export default {
-  name:'ExtentSearch',
   data(){
     return{
+      visible: false,
+      radioValue: 1,
       checked: false,
       Pointdata:[],
-      listVisible: false,
       formInline: {
         epsg: '4326',
         // addtype: '房屋',
@@ -69,26 +51,56 @@ export default {
       }
     }
   },
+  watch:{
+    cardExtentVisible(val){
+      this.visible = val;
+    }
+  },
+  computed:{
+    ...mapState({
+      cardExtentVisible: state=>state.cardExtent.visible,
+    })
+  },
   beforeDestroy() {
     console.log('removeEventListener')
     this.removeEventListener();
   },
   methods:{
-    handleCloseClick(){
-      this.$router.push('search');
+    ...mapActions({
+      setAddrListVisible: 'cardAddrList/setVisible',
+      setAddrListData: 'cardAddrList/setData',
+      setSearchIconLoading: 'setSearchIconLoading',
+      // setAddrDetailsVisible: 'cardAddrDetails/setVisible',
+      // setAddrDetailsData: 'cardAddrDetails/setData',
+    }),
+    doExtentSearch(){
+      console.log(this.radioValue)
+      if(this.radioValue == 1){
+        console.log('框选')
+      }else{
+        this.handleAddressSearch();
+      }
     },
     //空间查询画多边形
     drawpolygon() {
       if(this.checked){
-      this.sandbox.renderer.domElement.addEventListener(
-        'mousedown',
-        this.handleMouseDown
-        );
+      // this.sandbox.renderer.domElement.addEventListener(
+      //   'mousedown',
+      //   this.handleMouseDown
+      //   );
       }
+    },
+    handleRadioChange(val){
+      // if(val == 1){
+      //   //框选
+      //   this.drawpolygon();
+      // }else{
+      //   //缓冲区查询
+      // }
     },
     //缓冲区查询
     handleAddressSearch(){
-      this.listVisible = true;
+      this.setSearchIconLoading(true);
       let param = {
         epsg: this.formInline.epsg,
         //addtype: '地址',
@@ -101,7 +113,10 @@ export default {
       }
       getNearestAddressByLocation(param).then(arr=>{
         this.Pointdata = arr;
-        
+        console.log(this.Pointdata)
+        this.setAddrListData(this.Pointdata);
+        this.setAddrListVisible(true);
+        this.setSearchIconLoading(false);
         this.addTag();
       });
     },
@@ -184,7 +199,6 @@ export default {
         this.destructMarker('drawPolygonsFromGeoJson');
         // if (geoJson.features) {
           this.Pointdata = arr;
-          this.listVisible = true;
           this.addTag();
         // }
       });
@@ -196,7 +210,7 @@ export default {
     },
     //addTag
     addTag(){
-      console.log(this.Pointdata)
+      // console.log(this.Pointdata)
       this.Pointdata.forEach(Pointdata =>{
         // console.log(Pointdata);
         // return
@@ -219,40 +233,26 @@ export default {
           })
         })
     }
-  },
-  mounted(){
-    console.log('flyto')
-    this.sandbox = window.sandbox
-    this.gs = window.gs
-    this.sandbox.camera.flyTo({
-      lng: 119.97,//120.165,
-      lat: 30.53,//30.255,
-      alt: 2000,
-      north: 0,
-      tilt: 20
-    })
   }
 }
 </script>
 
 <style lang="scss" module>
-.extent-panel{
-  background-color: $color5;
-  .close-btn{
-    position: absolute;
-    right: 0;
-    &:hover::before{
-      cursor: pointer;
-      color: $color4;
-    }
+.card-extent{
+  background-color: $bg-color;
+  margin-top: 5px;
+  height: 90px;
+  .radio-block{
+    margin-left: 10px;
+  }
+  input{
+    width: 80px;
+    height: 25px!important;
+    color: #fff;
+  }
+  label{
+    font-size: 13px;
   }
 }
-
-.extent-list{
-  background-color: $color1;
-  margin-top: 10px;
-  height: 400px;
-  overflow-y: auto;
-  color: #eee;
-}
 </style>
+

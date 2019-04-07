@@ -156,7 +156,7 @@ export function asyncGetGeojsonByView(view) {
   ]);
 
   return axios
-    .get('http://192.168.43.95:8080/addressService/getAddressByPolygon', {
+    .get('http://122.224.129.162:11172/addressServer/addressService/getAddressByPolygon', {
       params: {
         extent: `${JSON.stringify(polygon.geometry)}`
       }

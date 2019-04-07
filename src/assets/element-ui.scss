@@ -5,3 +5,25 @@
     border-color: $color4;
   }
 }
+
+.el-form--inline .el-form-item{
+  margin: 0;
+  margin-left: 10px;
+}
+
+.el-form--inline .el-form-item__label{
+  padding-right: 5px;
+}
+
+.el-radio{
+  display: block;
+  margin-top: 10px;
+}
+
+.el-textarea__inner{
+  @include scrollbar();
+  background-color: $color1;
+  border: none;
+  min-height: 40px!important;
+  padding-top: 10px;
+}

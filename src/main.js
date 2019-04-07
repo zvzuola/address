@@ -7,7 +7,7 @@ import '@/icons';
 import websense from '@/utils/webscene';
 import App from './App';
 import router from './router';
-import store from './store';
+import store from '@/store/index';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);

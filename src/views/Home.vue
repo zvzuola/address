@@ -31,6 +31,7 @@
     <city-change
       v-show="toolPanelVisible[0]"
       :class="$style['tool-panel-city']"
+      :data-source="cityList"
     ></city-change>
 
   </section>
@@ -40,15 +41,17 @@
 // import Sidebar from '@/components/sidebar/Sidebar';
 import { mapState } from 'vuex';
 import CityChange from '@/views/Home/components/CityChange';
+import cityData from '@/../public/data/city.json'
 
 export default {
   name: 'Home',
   components: {
     // sidebar: Sidebar,
-    'city-change': CityChange
+    'city-change': CityChange,
   },
   data() {
     return {
+      cityList: cityData.data,
       baseUrl: process.env.BASE_URL,
       // isVisible: false,
       // radio: '',
@@ -63,10 +66,10 @@ export default {
         //   title: '底图',
         //   icon: 'building'
         // },
-        {
-          title: '匹配引擎',
-          icon: 'building'
-        },
+        // {
+        //   title: '匹配引擎',
+        //   icon: 'building'
+        // },
         {
           title: '空间画像',
           icon: 'building'
@@ -92,14 +95,10 @@ export default {
             //选择行政区
             break;
           case 1:
-            //匹配引擎
-            this.$router.push('match');
-            break;
-          case 2:
             //空间画像
             this.$router.push('space-portrait');
             break;
-          case 3:
+          case 2:
             //信息展示
             this.$router.push('dashboard');
             break;
@@ -108,6 +107,8 @@ export default {
         }
       }
     }
+  },
+  mounted(){
   }
 };
 </script>
@@ -172,7 +173,8 @@ export default {
   position: absolute;
   width: 400px;
   left: 20px;
-  .el-input__inner {
+  .el-input__inner,
+  .el-textarea__inner {
     border-radius: 0px;
     border: 0;
   }

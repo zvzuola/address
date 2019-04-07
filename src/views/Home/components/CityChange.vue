@@ -1,7 +1,7 @@
 <template>
   <section>
     <div :class="[$style['city-list-panel']]">
-      <div v-for="(town,index) in cityList" :key="index" :class="[$style['city-list']]">
+      <div v-for="(town,index) in dataSource" :key="index" :class="[$style['city-list']]">
         <span @click="handleCityClick(town.label)">{{town.label}}</span>
         <ul :class="[$style['city-sub-list']]">
           <li v-for="(item,index) in town.items" :key="index" @click="handleCityClick(item)">
@@ -14,16 +14,19 @@
 </template>
 
 <script>
-import cityData from '@/../public/data/city.json'
 
 export default {
   name: 'citychange',
   props:{
-
+    dataSource:{
+      type: Array,
+      default() {
+        return [];
+      }
+    }
   },
   data(){
     return{
-      cityList: cityData.data,
     }
   },
   methods:{
