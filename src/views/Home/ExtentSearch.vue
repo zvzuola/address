@@ -41,7 +41,7 @@
 
 <script>
 import { getNearestAddressByLocation } from '@/api/index'
-
+import * as api from '@/api/index'
 import { mapState } from 'vuex';
 import * as util from '@/utils/altizureUtil';
 import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
@@ -99,7 +99,7 @@ export default {
         // pageSize: 10,
         // currentpage:1
       }
-      getNearestAddressByLocation(param).then(arr=>{
+      api.getNearestAddressByLocation(param).then(arr=>{
         this.Pointdata = arr;
         
         this.addTag();

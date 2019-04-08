@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import {getAddressMatchList} from '@/api/index'
+import * as api from '@/api/index'
 
 export default {
   name: 'AddressMatch',
@@ -87,7 +87,7 @@ export default {
       this.$router.push('search');
     },
     handleSearch() {
-      getAddressMatchList().then(res=>{
+      api.getAddressMatchList().then(res=>{
         if(res.success){
           this.tableData = res.data;
           this.listVisible = true;

@@ -312,25 +312,4 @@ export function getCenterPosition(sandbox, feature) {
   return [];
 }
 
-export function asyncGetGeojsonByView(view) {
-  const polygon = turf.polygon([
-    [
-      [view[0].lng, view[0].lat],
-      [view[1].lng, view[1].lat],
-      [view[2].lng, view[2].lat],
-      [view[3].lng, view[3].lat],
-      [view[0].lng, view[0].lat]
-    ]
-  ]);
 
-  return axios
-    .get('http://122.224.129.162:11172/addressServer/addressService/getAddressByPolygon', {
-      params: {
-        extent: `${JSON.stringify(polygon.geometry)}`
-      }
-    })
-    .then(res => {
-      console.log(res, 'res')
-      return res.data
-    });
-}

@@ -26,7 +26,7 @@
 
 <script>
 import {mapActions, mapState} from 'vuex';
-import { getNearestAddressByLocation } from '@/api/index'
+import * as api from '@/api/index'
 import * as util from '@/utils/altizureUtil';
 import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
 import PolygonMarker from '@/libs/polygonMarker';
@@ -54,6 +54,10 @@ export default {
   watch:{
     cardExtentVisible(val){
       this.visible = val;
+      if(!val){
+        console.log('removeEventListener')
+        this.removeEventListener();
+      }
     }
   },
   computed:{
@@ -64,6 +68,17 @@ export default {
   beforeDestroy() {
     console.log('removeEventListener')
     this.removeEventListener();
+  },
+  mounted(){
+    this.sandbox = window.sandbox
+    this.gs = window.gs
+    this.sandbox.camera.flyTo({
+      lng: 119.97,//120.165,
+      lat: 30.53,//30.255,
+      alt: 2000,
+      north: 0,
+      tilt: 20
+    })
   },
   methods:{
     ...mapActions({
@@ -77,18 +92,17 @@ export default {
       console.log(this.radioValue)
       if(this.radioValue == 1){
         console.log('框选')
+        this.drawpolygon();
       }else{
         this.handleAddressSearch();
       }
     },
     //空间查询画多边形
     drawpolygon() {
-      if(this.checked){
-      // this.sandbox.renderer.domElement.addEventListener(
-      //   'mousedown',
-      //   this.handleMouseDown
-      //   );
-      }
+      this.sandbox.domElement.addEventListener(
+        'mousedown',
+        this.handleMouseDown
+      );
     },
     handleRadioChange(val){
       // if(val == 1){
@@ -111,7 +125,7 @@ export default {
         // pageSize: 10,
         // currentpage:1
       }
-      getNearestAddressByLocation(param).then(arr=>{
+      api.getNearestAddressByLocation(param).then(arr=>{
         this.Pointdata = arr;
         console.log(this.Pointdata)
         this.setAddrListData(this.Pointdata);
@@ -122,7 +136,7 @@ export default {
     },
     removeEventListener() {
       if (this.sandbox) {
-        this.sandbox.renderer.domElement.removeEventListener(
+        this.sandbox.domElement.removeEventListener(
           'mousedown',
           this.handleMouseDown
         );
@@ -195,7 +209,7 @@ export default {
       };
       const view = util.getView(this.sandbox, this.startPt, endPt);
       console.log(view);
-      util.asyncGetGeojsonByView(view).then(arr => {
+      api.asyncGetGeojsonByView(view).then(arr => {
         this.destructMarker('drawPolygonsFromGeoJson');
         // if (geoJson.features) {
           this.Pointdata = arr;

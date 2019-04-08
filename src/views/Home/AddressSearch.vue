@@ -36,7 +36,7 @@
 <script>
 import {mapActions, mapState} from 'vuex';
 import cityData from '@/../public/data/city.json'
-import { getAddressList, getAddressQuery } from '@/api/index'
+import * as api from '@/api/index'
 import {SEARCH_STATUS} from '@/const'
 import cardResult from './components/CardResult'
 import cardAddrList from './components/CardAddrList'
@@ -187,7 +187,7 @@ export default {
         pageSize: 10,
         currentPage: 1
       }
-      getAddressQuery(param).then(res => {
+      api.getAddressQuery(param).then(res => {
         if (res.success) {
           this.addressList = res.data.data;
           this.setAddrListData(this.addressList);

@@ -82,6 +82,12 @@
           </li>
         </ul>
       </div>
+
+      <el-pagination
+        small
+        layout="prev, pager, next"
+        :total="50">
+      </el-pagination>
     </div>
   </section>
 </template>
@@ -89,6 +95,7 @@
 <script>
 import {mapActions, mapState} from 'vuex';
 import cityData from '@/../public/data/city.json'
+import {SEARCH_STATUS} from '@/const'
 
 export default {
   // props:{
@@ -115,10 +122,12 @@ export default {
       addrListvisible: state=>state.cardAddrList.visible,
       addrDetailsVisible: state=>state.cardAddrDetails.visible,
       addrListData: state=>state.cardAddrList.data,
+      searchStatus: state=>state.searchBtn.status,
     })
   },
   data(){
     return{
+      SEARCH_STATUS: SEARCH_STATUS,
       dataSource: {},
       visible: false,
       active: -1,
