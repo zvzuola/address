@@ -86,7 +86,8 @@
       <el-pagination
         small
         layout="prev, pager, next"
-        :total="50">
+        :total="totalNum"
+        @current-change="handlePageChange">
       </el-pagination>
     </div>
   </section>
@@ -96,6 +97,7 @@
 import {mapActions, mapState} from 'vuex';
 import cityData from '@/../public/data/city.json'
 import {SEARCH_STATUS} from '@/const'
+import * as api from '@/api/index'
 
 export default {
   // props:{
@@ -123,6 +125,8 @@ export default {
       addrDetailsVisible: state=>state.cardAddrDetails.visible,
       addrListData: state=>state.cardAddrList.data,
       searchStatus: state=>state.searchBtn.status,
+      requestAddr: state=>state.cardAddrList.addr,
+      totalNum: state=>state.cardAddrList.totalNum,
     })
   },
   data(){
@@ -163,6 +167,7 @@ export default {
       setAddrDetailsVisible: 'cardAddrDetails/setVisible',
       setAddrDetailsData: 'cardAddrDetails/setData',
       setAddrListData: 'cardAddrList/setData',
+      setSearchIconLoading: 'setSearchIconLoading',
     }),
     handleSearchSortBtnClick(index) {
       let searchSortPanelList = ['city-panel', 'building-panel', 'match-panel'];
@@ -198,6 +203,22 @@ export default {
       this.searchSortBtnList[2].title = item;
       this.handleSearchSortBtnClick(2);
     },
+    handlePageChange(page){
+      const param = {
+        addr: this.requestAddr,
+        extent: 'null',
+        scale: 0,
+        pageSize: 10,
+        currentPage: page
+      }
+      api.getAddressQuery(param).then(res => {
+        if (res.success) {
+          this.addressList = res.data.data;
+          this.setAddrListData(this.addressList);
+          this.setSearchIconLoading(false);
+        }
+      });
+    }
   },
 
 }

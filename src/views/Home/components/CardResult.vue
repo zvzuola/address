@@ -5,7 +5,7 @@
       v-show="visible"
       @mouseover="handleCardHover"
     >
-      共找到{{dataList.length}}个搜索结果
+      共找到{{totalNum}}个搜索结果
       <!-- {{message}} -->
     </div>
   </section>
@@ -45,6 +45,7 @@ export default {
       resultVisible: state=>state.cardResult.visible,
       addrListVisible: state=>state.cardAddrList.visible,
       addrListData: state=>state.cardAddrList.data,
+      totalNum: state=>state.cardAddrList.totalNum,
     })
   },
   methods:{

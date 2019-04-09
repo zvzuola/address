@@ -101,6 +101,8 @@ export default {
       switchToText: 'switchToText',
       switchToTextarea: 'switchToTextarea',
       setMatchListVisible: 'cardMatchList/setVisible',
+      setRequestAddr: 'cardAddrList/setAddr',
+      setRequestTotalNum: 'cardAddrList/setTotalNum',
     }),
     setExtentBtnCloseIcon(isClose){
       if(isClose){
@@ -193,6 +195,8 @@ export default {
           this.setAddrListData(this.addressList);
           this.setSearchIconLoading(false);
           this.setAddrListVisible(true);
+          this.setRequestAddr(val);
+          this.setRequestTotalNum(res.data.totalSize);
         }
       });
     },
