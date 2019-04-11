@@ -23,10 +23,10 @@
     <el-tooltip class="item" effect="dark" content="匹配引擎" placement="bottom">
       <div :class="$style['match-search']" @click="handleMatchClick"><i :class="matchBtnIcon"/></div>
     </el-tooltip>
-    
-    <card-result></card-result>
+
     <card-extent ref="cardExtent"></card-extent>
-    <card-addr-list></card-addr-list>
+    <card-result></card-result>
+    <card-addr-list ref="cardAddrList"></card-addr-list>
     <card-addr-details></card-addr-details>
     <card-match-list ref="cardMathList"></card-match-list>
 
@@ -137,6 +137,7 @@ export default {
     },
     handleSearch() {
       this.setCardResultVisible(false);
+      this.setAddrDetailsVisible(false);
       //判断当前是什么查询
       switch(this.searchStatus){
         case SEARCH_STATUS.SEARCH:
@@ -175,30 +176,34 @@ export default {
       this.setAddrListVisible(false);
       this.setAddrDetailsVisible(false);
       this.setCardResultVisible(false);
+      this.$refs['cardAddrList'].removeMarker();
     },
     getAddress(val) {
       if (!val) {
         this.$message('请输入查询信息！');
         return;
       }
-      this.setSearchIconLoading(true);
-      const param = {
-        addr: val,
-        extent: 'null',
-        scale: 0,
-        pageSize: 10,
-        currentPage: 1
-      }
-      api.getAddressQuery(param).then(res => {
-        if (res.success) {
-          this.addressList = res.data.data;
-          this.setAddrListData(this.addressList);
-          this.setSearchIconLoading(false);
-          this.setAddrListVisible(true);
-          this.setRequestAddr(val);
-          this.setRequestTotalNum(res.data.totalSize);
-        }
-      });
+      this.setRequestAddr(val);
+      this.$refs['cardAddrList'].handlePageChange(1);
+
+      // this.setSearchIconLoading(true);
+      // const param = {
+      //   addr: val,
+      //   extent: 'null',
+      //   scale: 0,
+      //   pageSize: 10,
+      //   currentPage: 1
+      // }
+      // api.getAddressQuery(param).then(res => {
+      //   if (res.success) {
+      //     this.addressList = res.data.data;
+      //     this.setAddrListData(this.addressList);
+      //     this.setSearchIconLoading(false);
+      //     this.setAddrListVisible(true);
+      //     this.setRequestAddr(val);
+      //     this.setRequestTotalNum(res.data.totalSize);
+      //   }
+      // });
     },
 
   },

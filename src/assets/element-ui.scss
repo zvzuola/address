@@ -25,3 +25,18 @@
   background-color: $color1;
   border: none;
 }
+
+.el-collapse-item__header,
+.el-collapse-item__wrap{
+  background-color: transparent;
+  color: #fff;
+}
+
+.el-collapse-item__header{
+  height: 30px;
+  line-height: 30px;
+}
+
+.el-collapse-item__content{
+  color: #fff;
+}

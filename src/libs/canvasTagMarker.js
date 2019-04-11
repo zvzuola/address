@@ -4,19 +4,7 @@ import BaseMarker from './baseMarker';
 const { altizure } = window;
 const noop = () => { };
 
-/**
- * 添加线
- * options: {
-    sandbox: sandbox,
-    points: pts,
-    lineWidth: 0.5,
-    depthTest: true,
-    color: 0xff111,
-    labelsVisible: true,
-    textOptions: defaultTextOptions
-  }
- */
-export default class PolyCylinderLineMarker extends BaseMarker {
+export default class CanvasTagMarker extends BaseMarker {
   constructor({
     geoJson,
     sandbox,
@@ -43,9 +31,13 @@ export default class PolyCylinderLineMarker extends BaseMarker {
     }
     const feature = altizureUtil.convertCoordinateFromFeature(feat, this.gs);
     const { type, coordinates } = feature.geometry;
-    if (type === 'LineString') {
-      const marker = new altizure.PolyCylinderLineMarker({
-        points: coordinates.map(lnglat => new altizure.LngLatAlt(lnglat[0], lnglat[1], lnglat[2] || 30)),
+    if (type === 'Point') {
+      const marker = new altizure.CanvasTagMarker({
+        position: {
+          lng: coordinates[0],
+          lat: coordinates[1],
+          alt: coordinates[2] || 90
+        },
         sandbox: this.sandbox,
         ...this.getStyles(feature)
       });
@@ -58,8 +50,10 @@ export default class PolyCylinderLineMarker extends BaseMarker {
 
   getStyles(feature) {
     const defaultStyles = {
-      color: 0xb73026,
-      lineWidth: 0.1
+      size: {
+        width: 300,
+        height: 300,
+      }
     };
     if (typeof this.styles === 'function') {
       return Object.assign({}, defaultStyles, this.styles(feature));

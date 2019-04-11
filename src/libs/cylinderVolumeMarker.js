@@ -5,18 +5,18 @@ const { altizure } = window;
 const noop = () => { };
 
 /**
- * 添加线
+ * 标记标记始终朝向相机并保持其屏幕空间大小
  * options: {
-    sandbox: sandbox,
-    points: pts,
-    lineWidth: 0.5,
-    depthTest: true,
-    color: 0xff111,
-    labelsVisible: true,
-    textOptions: defaultTextOptions
+    position: {lng: 121.62199313850867, lat: 31.21593319676947, alt: 0},
+    radius: 100,
+    top: 100,
+    bottom: 1,
+    color: 0x0000ff,
+    opacity: 0.3,
+    sandbox: sandbox
   }
  */
-export default class PolyCylinderLineMarker extends BaseMarker {
+export default class CylinderVolumeMarker extends BaseMarker {
   constructor({
     geoJson,
     sandbox,
@@ -42,24 +42,29 @@ export default class PolyCylinderLineMarker extends BaseMarker {
       return;
     }
     const feature = altizureUtil.convertCoordinateFromFeature(feat, this.gs);
-    const { type, coordinates } = feature.geometry;
-    if (type === 'LineString') {
-      const marker = new altizure.PolyCylinderLineMarker({
-        points: coordinates.map(lnglat => new altizure.LngLatAlt(lnglat[0], lnglat[1], lnglat[2] || 30)),
-        sandbox: this.sandbox,
-        ...this.getStyles(feature)
-      });
-      marker.feature = feature;
-      marker.originFeature = feat;
-      this.createMarkerCallback(marker);
-      this.markersMap.set(key, marker);
-    }
+    const { coordinates } = feature.geometry;
+    const marker = new altizure.CylinderVolumeMarker({
+      position: {
+        lng: coordinates[0],
+        lat: coordinates[1],
+        alt: 0
+      },
+      sandbox: this.sandbox,
+      ...this.getStyles(feature)
+    });
+    marker.feature = feature;
+    marker.originFeature = feat;
+    this.createMarkerCallback(marker);
+    this.markersMap.set(key, marker);
   }
 
   getStyles(feature) {
     const defaultStyles = {
-      color: 0xb73026,
-      lineWidth: 0.1
+      radius: 100,
+      top: 100,
+      bottom: 1,
+      color: 0x0000ff,
+      opacity: 0.3,
     };
     if (typeof this.styles === 'function') {
       return Object.assign({}, defaultStyles, this.styles(feature));

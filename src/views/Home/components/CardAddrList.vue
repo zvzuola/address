@@ -4,91 +4,95 @@
       :class="$style['cards-level1']"
       v-show="visible"
     >
-      <div
-        id="search_filter_block"
-        :class="[$style['search-filter-block'],$style[searchSortVisiblePanel]]"
-      >
-        <ul :class="$style['filter-toolbar']">
-          <li
-            v-for="(item,index) in searchSortBtnList"
-            :key="index"
-            :class="[$style['sort-btn'],$style[item.class], {[$style.active]: index === active}]"
-            @click="handleSearchSortBtnClick(index)"
-          >
-            <span>{{item.title}}</span>
-            <i :class="[$style['icon-arrow'], $style['arrow-status']]"></i>
-          </li>
-        </ul>
-        <div :class="$style['search-panel-city']">
-          <ul :class="$style['area-list']">
+      <div v-if="totalNum == 0">未找到相关地点<br>请检查输入是否正确或者输入其它词</div>
+      <div v-else >
+        <div
+          id="search_filter_block"
+          :class="[$style['search-filter-block'],$style[searchSortVisiblePanel]]"
+        >
+          <ul :class="$style['filter-toolbar']">
             <li
-              :class="[$style['area-item'],{[$style.active]: index === areaListActive}]"
-              v-for="(item,index) in cityFilterList"
+              v-for="(item,index) in searchSortBtnList"
               :key="index"
-              @mouseover="handleAreaItemHover(index)"
+              :class="[$style['sort-btn'],$style[item.class], {[$style.active]: index === active}]"
+              @click="handleSearchSortBtnClick(index)"
             >
-              <span class="town">{{item.label}}</span>
+              <span>{{item.title}}</span>
+              <i :class="[$style['icon-arrow'], $style['arrow-status']]"></i>
             </li>
           </ul>
-          <div :class="$style['area-sub-list']">
+          <div :class="$style['search-panel-city']">
+            <ul :class="$style['area-list']">
+              <li
+                :class="[$style['area-item'],{[$style.active]: index === areaListActive}]"
+                v-for="(item,index) in cityFilterList"
+                :key="index"
+                @mouseover="handleAreaItemHover(index)"
+              >
+                <span class="town">{{item.label}}</span>
+              </li>
+            </ul>
+            <div :class="$style['area-sub-list']">
+              <ul>
+                <li
+                  v-for="(item,index) in cityFilterList[areaListActive].items"
+                  :key="index"
+                >
+                  <a
+                    href="javascript:;"
+                    @click="handleCityFilterClick(item)"
+                  >{{item}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div :class="$style['search-panel-building']">
             <ul>
               <li
-                v-for="(item,index) in cityFilterList[areaListActive].items"
+                v-for="(item,index) in buildingFilterList"
                 :key="index"
+                @click="handleBuildingFilterClick(item)"
               >
-                <a
-                  href="javascript:;"
-                  @click="handleCityFilterClick(item)"
-                >{{item}}</a>
+                {{item}}
+              </li>
+            </ul>
+          </div>
+          <div :class="$style['search-panel-match']">
+            <ul>
+              <li
+                v-for="(item,index) in matchFilterList"
+                :key="index"
+                @click="handleMatchFilterClick(item)"
+              >
+                {{item}}
               </li>
             </ul>
           </div>
         </div>
-        <div :class="$style['search-panel-building']">
+     
+        <div :class="$style['address-list']">
           <ul>
             <li
-              v-for="(item,index) in buildingFilterList"
+              v-for="(item,index) in dataSource"
               :key="index"
-              @click="handleBuildingFilterClick(item)"
+              @click="handleAddressItemClick(item)"
             >
-              {{item}}
+              <div>{{index+1}}</div>
+              <div>{{item.name}}</div>
+              <div>{{item.address}}</div>
+              <div>类型：{{item.addtype}}</div>
             </li>
           </ul>
         </div>
-        <div :class="$style['search-panel-match']">
-          <ul>
-            <li
-              v-for="(item,index) in matchFilterList"
-              :key="index"
-              @click="handleMatchFilterClick(item)"
-            >
-              {{item}}
-            </li>
-          </ul>
-        </div>
+
+        <el-pagination
+          small
+          layout="prev, pager, next"
+          :total="totalNum"
+          @current-change="handlePageChange">
+        </el-pagination>
       </div>
 
-      <div :class="$style['address-list']">
-        <ul>
-          <li
-            v-for="(item,index) in dataSource"
-            :key="index"
-            @click="handleAddressItemClick(item)"
-          >
-            <div>{{index+1}}</div>
-            <div>{{item.name}}</div>
-            <div>{{item.address}}</div>
-            <div>类型：{{item.addtype}}</div>
-          </li>
-        </ul>
-      </div>
-
-      <el-pagination
-        small
-        layout="prev, pager, next"
-        :total="totalNum"
-        @current-change="handlePageChange">
-      </el-pagination>
     </div>
   </section>
 </template>
@@ -96,20 +100,17 @@
 <script>
 import {mapActions, mapState} from 'vuex';
 import cityData from '@/../public/data/city.json'
+import buildingData from '@/../public/data/building.json'
 import {SEARCH_STATUS} from '@/const'
 import * as api from '@/api/index'
+import TagMarker from '@/libs/tagMarker'
+import PolygonMarker from '@/libs/polygonMarker';
+
+const { altizure } = window;
 
 export default {
-  // props:{
-  //   dataSource:{
-  //     type: Array,
-  //     default(){
-  //       return [];
-  //     }
-  //   }
-  // },
   watch:{
-    addrListvisible(val){
+    addrListVisible(val){
       this.visible = val;
     },
     addrListData:{
@@ -121,7 +122,7 @@ export default {
   },
   computed:{
     ...mapState({
-      addrListvisible: state=>state.cardAddrList.visible,
+      addrListVisible: state=>state.cardAddrList.visible,
       addrDetailsVisible: state=>state.cardAddrDetails.visible,
       addrListData: state=>state.cardAddrList.data,
       searchStatus: state=>state.searchBtn.status,
@@ -159,7 +160,12 @@ export default {
         '模糊匹配',
         '精确匹配'
       ],
+      addrMarker: [],
     }
+  },
+  mounted(){
+    this.sandbox = window.sandbox
+    this.gs = window.gs
   },
   methods:{
     ...mapActions({
@@ -168,6 +174,8 @@ export default {
       setAddrDetailsData: 'cardAddrDetails/setData',
       setAddrListData: 'cardAddrList/setData',
       setSearchIconLoading: 'setSearchIconLoading',
+      setRequestTotalNum: 'cardAddrList/setTotalNum',
+      setAddrListVisible: 'cardAddrList/setVisible',
     }),
     handleSearchSortBtnClick(index) {
       let searchSortPanelList = ['city-panel', 'building-panel', 'match-panel'];
@@ -186,8 +194,34 @@ export default {
       this.setVisible(false);
       this.setAddrDetailsData(item);
       this.setAddrDetailsVisible(true);
-    },
+      console.log({item})
+      
+      // this.sandbox.camera.flyTo({
+      //   lng: item.lon,
+      //   lat: item.lat,
+      //   alt: 2000,
+      //   north: 0,
+      //   tilt: 20
+      // })
 
+      //创建体块  buildingData
+      const marker = new PolygonMarker({ 
+        geoJson:buildingData, 
+        sandbox: this.sandbox, 
+        gs: this.gs, 
+        createMarkerCallback: this.createMarkerCallback
+      });
+      this.sandbox.camera.flyTo({
+        lng: 120.172604376,
+        lat: 30.2806810968,
+        alt: 1000,
+        north: 0,
+        tilt: 20
+      })
+    },
+    createMarkerCallback(marker){
+      console.log(marker)
+    },
     handleCityFilterClick(item){
       //行政区过滤
       this.searchSortBtnList[0].title = item;
@@ -204,6 +238,7 @@ export default {
       this.handleSearchSortBtnClick(2);
     },
     handlePageChange(page){
+      this.setSearchIconLoading(true);
       const param = {
         addr: this.requestAddr,
         extent: 'null',
@@ -213,11 +248,53 @@ export default {
       }
       api.getAddressQuery(param).then(res => {
         if (res.success) {
-          this.addressList = res.data.data;
-          this.setAddrListData(this.addressList);
+          this.setAddrListData(res.data.data);
+          this.createMarker(res.data.data);
+          this.setRequestTotalNum(res.data.totalSize);
           this.setSearchIconLoading(false);
+          if(!this.addrListVisible) this.setAddrListVisible(true);
         }
       });
+    },
+    createMarker(dataList){
+      this.removeMarker();
+      // console.log('aaa')
+      // console.log(this.addrMarker)
+      // console.log({dataList})
+      dataList.map(item=>{
+        const marker = new altizure.TagMarker({
+          // 图标地址 img url
+          imgUrl: './img/tagDemo.png',
+          // 图标位置 icon position
+          position: {
+            lng: item.lon,
+            lat: item.lat,
+            alt: 0 // 虽然高程都赋值为0，但是不知为何 有的高有的低。
+          },
+          sandbox:this.sandbox,
+          // 指针[tagmarker指向地面点的指针]
+          pinLength: 30,
+          // 图标尺寸 如果设置了图标尺寸，则大小固定，再设置mouse的enter和leave的放大缩小设置fixedSize属性。 liuxiaoyan
+          fixedSize: 30,
+          // 图标比例：设置之后图标的大小相对模型调整。鼠标相应事件设置scale属性。
+          scale: 1
+        });
+        this.addrMarker.push(marker);
+      })
+ 
+      this.sandbox.camera.flyTo({
+        lng: dataList[0].lon,
+        lat: dataList[0].lat,
+        alt: 2000,
+        north: 0,
+        tilt: 20
+      })
+    },
+    removeMarker(){
+      if(this.addrMarker.length > 0)  {
+        this.addrMarker.map(item=>item.destruct());
+        this.addrMarker = [];
+      }
     }
   },
 

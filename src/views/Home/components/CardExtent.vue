@@ -1,7 +1,7 @@
 <template>
   <section>
     <div :class="$style['card-extent']" v-show="visible">
-      <el-radio-group v-model="radioValue" @change="drawpolygon" :class="$style['radio-block']">
+      <el-radio-group v-model="radioValue" :class="$style['radio-block']">
         <el-radio :label="1">框选查询</el-radio>
         <el-radio :label="2">缓冲区查询</el-radio>
       </el-radio-group>
@@ -28,7 +28,7 @@
 import {mapActions, mapState} from 'vuex';
 import * as api from '@/api/index'
 import * as util from '@/utils/altizureUtil';
-import PolygonsFromGeoJson from '@/libs/polygonsFromGeoJson';
+
 import PolygonMarker from '@/libs/polygonMarker';
 import TagMarker from '@/libs/tagMarker'
 
@@ -41,6 +41,7 @@ export default {
       radioValue: 1,
       checked: false,
       Pointdata:[],
+      ptMarkerList:[],
       formInline: {
         epsg: '4326',
         // addtype: '房屋',
@@ -57,6 +58,10 @@ export default {
       if(!val){
         console.log('removeEventListener')
         this.removeEventListener();
+        //移除tagMarker
+        this.removeMarker();
+        //移除框选多边形
+        this.destructMarker('drawPolygon');
       }
     }
   },
@@ -85,8 +90,7 @@ export default {
       setAddrListVisible: 'cardAddrList/setVisible',
       setAddrListData: 'cardAddrList/setData',
       setSearchIconLoading: 'setSearchIconLoading',
-      // setAddrDetailsVisible: 'cardAddrDetails/setVisible',
-      // setAddrDetailsData: 'cardAddrDetails/setData',
+      setRequestTotalNum: 'cardAddrList/setTotalNum',
     }),
     doExtentSearch(){
       console.log(this.radioValue)
@@ -103,14 +107,6 @@ export default {
         'mousedown',
         this.handleMouseDown
       );
-    },
-    handleRadioChange(val){
-      // if(val == 1){
-      //   //框选
-      //   this.drawpolygon();
-      // }else{
-      //   //缓冲区查询
-      // }
     },
     //缓冲区查询
     handleAddressSearch(){
@@ -131,6 +127,7 @@ export default {
         this.setAddrListData(this.Pointdata);
         this.setAddrListVisible(true);
         this.setSearchIconLoading(false);
+        this.setRequestTotalNum(this.Pointdata.length);
         this.addTag();
       });
     },
@@ -190,7 +187,7 @@ export default {
       );
 
       this.destructMarker('drawPolygon');
-      this.drawPolygon = new PolygonMarker({
+      this.drawPolygon = new altizure.PolygonMarker({
         sandbox: this.sandbox,
         volume: {
           points: lnglatpoints,
@@ -210,7 +207,7 @@ export default {
       const view = util.getView(this.sandbox, this.startPt, endPt);
       console.log(view);
       api.asyncGetGeojsonByView(view).then(arr => {
-        this.destructMarker('drawPolygonsFromGeoJson');
+        // this.destructMarker('drawPolygonsFromGeoJson');
         // if (geoJson.features) {
           this.Pointdata = arr;
           this.addTag();
@@ -224,11 +221,9 @@ export default {
     },
     //addTag
     addTag(){
-      // console.log(this.Pointdata)
+      this.removeMarker();
       this.Pointdata.forEach(Pointdata =>{
-        // console.log(Pointdata);
-        // return
-         const tag = new TagMarker({
+         const tag = new altizure.TagMarker({
             // 图标地址 img url
             imgUrl: './img/tagDemo.png',
             // 图标位置 icon position
@@ -245,7 +240,15 @@ export default {
             // 图标比例：设置之后图标的大小相对模型调整。鼠标相应事件设置scale属性。
             scale: 1
           })
+          this.ptMarkerList.push(tag);
         })
+    },
+    removeMarker(){
+      if(this.ptMarkerList.length > 0){
+        this.ptMarkerList.map(item=>item.destruct());
+        this.ptMarkerList = [];
+      }
+      
     }
   }
 }

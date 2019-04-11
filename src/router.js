@@ -20,16 +20,6 @@ export default new Router({
           component: () => import(/* webpackChunkName: "search" */ './views/Home/AddressSearch.vue'),
         },
         {
-          path: '/match',
-          name: 'match',
-          component: () => import(/* webpackChunkName: "search" */ './views/Home/AddressMatch.vue'),
-        },
-        {
-          path: '/extent',
-          name: 'extent',
-          component: () => import(/* webpackChunkName: "search" */ './views/Home/ExtentSearch.vue'),
-        },
-        {
           path: '/space-portrait',
           name: 'spacePortrait',
           component: () => import(/* webpackChunkName: "spacePortrait" */ './views/Home/SpacePortrait.vue'),
