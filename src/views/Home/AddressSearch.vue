@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section style="height: 100%">
     <div :class="$style['search-container']" id="search_container">
       <el-input
         clearable
@@ -10,6 +10,7 @@
         resize="none"
         @clear="handleInputClear"
         class="input-with-select"
+        @keydown.enter.native="handleSearch"
       >
       </el-input>
       <el-tooltip class="item" effect="dark" content="搜索" placement="bottom" :class="$style['search-btn']">
@@ -77,6 +78,11 @@ export default {
           break;
         default:
           break;
+      }
+    },
+    input(val){
+      if(val == ''){
+        this.handleInputClear();
       }
     }
   },

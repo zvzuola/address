@@ -173,6 +173,7 @@ export default {
   position: absolute;
   width: 400px;
   left: 20px;
+  height: 90vh;
 }
 
 #returnfixed {

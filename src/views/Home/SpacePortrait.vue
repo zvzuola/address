@@ -50,15 +50,15 @@
             v-if="inputVisible"
             v-model="inputValue"
             ref="saveTagInput"
-            size="small"
+            size="mini"
             @keyup.enter.native="handleInputConfirm"
             @blur="handleInputConfirm"
           >
           </el-input>
-          <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 添加标签</el-button>
+          <el-button v-else class="button-new-tag" type="primary" size="mini" @click="showInput">+ 添加标签</el-button>
         </el-form-item>
         <el-form-item label="描述">
-          <el-input type="textarea" :rows="4" v-model="formData.desc" placeholder="描述" size="small"></el-input>
+          <el-input type="textarea" :rows="4" resize="none" v-model="formData.desc" placeholder="描述" size="small"></el-input>
         </el-form-item>
         <el-form-item label="选择文件">
           <el-upload
@@ -66,7 +66,7 @@
             action="https://jsonplaceholder.typicode.com/posts/"
             :file-list="formData.fileList"
           >
-            <el-button size="small" type="primary">点击上传</el-button>
+            <el-button size="mini" type="primary">点击上传</el-button>
             <div slot="tip" class="el-upload__tip"></div>
           </el-upload>
         </el-form-item>
@@ -90,8 +90,8 @@
           </el-select>
         </el-form-item>
       </el-form>
-      <el-button>预览</el-button>
-      <el-button>入库</el-button>
+      <el-button size="mini" type="primary">预览</el-button>
+      <el-button size="mini" type="primary">入库</el-button>
     </el-dialog>
   </section>
 </template>

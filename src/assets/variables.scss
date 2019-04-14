@@ -6,6 +6,10 @@ $color4: #5bd5ee;
 $color5: rgba(63,72,84,.9);
 $color6: rgba(255, 255, 255, 0.8);
 $color7: #eee;
+$color8:#cae4ff;
+$color9: #bdc7da;
+$color10: #2a3744;
+$color11: rgba(67, 159, 255,1);
 $color-shadow: #000;
 $bg-color: #fff;
 $hover-color: #eee;
@@ -21,12 +25,12 @@ $border-color: #ccc;
     /*滚动条里面小方块*/
     // border-radius: 10px;
     // -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-    background: #949494;
+    background: $color5; //#949494;
   }
   &::-webkit-scrollbar-track {
     /*滚动条里面轨道*/
     // -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     // border-radius: 10px;
-    background: #ededed;
+    background: $color1;//#ededed;
   }
 }

@@ -83,7 +83,8 @@ export default {
 
 <style lang="scss" module>
 .cards-level0{
-  background-color: $bg-color;
+  background-color: $color1;
+  color: $color4;
   margin-top: 5px;
   height: 40px;
   padding: 10px;

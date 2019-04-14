@@ -1,100 +1,106 @@
 <template>
-  <section>
-    <div
-      :class="$style['cards-level1']"
-      v-show="visible"
-    >
-      <div v-if="totalNum == 0">未找到相关地点<br>请检查输入是否正确或者输入其它词</div>
-      <div v-else >
-        <div
-          id="search_filter_block"
-          :class="[$style['search-filter-block'],$style[searchSortVisiblePanel]]"
-        >
-          <ul :class="$style['filter-toolbar']">
+  <div
+    :class="$style['cards-level1']"
+    v-show="visible"
+  >
+    <div v-if="totalNum == 0">未找到相关地点<br>请检查输入是否正确或者输入其它词</div>
+    <div v-else >
+      <div
+        id="search_filter_block"
+        :class="[$style['search-filter-block'],$style[searchSortVisiblePanel]]"
+      >
+        <ul :class="$style['filter-toolbar']">
+          <li
+            v-for="(item,index) in searchSortBtnList"
+            :key="index"
+            :class="[$style['sort-btn'],$style[item.class], {[$style.active]: index === active}]"
+            @click="handleSearchSortBtnClick(index)"
+          >
+            <span>{{item.title}}</span>
+            <i :class="[$style['icon-arrow'], $style['arrow-status']]"></i>
+          </li>
+        </ul>
+        <div :class="$style['search-panel-city']">
+          <ul :class="$style['area-list']">
             <li
-              v-for="(item,index) in searchSortBtnList"
+              :class="[$style['area-item'],{[$style.active]: index === areaListActive}]"
+              v-for="(item,index) in cityFilterList"
               :key="index"
-              :class="[$style['sort-btn'],$style[item.class], {[$style.active]: index === active}]"
-              @click="handleSearchSortBtnClick(index)"
+              @mouseover="handleAreaItemHover(index)"
             >
-              <span>{{item.title}}</span>
-              <i :class="[$style['icon-arrow'], $style['arrow-status']]"></i>
+              <span class="town">{{item.label}}</span>
             </li>
           </ul>
-          <div :class="$style['search-panel-city']">
-            <ul :class="$style['area-list']">
-              <li
-                :class="[$style['area-item'],{[$style.active]: index === areaListActive}]"
-                v-for="(item,index) in cityFilterList"
-                :key="index"
-                @mouseover="handleAreaItemHover(index)"
-              >
-                <span class="town">{{item.label}}</span>
-              </li>
-            </ul>
-            <div :class="$style['area-sub-list']">
-              <ul>
-                <li
-                  v-for="(item,index) in cityFilterList[areaListActive].items"
-                  :key="index"
-                >
-                  <a
-                    href="javascript:;"
-                    @click="handleCityFilterClick(item)"
-                  >{{item}}</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div :class="$style['search-panel-building']">
+          <div :class="$style['area-sub-list']">
             <ul>
               <li
-                v-for="(item,index) in buildingFilterList"
+                v-for="(item,index) in cityFilterList[areaListActive].items"
                 :key="index"
-                @click="handleBuildingFilterClick(item)"
               >
-                {{item}}
-              </li>
-            </ul>
-          </div>
-          <div :class="$style['search-panel-match']">
-            <ul>
-              <li
-                v-for="(item,index) in matchFilterList"
-                :key="index"
-                @click="handleMatchFilterClick(item)"
-              >
-                {{item}}
+                <a
+                  href="javascript:;"
+                  @click="handleCityFilterClick(item)"
+                >{{item}}</a>
               </li>
             </ul>
           </div>
         </div>
-     
-        <div :class="$style['address-list']">
+        <div :class="$style['search-panel-building']">
           <ul>
             <li
-              v-for="(item,index) in dataSource"
+              v-for="(item,index) in buildingFilterList"
               :key="index"
-              @click="handleAddressItemClick(item)"
+              @click="handleBuildingFilterClick(item)"
             >
-              <div>{{index+1}}</div>
-              <div>{{item.name}}</div>
-              <div>{{item.address}}</div>
-              <div>类型：{{item.addtype}}</div>
+              {{item}}
             </li>
           </ul>
         </div>
-
-        <el-pagination
-          small
-          layout="prev, pager, next"
-          :total="totalNum"
-          @current-change="handlePageChange">
-        </el-pagination>
+        <div :class="$style['search-panel-match']">
+          <ul>
+            <li
+              v-for="(item,index) in matchFilterList"
+              :key="index"
+              @click="handleMatchFilterClick(item)"
+            >
+              {{item}}
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+      <div :class="$style['address-list']">
+        <ul>
+          <li
+            v-for="(item,index) in dataSource"
+            :key="index"
+            @click="handleAddressItemClick(item)"
+          >
+          <div :class="$style['list-index']">
+            {{index+1}}.
+          </div>
+          <div :class="$style['list-content']">
+            <div :class="$style['list-name']">
+              <span>{{item.name}}</span>
+              <el-tag type="warning" size="mini" :class="$style['tag']">A</el-tag>
+            </div>
+            <div :class="$style['list-address']">{{item.address}}</div>
+            <!-- <div>类型：{{item.addtype}}</div> -->
+          </div>
+          </li>
+        </ul>
       </div>
 
+      <el-pagination
+        :class="$style['pagination']"
+        small
+        layout="prev, pager, next"
+        :total="totalNum"
+        @current-change="handlePageChange">
+      </el-pagination>
     </div>
-  </section>
+
+  </div>
 </template>
 
 <script>
@@ -249,8 +255,8 @@ export default {
       api.getAddressQuery(param).then(res => {
         if (res.success) {
           this.setAddrListData(res.data.data);
-          this.createMarker(res.data.data);
           this.setRequestTotalNum(res.data.totalSize);
+          this.createMarker(res.data.data);
           this.setSearchIconLoading(false);
           if(!this.addrListVisible) this.setAddrListVisible(true);
         }
@@ -261,6 +267,7 @@ export default {
       // console.log('aaa')
       // console.log(this.addrMarker)
       // console.log({dataList})
+      if(dataList.length == 0) return;
       dataList.map(item=>{
         const marker = new altizure.TagMarker({
           // 图标地址 img url
@@ -350,10 +357,11 @@ export default {
 
 
 .cards-level1 {
-  background-color: $bg-color;
+  background-color: $color1;
+  color: $color9;
   margin-top: 5px;
   overflow-y: auto;
-  height: 350px;
+  height: calc(100% - 150px);
   padding: 10px;
   @include scrollbar();
   .search-filter-block {
@@ -471,15 +479,40 @@ export default {
   }
   .address-list {
     ul {
-      // padding-left: 10px;
+      padding: 0;
       li {
-        margin-bottom: 5px;
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid rgba(#fff,0.1);
         &:hover {
-          background-color: $hover-color;
+          background-color: $color10;
           cursor: pointer;
         }
+        .list-index{
+          font-size: 15px;
+          margin-right: 3px;
+          width: 20px;
+        }
+        .list-content{
+          flex-grow:1;
+          .list-name{
+            font-size: 15px;
+            color: $color4;
+            .tag{
+              float: right;
+            }
+          }
+          .list-address{
+            margin-top: 5px;
+            margin-right: 40px;
+          }
+        }
+        
       }
     }
+  }
+  .pagination{
+    margin-left: 20px;
   }
 }
 

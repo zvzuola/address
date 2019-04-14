@@ -6,7 +6,7 @@
         <el-radio :label="2">缓冲区查询</el-radio>
       </el-radio-group>
       <!-- <el-checkbox v-model="checked">多边形</el-checkbox> -->
-      <el-form :inline="true" :model="formInline">
+      <el-form :inline="true" :model="formInline" v-show="radioValue == 2">
         <el-form-item label="经度" v-show="formInline.epsg==='4326'">
           <el-input v-model="formInline.x" size="small"></el-input>
         </el-form-item>
@@ -93,9 +93,7 @@ export default {
       setRequestTotalNum: 'cardAddrList/setTotalNum',
     }),
     doExtentSearch(){
-      console.log(this.radioValue)
       if(this.radioValue == 1){
-        console.log('框选')
         this.drawpolygon();
       }else{
         this.handleAddressSearch();
@@ -256,19 +254,31 @@ export default {
 
 <style lang="scss" module>
 .card-extent{
-  background-color: $bg-color;
+  background-color: $color1;
+  color: $color4;
   margin-top: 5px;
-  height: 90px;
+  // padding-top: 5px;
+  padding-bottom: 8px;
+  // height: 95px;
   .radio-block{
     margin-left: 10px;
   }
   input{
-    width: 80px;
+    width: 75px;
     height: 25px!important;
     color: #fff;
+    border: 1px solid #dcdfe621;
+    background-color: #1c2630;
+    color:#bdc7da;
+    box-shadow: 0px 0px 6px 1px #11171d30 inset;
   }
   label{
     font-size: 13px;
+    color: $color8;
+  }
+  form{
+    height: 36px;
+    margin-left: 2px;
   }
 }
 </style>

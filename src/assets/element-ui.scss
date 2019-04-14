@@ -1,9 +1,9 @@
 //reset element-ui css
 .el-input__inner{
   background-color: $color1;
-  &:focus{
-    border-color: $color4;
-  }
+  // &:focus{
+  //   border-color: $color4;
+  // }
 }
 
 .el-form--inline .el-form-item{
@@ -40,3 +40,53 @@
 .el-collapse-item__content{
   color: #fff;
 }
+
+.el-dialog{
+  background: #212c38;
+  .el-input__inner,
+  .el-textarea__inner{
+    border: 1px solid #dcdfe621;
+    background-color: #1c2630;
+    color:#bdc7da;
+    box-shadow: 0px 0px 6px 1px #11171d30 inset;
+  }
+  .el-form-item__label,
+  .el-dialog__title{
+    color: $color8;
+  }
+  .el-dialog__body{
+    padding: 0px 20px 20px;
+  }
+  .button-new-tag{
+    line-height: 26px;
+    height: 28px;
+  }
+  
+}
+
+.el-pagination{
+  .el-pager li,
+  button:disabled,
+  .btn-next,
+  .btn-prev{
+    background-color: transparent;
+  }
+
+  .el-pager .number,
+  .btn-next i,
+  .btn-prev i{
+    color: $color9;
+    &:hover{
+      color: $color11;
+    }
+  }
+  .el-icon-more:before{
+    color: $color9;
+  }
+  button:disabled{
+    i{
+      color: grey;
+    }
+  }
+}
+
