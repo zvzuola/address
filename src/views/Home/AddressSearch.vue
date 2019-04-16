@@ -272,6 +272,7 @@ export default {
     background-color: transparent;
     border-radius: 0px;
     border: 0;
+    color: $color15;
   }
   .el-textarea__inner{
     min-height: 40px!important;

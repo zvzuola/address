@@ -1,29 +1,34 @@
 <template>
   <section :class="$style['portrait-panel']">
-    <i class="el-icon-close" :class="$style['close-btn']" @click="handleCloseClick"></i>
-    <el-button @click="newTopic">新建主题</el-button>
-    <el-collapse accordion>
-  <el-collapse-item>
-    <template slot="title">
-      一致性 Consistency<i class="header-icon el-icon-info"></i>
-    </template>
-    <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-    <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-  </el-collapse-item>
-    <el-collapse-item title="反馈 Feedback">
-      <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-      <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-    </el-collapse-item>
-    <el-collapse-item title="效率 Efficiency">
-      <div>简化流程：设计简洁直观的操作流程；</div>
-      <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-      <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-    </el-collapse-item>
-    <el-collapse-item title="可控 Controllability">
-      <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-      <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-    </el-collapse-item>
-  </el-collapse>
+    <div :class="$style['portrait-list']" id="portrait_list">
+      <i class="el-icon-close" :class="$style['btn-close']" @click="handleCloseClick"></i>
+      <div :class="$style['panel-title']">
+        <svg-icon :class="$style['title-icon']" icon="layer"></svg-icon>
+        空间主题
+        <div :class="$style['btn-new']" @click="newTopic">
+          <svg-icon icon="new"></svg-icon>
+        </div>
+      </div>
+      
+      <el-collapse accordion>
+        <el-collapse-item v-for="(item,index) in dataSource" :key="index">
+          <template slot="title">
+            <div :class="$style['list-title']">
+              <el-checkbox v-model="item.checked">{{item.title}}</el-checkbox>
+              <svg-icon icon="people" :class="$style['icon']"></svg-icon>
+            </div>
+          </template>
+          <div :class="$style['list-content']">
+            <div>{{item.type}}</div>
+            <div>{{item.describe}}</div>
+            <div>
+              <el-tag v-for="(tag,index) in item.tags" :key="index" size="mini">{{tag}}</el-tag>
+            </div>
+            
+          </div>
+        </el-collapse-item>
+      </el-collapse>
+    </div>
     <el-dialog id="newthemedlg" title="新建主题" :visible.sync="dialogVisible" width="50%" center :modal="false">
       <el-form label-position="right" label-width="80px">
         <el-form-item label="主题名称">
@@ -100,9 +105,19 @@ import List from '@/components/list/List';
 
 export default {
   data() {
+    let tmpData = [];
+    for(let i=0; i<4; i++){
+      tmpData.push({
+          title: `地名地址主题${i+1}`,
+          checked: false,
+          type: `大类${i+1}`,
+          tags:['tag1','tag2'],
+          describe:`描述${i+1}XXXXXXXX`,
+        })
+    }
     return {
       dialogVisible: false,
-      dataSource: ['地名地址主题1', '地名地址主题2', '地名地址主题3'],
+      dataSource: tmpData,
       activeStep: 0,
       formData: {
         name: '新建主题1',
@@ -152,26 +167,115 @@ export default {
 };
 </script>
 <style lang="scss" module>
+$color-new: $color11;
 .portrait-panel{
   background-color: $color1;
-  .close-btn{
-    position: absolute;
-    right: 0;
-    &:hover::before{
-      cursor: pointer;
-      color: $color4;
+  .portrait-list{
+    .btn-close{
+      position: absolute;
+      color: $color9;
+      padding: 5px;
+      right: 0;
+      font-size: 16px;
+      &:hover{
+        cursor: pointer;
+        color: $color4;
+      }
+    }
+    .panel-title{
+      color: $color11;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 15px 15px 15px 20px;
+      .title-icon{
+        font-size: 21px;
+      }
+    }
+    .btn-new{
+      font-size: 14px;
+      float: right;
+      margin-right: 30px;
+      background-color: rgba($color: $color-new, $alpha: 0.1);
+      color: $color-new;
+      border-radius: 5px;
+      padding: 3px 8px;
+      border: 1px solid rgba($color: $color-new, $alpha: 0.4);list-title
+      &:hover{
+        cursor: pointer;
+        color: $color1;
+        background-color:rgba($color: $color-new, $alpha: 1);
+      }
+    }
+    .list-title{
+      margin-left: 24px;
+      font-size: 15px;
+      width: 100%;
+      label{
+        color: $color15;
+      }
+      .icon{
+        float: right;
+        margin-right: 30px;
+        margin-top: 11px;
+        font-size: 16px;
+        color: $color2;
+      }
+    }
+    .list-content{
+      color: $color15;
+      margin-left: 48px;
+      margin-top: 5px;
     }
   }
-  .sidebar {
-    background: #fff;
-  }
-  .upload {
-  }
+  
 }
 
 </style>
 
 <style lang="scss">
+#portrait_list{
+  .el-collapse{
+    border-top: 1px solid rgba($color: $color9, $alpha: 0.3);
+    border-bottom: 1px solid rgba($color: $color9, $alpha: 0.3);
+  }
+  .el-collapse-item__header.is-active{
+    border-bottom-color: transparent;
+  }
+  .el-collapse-item__header{
+    height: 40px;
+    line-height: 40px;
+    // padding-right: 10px;
+  }
+  .el-collapse-item__header,
+  .el-collapse-item__wrap{
+    background-color: $color1;
+    color: #fff;
+    border-bottom: 1px solid rgba($color: $color9, $alpha: 0.3);
+  }
+
+  .el-collapse-item__content{
+    color: #fff;
+  }
+
+  .el-checkbox{
+    // float: right;
+    // margin-right: 20px;
+    .el-checkbox__inner{
+      width: 16px;
+      height: 16px;
+      background-color: transparent;
+      &::after{
+        height: 11px;
+        left: 5px;
+        top: 0px;
+        width: 4px;
+      }
+    }
+    
+  }
+}
+
 #newthemedlg{
   .el-form-item{
     margin-bottom: 5px;

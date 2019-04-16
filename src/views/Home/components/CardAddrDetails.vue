@@ -252,7 +252,7 @@ export default {
     .item-name{
       font-size: 18px;
       font-weight: bold;
-      color: $color4;
+      color: $color12;
       position: relative;
       .tag{
         position: absolute;

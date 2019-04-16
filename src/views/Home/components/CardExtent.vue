@@ -255,11 +255,8 @@ export default {
 <style lang="scss" module>
 .card-extent{
   background-color: $color1;
-  color: $color4;
   margin-top: 5px;
-  // padding-top: 5px;
   padding-bottom: 8px;
-  // height: 95px;
   .radio-block{
     margin-left: 10px;
   }
@@ -274,7 +271,7 @@ export default {
   }
   label{
     font-size: 13px;
-    color: $color8;
+    color: $color15;
   }
   form{
     height: 36px;
